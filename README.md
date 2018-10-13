@@ -1,4 +1,13 @@
-# Protogest-Automne2018
+# Protogest Front-End (Angular)
+## Prerequisites
+* NodeJS https://nodejs.org/
+
+# Quick start
+* Clone repo
+* Access the project folder through the terminal
+* Run npm install to install the packages locally
+* Run ng serve --open to run the app
+* The app will run locally through localhost:4200
 
 # Architecture du système
 ## Event-Service: 
