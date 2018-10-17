@@ -2,9 +2,15 @@
 ## Prerequisites
 * NodeJS https://nodejs.org/
 
-# Quick start
+## Packages
+* Angular 6
+* Bootstrap
+* ng-Bootstrap
+
+## Quick start
 * Clone repo
 * Access the project folder through the terminal
+* Run npm install -g @angular/cli
 * Run npm install to install the packages locally
 * Run ng serve --open to run the app
 * The app will run locally through localhost:4200
@@ -64,8 +70,8 @@
 * Maven 3.2 et plus.
 
 # Installation Steps
-1. git clone backend 
-2. install Spring Tool Set from https://spring.io/tools/sts 
+1. Git clone backend 
+2. Install Spring Tool Set from https://spring.io/tools/sts 
 3. Open STS workspace in protogest directory 
 4. In the menu, “File”, “Open Projects from File System”, “Directory”, choose protogest directory 
 5. If errors in “protogest-core” service, right-click the service, “Maven”, “Update Project” 
@@ -77,6 +83,6 @@
 10. Double-click on “Database-services” in “Boot Dashboard” to have a “Login” popup. Type all the correct information in the fields. The correct information are in this page: Configuration base de donnees
 11. Click on the “Connect” Button in the popup
 12. Continue running the rest of the services in the specified order
-13. git clone front end 
+13. Git clone front end 
 14. Install Redux with the following command: “yarn add redux axios” 
 15. Run frontend with: type “yarn” on the project folder, type “yarn start” 
