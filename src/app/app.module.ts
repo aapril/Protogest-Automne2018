@@ -7,6 +7,7 @@ import { ResetPasswordComponent } from './welcome/reset-password/reset-password.
 import { CalendarComponent } from './calendar/calendar.component';
 import { EventsComponent } from './events/events/events.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
     ResetPasswordComponent,
     CalendarComponent,
     EventsComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule
