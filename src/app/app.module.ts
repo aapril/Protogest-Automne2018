@@ -8,6 +8,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { EventsComponent } from './events/events/events.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { SignupComponent } from './signup/signup.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SignupComponent } from './signup/signup.component';
     SignupComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
