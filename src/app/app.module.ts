@@ -9,6 +9,7 @@ import { EventsComponent } from './events/events/events.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { SignupComponent } from './signup/signup.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
     CalendarComponent,
     EventsComponent,
     CreateEventComponent,
-    SignupComponent
+    SignupComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
