@@ -9,7 +9,8 @@ import { EventsComponent } from './events/events/events.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { SignupComponent } from './signup/signup.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import { TopbarComponent } from './shared/navbar/topbar/topbar.component';
+import { LeftbarComponent } from './shared/navbar/leftbar/leftbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     EventsComponent,
     CreateEventComponent,
     SignupComponent,
-    NavbarComponent
+    TopbarComponent,
+    LeftbarComponent
   ],
   imports: [
     BrowserModule,
