@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import "src/assets/dist/css/style.min.css";
+.light-logo {
+    height: 60px;
+    padding-left: 35px;
+}
