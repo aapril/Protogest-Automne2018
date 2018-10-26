@@ -11,6 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TopbarComponent } from './shared/navbar/topbar/topbar.component';
 import { LeftbarComponent } from './shared/navbar/leftbar/leftbar.component';
+import { EventsService } from './events/services/events.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { LeftbarComponent } from './shared/navbar/leftbar/leftbar.component';
     AppRoutingModule,
     RouterModule
   ],
-  providers: [],
+  providers: [EventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
