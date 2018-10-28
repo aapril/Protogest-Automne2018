@@ -1,12 +1,11 @@
 {
-    "name": "SB-Admin-BS4-Angular-6",
+    "name": "protogest-angular",
     "version": "6.0.0",
     "license": "Apache",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build --prod",
-        "gitbuild": "ng build --prod --base-href /start-angular/SB-Admin-BS4-Angular-6/master/dist/",
+        "build": "ng build",
         "test": "ng test",
         "test-ci": "TEST_CI=true ng test",
         "lint": "ng lint",
