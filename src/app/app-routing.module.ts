@@ -1,27 +1,20 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router'
-import { CommonModule } from '@angular/common';
-import { EventsComponent } from './events/events/events.component';
-import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './welcome/login/login.component';
-import { ResetPasswordComponent } from './welcome/reset-password/reset-password.component'; 
-import { CalendarComponent } from './calendar/calendar.component';
- 
+import { Routes, RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { AuthGuard } from './shared';
 
 const routes: Routes = [
-  { path: 'events', component: EventsComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'calendar', component: CalendarComponent },
-  { path: 'reset', component: ResetPasswordComponent },
-  { path: '**', redirectTo: 'events', pathMatch: 'full' }
-]
+    { path: '', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] },
+    { path: 'login', loadChildren: './login/login.module#LoginModule' },
+    { path: 'signup', loadChildren: './signup/signup.module#SignupModule' },
+    { path: 'error', loadChildren: './server-error/server-error.module#ServerErrorModule' },
+    { path: 'access-denied', loadChildren: './access-denied/access-denied.module#AccessDeniedModule' },
+    { path: 'not-found', loadChildren: './not-found/not-found.module#NotFoundModule' },
+    { path: '**', redirectTo: 'not-found' }
+];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes)
-  ],
-  declarations: []
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

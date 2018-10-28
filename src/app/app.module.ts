@@ -1,36 +1,43 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './welcome/login/login.component';
-import { ResetPasswordComponent } from './welcome/reset-password/reset-password.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { EventsComponent } from './events/events/events.component';
-import { CreateEventComponent } from './events/create-event/create-event.component';
-import { SignupComponent } from './signup/signup.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 import { AppRoutingModule } from './app-routing.module';
-import { TopbarComponent } from './shared/navbar/topbar/topbar.component';
-import { LeftbarComponent } from './shared/navbar/leftbar/leftbar.component';
-import { EventsService } from './events/services/events.service';
+import { AppComponent } from './app.component';
+import { AuthGuard } from './shared';
+
+// AoT requires an exported function for factories
+export const createTranslateLoader = (http: HttpClient) => {
+    /* for development
+    return new TranslateHttpLoader(
+        http,
+        '/start-angular/SB-Admin-BS4-Angular-6/master/dist/assets/i18n/',
+        '.json'
+    ); */
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+};
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    ResetPasswordComponent,
-    CalendarComponent,
-    EventsComponent,
-    CreateEventComponent,
-    SignupComponent,
-    TopbarComponent,
-    LeftbarComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule
-  ],
-  providers: [EventsService],
-  bootstrap: [AppComponent]
+    imports: [
+        CommonModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient]
+            }
+        }),
+        AppRoutingModule
+    ],
+    declarations: [AppComponent],
+    providers: [AuthGuard],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
