@@ -4,7 +4,7 @@
     width: 230px;
     border: solid;
     border-color: #f8f9fa;
-    border-width: 1px;
+    border-width: 2px;
     border-radius: 0;
     overflow-y: auto;
     overflow-x: hidden;
@@ -61,7 +61,7 @@
 
 .navbar {
     background-color: #fff !important;
-    border-bottom: solid #f8f9fa 1px;
+    border-bottom: solid #f8f9fa 2px;
 }
 
 .inner-nav {
@@ -70,4 +70,19 @@
 
 .btn-inner-sidebar {
     width: 100%;
+}
+
+.fa-important {
+    color: #fd7e14;
+}
+
+.fa-city {
+    color: #17a2b8;
+}
+
+a.nav-link {
+    color: #9ba5ae;
+    &:hover {
+        color: #212529;
+    }
 }
