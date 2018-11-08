@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../../services/event.service';
-import { Event } from '../../services/event.service';
+import { EventService } from './event.service';
+import { Event } from './event.service';
+import { routerTransition } from '../../router.animations';
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.scss'],
-  providers: [ EventService ]
+  providers: [ EventService ],
+  animations: [routerTransition()]
 })
 export class EventComponent implements OnInit {
   events: Event[];
