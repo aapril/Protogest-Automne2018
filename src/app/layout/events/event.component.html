@@ -45,5 +45,11 @@
     </nav>
     
     
-    <div class="inner-container">Test something</div>
+    <div class="inner-container">Test something
+      <ul>
+        <li *ngFor="let event of events">
+          {{event.name}}
+        </li>
+      </ul>
+    </div>
 </div>
