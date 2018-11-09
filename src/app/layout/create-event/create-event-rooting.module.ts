@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateEventComponent} from './layout/create-event/create-event.component';
+import { CreateEventComponent} from './create-event.component';
 
 const routes: Routes = [
-    { path: 'create-event', component: CreateEventComponent }
+    { path: '', component: CreateEventComponent }
 ];
 
 @NgModule({
-    exports: [ RouterModule ],
-    imports: [ RouterModule.forRoot(routes) ]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class CreateEventRootingModule { }
