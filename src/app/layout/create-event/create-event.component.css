@@ -1,13 +1,39 @@
-fieldset {
-    border-style: solid;
-    border-color: black;
+#eventdescription {
+    display: inline-block;
+    margin-top: 60px;
+}
+
+.submitbutton {
+    margin-left: 250px;
+    margin-top: 15px;
+}
+
+.textfield {
+
+    margin-bottom: 20px;
+    display: inline-block;
+    margin: 20px;
+}
+
+textarea {
+
 }
 
 form {
+    width: 400px;
+    margin: auto;
+    margin-top: 50px;
     border-style: solid;
+    border-width: 1px;
     border-color: black;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
+
+textarea {
+    resize: none;
+}
 h1 {
     width: 300px;
     margin: auto;

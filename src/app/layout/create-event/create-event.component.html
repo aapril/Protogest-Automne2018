@@ -2,10 +2,13 @@
 
 <form>
     <fieldset>
-        <legend>Event:</legend>
-        <input type="text" placeholder="event name" name="eventname"><br>
-        <input type="text" placeholder="laywer name" name="lawyername"><br>
-        <input type="text" placeholder="client name" name="client name"><br>
-        <textarea name="eventdescription" placeholder="event description"></textarea>
+        <span>Event name:</span> <input type="text" placeholder="event name" name="eventname" class="textfield"><br>
+        <span>Lawyer name:</span> <input type="text" placeholder="laywer name" name="lawyername" class="textfield"><br>
+        <span>Client name:</span> <input type="text" placeholder="client name" name="clientname" class="textfield"><br>
+        <span>Location:</span> <input type="text" placeholder="location" name="location" class="textfield"><br>
+        <span>Start time:</span> <input type="text" placeholder="start time" name="starttime" class="textfield"><br>
+        <span>Duration:</span> <input type="text" placeholder="duration" name="duration" class="textfield"><br>
+        <span id="eventdescription">Event description:</span> <textarea name="eventdescription" placeholder="event description"></textarea>
+        <input type="submit" value="Create event" class="submitbutton">
     </fieldset>
 </form>
