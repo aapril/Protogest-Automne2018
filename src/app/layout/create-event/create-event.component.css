@@ -1,0 +1,14 @@
+fieldset {
+    border-style: solid;
+    border-color: black;
+}
+
+form {
+    border-style: solid;
+    border-color: black;
+}
+
+h1 {
+    width: 300px;
+    margin: auto;
+}
