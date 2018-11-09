@@ -5,7 +5,14 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 export interface Event {
-  id: number
+  id: number,
+  name: string,
+  description: string,
+  eventDate: Date,
+  eventGroupId: number,
+  taskId: number,
+  authorId: number,
+  eventStateId: number
 }
 
 const httpOptions = {
