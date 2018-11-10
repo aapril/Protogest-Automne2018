@@ -1,0 +1,55 @@
+<div [@routerTransition]>
+  <div class="inner-sidebar">
+    <div class="inner-logo">Event</div>
+    <ul class="nav flex-column inner-nav">
+        <li class="nav-item">
+          <button type="button" class="btn btn-lg btn-primary btn-inner-sidebar">Create event</button>
+        </li>
+        <li class="nav-item">
+            
+            <a class="nav-link"><i class="fa fa-align-justify" aria-hidden="true"></i>&nbsp;All</a>
+        </li>
+        <li class="nav-item">
+          <div>Filters</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;Pending</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Completed</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Deleted</a>
+              </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+            <div>Labels</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link"><i class="fa fa-circle fa-important" aria-hidden="true"></i>&nbsp;Important</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"><i class="fa fa-circle fa-city" aria-hidden="true"></i>&nbsp;Montreal</a>
+                </li>
+            </ul>
+          </li>
+        
+      </ul>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search event" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </nav>
+    
+    
+    <div class="inner-container">Main content area
+      <ul>
+        <li *ngFor="let event of events">
+          {{event.name}}
+        </li>
+      </ul>
+    </div>
+</div>

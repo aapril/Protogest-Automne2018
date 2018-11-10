@@ -8,7 +8,7 @@
 .main-container {
     margin-top: 56px;
     margin-left: 235px;
-    padding: 15px;
+    padding: 0;
     -ms-overflow-x: hidden;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -16,7 +16,7 @@
     overflow: hidden;
 }
 .collapsed {
-    margin-left: 100px;
+    margin-left: 50px;
 }
 @media screen and (max-width: 992px) {
     .main-container {
