@@ -6,7 +6,17 @@ import { Event } from './event.service';
 })
 export class EventFilterPipe implements PipeTransform {
   transform(events: Event[], currentFilter: number) {
-    console.log(currentFilter)
-    return (currentFilter == 0) ? events : events.filter(event => event.eventStateId == currentFilter);
+    return (currentFilter == 0) ? events.filter(event => event.eventStateId != 3) : events.filter(event => event.eventStateId == currentFilter);
+  }
+}
+
+@Pipe({
+  name: 'searchFilter'
+})
+export class SearchFilterPipe implements PipeTransform {
+  transform(events: Event[], name: string) {
+    if(name == "" || !name) return events
+    name = name.toLowerCase();
+    return events.filter(event => event.name.includes(name))
   }
 }

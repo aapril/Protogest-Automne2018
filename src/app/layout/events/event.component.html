@@ -37,8 +37,8 @@
       </ul>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search event" aria-label="Search">
+      <form class="form-inline my-2 my-lg-0" [formGroup]="searchFormGroup" (ngSubmit)="searchEvent()">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search event" aria-label="Search" formControlName="searchValue">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </nav>
@@ -47,10 +47,10 @@
     <div class="inner-container">
       <!-- Table view of all events -->
       <table class="table table-condensed" *ngIf="!editView">
-        <tr *ngFor="let event of (events | eventFilter:currentFilter)">
+        <tr *ngFor="let event of (events | eventFilter:currentFilter | searchFilter:search)">
           <td>{{event.name}}</td>
           <td>{{event.description}}</td>
-          <td>{{event.eventDate | date:"yyyy-mm-dd"}}</td>
+          <td>{{event.eventDate | date:"yyyy-MM-dd"}}</td>
           <td>
             <i class="fa fa-pencil-square-o event-link" (click)="editEvent(event)" aria-hidden="true"></i>
             <i class="fa fa-times event-link" (click)="deleteEvent(event)" aria-hidden="true"></i>
@@ -72,8 +72,8 @@
           <div class="form-group">
             <label for="date">Date</label>
             <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd"
-                      name="dp" formControlName="eventDate" ngbDatepicker #d="ngbDatepicker" value="{{event.eventDate | date: 'yyyy-mm-dd'}}">
+              <input class="form-control" placeholder="yyyy-MM-dd"
+                      name="dp" formControlName="eventDate" ngbDatepicker #d="ngbDatepicker" value="{{event.eventDate | date: 'yyyy-MM-dd'}}">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><span class="fa fa-calendar"></span></button>
               </div>

@@ -3,6 +3,7 @@ import { EventService } from './event.service';
 import { Event } from './event.service';
 import { routerTransition } from '../../router.animations';
 import { FormGroup, FormControl } from '@angular/forms'
+import { EventFilterPipe } from './event.pipe'
 
 @Component({
   selector: 'app-event',
@@ -17,12 +18,16 @@ export class EventComponent implements OnInit {
     description: new FormControl(''),
     eventDate: new FormControl(''),
   })
+  searchFormGroup = new FormGroup({
+    searchValue: new FormControl('')
+  })
   currentFilter: number;
+  search: string;
   events: Event[];
   event: Event;
   filterType;
   editView: boolean = false;
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private eventFilterPipe: EventFilterPipe) { }
 
   ngOnInit() {
     this.getEvents();
@@ -54,7 +59,7 @@ export class EventComponent implements OnInit {
         eventStateId: 1
       },
       {
-        id: 1,
+        id: 2,
         name: "Event3",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         eventDate: new Date("2018-11-15T17:13:44.855Z"),
@@ -64,7 +69,7 @@ export class EventComponent implements OnInit {
         eventStateId: 1
       },
       {
-        id: 1,
+        id: 3,
         name: "Event4",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         eventDate: new Date("2018-11-15T17:13:44.855Z"),
@@ -74,7 +79,7 @@ export class EventComponent implements OnInit {
         eventStateId: 2
       },
       {
-        id: 1,
+        id: 4,
         name: "Event5",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         eventDate: new Date("2018-11-15T17:13:44.855Z"),
@@ -82,6 +87,56 @@ export class EventComponent implements OnInit {
         taskId: 3,
         authorId: 1,
         eventStateId: 3
+      },
+      {
+        id: 5,
+        name: "Event6",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        eventDate: new Date("2018-11-15T17:13:44.855Z"),
+        eventGroupId: 1,
+        taskId: 3,
+        authorId: 1,
+        eventStateId: 1
+      },
+      {
+        id: 6,
+        name: "Event7",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        eventDate: new Date("2018-11-15T17:13:44.855Z"),
+        eventGroupId: 1,
+        taskId: 3,
+        authorId: 1,
+        eventStateId: 1
+      },
+      {
+        id: 7,
+        name: "Event8",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        eventDate: new Date("2018-11-15T17:13:44.855Z"),
+        eventGroupId: 1,
+        taskId: 3,
+        authorId: 1,
+        eventStateId: 1
+      },
+      {
+        id: 8,
+        name: "Event9",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        eventDate: new Date("2018-11-15T17:13:44.855Z"),
+        eventGroupId: 1,
+        taskId: 3,
+        authorId: 1,
+        eventStateId: 1
+      },
+      {
+        id: 9,
+        name: "Event10",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        eventDate: new Date("2018-11-15T17:13:44.855Z"),
+        eventGroupId: 1,
+        taskId: 3,
+        authorId: 1,
+        eventStateId: 1
       }
     ]
   }
@@ -114,7 +169,6 @@ export class EventComponent implements OnInit {
   }
 
   updateEvent() {
-    console.log(this.eventFormGroup.value.name)
     this.event.name = this.eventFormGroup.value.name;
     this.event.description = this.eventFormGroup.value.description;
     this.event.eventDate = new Date(this.eventFormGroup.value.eventDate)
@@ -148,4 +202,16 @@ export class EventComponent implements OnInit {
     this.editView = false;
   }
 
+  deleteEvent(event: Event) {
+    // console.log(event.name)
+    // event.eventStateId = 3;
+    // this.events = this.eventFilterPipe.transform(this.events, this.currentFilter);
+    
+    this.events = this.events.filter(e => e !== event);
+    //this.eventService.deleteEvent(event.id).subscribe();
+  }
+
+  searchEvent() {
+    this.search = this.searchFormGroup.value.searchValue;
+  }
 }
