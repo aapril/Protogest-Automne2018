@@ -3,7 +3,6 @@ import { EventService } from './event.service';
 import { Event } from './event.service';
 import { routerTransition } from '../../router.animations';
 import { FormGroup, FormControl } from '@angular/forms'
-import { EventFilterPipe } from './event.pipe'
 
 @Component({
   selector: 'app-event',
@@ -12,7 +11,7 @@ import { EventFilterPipe } from './event.pipe'
   providers: [ EventService ],
   animations: [routerTransition()]
 })
-export class EventComponent implements OnInit {
+export class EventComponent implements OnInit { 
   eventFormGroup = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
@@ -27,7 +26,7 @@ export class EventComponent implements OnInit {
   event: Event;
   filterType;
   editView: boolean = false;
-  constructor(private eventService: EventService, private eventFilterPipe: EventFilterPipe) { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit() {
     this.getEvents();
