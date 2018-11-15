@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from './event.service';
 import { Event } from './event.service';
 import { routerTransition } from '../../router.animations';
+import { FormGroup, FormControl } from '@angular/forms'
 
 @Component({
   selector: 'app-event',
@@ -10,11 +11,17 @@ import { routerTransition } from '../../router.animations';
   providers: [ EventService ],
   animations: [routerTransition()]
 })
-export class EventComponent implements OnInit { 
+export class EventComponent implements OnInit {
+  eventFormGroup = new FormGroup({
+    name: new FormControl(''),
+    description: new FormControl(''),
+    eventDate: new FormControl(''),
+  })
   currentFilter: number;
   events: Event[];
   event: Event;
   filterType;
+  editView: boolean = false;
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
@@ -107,13 +114,18 @@ export class EventComponent implements OnInit {
   }
 
   updateEvent() {
-    if (this.event) {
-      this.eventService.updateEvent(this.event)
-        .subscribe(event => {
-          //logic to do
-        });
-      this.event = undefined;
-    }
+    console.log(this.eventFormGroup.value.name)
+    this.event.name = this.eventFormGroup.value.name;
+    this.event.description = this.eventFormGroup.value.description;
+    this.event.eventDate = new Date(this.eventFormGroup.value.eventDate)
+    this.editView = false;
+    // if (this.event) {
+    //   this.eventService.updateEvent(this.event)
+    //     .subscribe(event => {
+    //       //logic to do
+    //     });
+    //   this.event = undefined;
+    // }
   }
 
   createEvent(event: Event) {
@@ -125,6 +137,15 @@ export class EventComponent implements OnInit {
 
   getUserEvents() {
     this.eventService.getEvents().subscribe(events => this.events = events)
+  }
+
+  editEvent(event: Event){
+    this.event = event;
+    this.editView = true;
+  }
+  
+  cancelEdit() {
+    this.editView = false;
   }
 
 }
