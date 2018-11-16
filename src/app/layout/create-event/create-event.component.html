@@ -1,14 +1,36 @@
 <h1>Create Event</h1>
 
 <form>
-    <fieldset>
-        <span>Event name:</span> <input type="text" placeholder="event name" name="eventname" class="textfield"><br>
-        <span>Lawyer name:</span> <input type="text" placeholder="laywer name" name="lawyername" class="textfield"><br>
-        <span>Client name:</span> <input type="text" placeholder="client name" name="clientname" class="textfield"><br>
-        <span>Location:</span> <input type="text" placeholder="location" name="location" class="textfield"><br>
-        <span>Start time:</span> <input type="text" placeholder="start time" name="starttime" class="textfield"><br>
-        <span>Duration:</span> <input type="text" placeholder="duration" name="duration" class="textfield"><br>
-        <span id="eventdescription">Event description:</span> <textarea name="eventdescription" placeholder="event description"></textarea>
+    <div class="form-group">
+        <label for="eventname">Event name</label>
+        <input type="text" placeholder="event name" name="eventname" class="form-control" id="eventname">
+    </div>
+      <div class="form-group">
+          <label>Lawyer name</label>
+          <input type="text" placeholder="laywer name" name="lawyername" class="form-control" id="lawyername">
+      </div>
+    <div class="form-group">
+        <label>Client name</label>
+        <input type="text" placeholder="client name" name="clientname" class="form-control" id="clientname">
+    </div>
+    <div class="form-group">
+        <label>Location</label>
+        <input type="text" placeholder="location" name="location" class="form-control" id="location">
+    </div>
+    <div class="form-group">
+        <label>Start time</label>
+        <input type="text" placeholder="start time" name="starttime" class="form-control" id="starttime">
+    </div>
+    <div class="form-group">
+        <label>Duration</label>
+        <input type="text" placeholder="duration" name="duration" class="form-control" id="duration">
+    </div>
+    <div class="form-group">
+        <label>Event description</label>
+        <textarea name="eventdescription" placeholder="event description"></textarea>
+    </div>
+
+
         <input type="submit" value="Create event" class="submitbutton">
-    </fieldset>
+
 </form>

@@ -11,10 +11,13 @@
 .textfield {
 
     margin-bottom: 20px;
-    display: inline-block;
+    display: block;
     margin: 20px;
 }
 
+label {
+    display: block;
+}
 textarea {
 
 }
