@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { EventService } from './layout/events/event.service';
 
+
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
     /* for development
