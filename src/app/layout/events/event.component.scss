@@ -87,6 +87,11 @@ a.nav-link {
     &:hover {
         color: #212529;
     }
+    
+}
+
+.nav-link-active {
+    color: #212529 !important;
 }
 
 .event-link {

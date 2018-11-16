@@ -6,19 +6,19 @@
           <button type="button" class="btn btn-lg btn-primary btn-inner-sidebar">Create event</button>
         </li>
         <li class="nav-item">
-            <a class="nav-link" (click)="filterEvents(filterType.none)"><i class="fa fa-align-justify" aria-hidden="true"></i>&nbsp;{{filterType.none}}</a>
+            <a class="nav-link" (click)="filterEvents(filterType.none)" [ngClass]="{'nav-link-active': currentFilter == 0}"><i class="fa fa-align-justify" aria-hidden="true"></i>&nbsp;{{filterType.none}}</a>
         </li>
         <li class="nav-item">
           <div>Filters</div>
           <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" (click)="filterEvents(filterType.pending)"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{filterType.pending}}</a>
+                <a class="nav-link" (click)="filterEvents(filterType.pending)" [ngClass]="{'nav-link-active': currentFilter == 1}"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{filterType.pending}}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="filterEvents(filterType.completed)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{filterType.completed}}</a>
+                <a class="nav-link" (click)="filterEvents(filterType.completed)" [ngClass]="{'nav-link-active': currentFilter == 2}"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{filterType.completed}}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="filterEvents(filterType.deleted)"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;{{filterType.deleted}}</a>
+                <a class="nav-link" (click)="filterEvents(filterType.deleted)" [ngClass]="{'nav-link-active': currentFilter == 3}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;{{filterType.deleted}}</a>
               </li>
           </ul>
         </li>
