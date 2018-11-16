@@ -15,8 +15,8 @@ export class EventFilterPipe implements PipeTransform {
 })
 export class SearchFilterPipe implements PipeTransform {
   transform(events: Event[], name: string) {
-    if(name == "" || !name) return events
+    if(name == "" || !name || name.length < 1) return events
     name = name.toLowerCase();
-    return events.filter(event => event.name.includes(name))
+    return events.filter(event => new RegExp(name, 'g').test(event.name.toLowerCase()))
   }
 }
