@@ -3,11 +3,6 @@
     margin-top: 60px;
 }
 
-.submitbutton {
-    margin-left: 250px;
-    margin-top: 15px;
-}
-
 .textfield {
 
     margin-bottom: 20px;
@@ -15,11 +10,17 @@
     margin: 20px;
 }
 
-label {
-    display: block;
+button {
+    margin-left: 250px;
+    margin-top: 15px;
 }
-textarea {
 
+input {
+    width: 350px;
+}
+
+textarea {
+    width: 350px;
 }
 
 form {
