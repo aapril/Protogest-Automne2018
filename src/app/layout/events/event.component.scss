@@ -16,7 +16,8 @@
 
 .inner-container {
     padding: 10px;
-    float:left;
+    width: calc(100% - 230px);
+    float: left;
 }
 
 .inner-logo {
@@ -82,7 +83,17 @@
 
 a.nav-link {
     color: #9ba5ae;
+    cursor: pointer;
     &:hover {
         color: #212529;
     }
+    
+}
+
+.nav-link-active {
+    color: #212529 !important;
+}
+
+.event-link {
+    cursor: pointer;
 }
