@@ -55,12 +55,16 @@ export class EventService {
 
   /** POST: add a new event to the database */
   createEvent (event: Event): Observable<Event> {
-    return this.httpClient.post<Event>(environment.apiUrl + "/event", event, httpOptions)
+      console.log(event.description);
+      console.log('asbed 3');
+      alert('hello 2');
+      return this.httpClient.post<Event>(environment.apiUrl + '/event', event, httpOptions);
+/*    return this.httpClient.post<Event>(environment.apiUrl + "/event", event, httpOptions)
       .pipe(
-        catchError((error:any) => {
+        catchError((error: any) => {
           return throwError(error.statusText);
         })
-      );
+      ); */
   }
 
   /** PUT: update an event information */

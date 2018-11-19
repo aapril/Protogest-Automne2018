@@ -3,31 +3,31 @@
 <form>
     <div class="form-group">
         <label for="eventname">Event name</label>
-        <input type="text" placeholder="event name" name="eventname" class="form-control" id="eventname">
+        <input #eventName type="text" placeholder="event name" name="eventname" class="form-control" id="eventname">
     </div>
       <div class="form-group">
-          <label>Lawyer name</label>
-          <input type="text" placeholder="laywer name" name="lawyername" class="form-control" id="lawyername">
+          <label>Event group</label>
+          <input #eventGroup type="text" placeholder="laywer name" name="lawyername" class="form-control" id="lawyername">
       </div>
     <div class="form-group">
-        <label>Client name</label>
-        <input type="text" placeholder="client name" name="clientname" class="form-control" id="clientname">
+        <label>task name</label>
+        <input #taskName type="text" placeholder="client name" name="clientname" class="form-control" id="clientname">
     </div>
     <div class="form-group">
-        <label>Location</label>
-        <input type="text" placeholder="location" name="location" class="form-control" id="location">
+        <label>Author name</label>
+        <input #authorName type="text" placeholder="location" name="location" class="form-control" id="location">
     </div>
     <div class="form-group">
-        <label>Start time</label>
-        <input type="text" placeholder="start time" name="starttime" class="form-control" id="starttime">
+        <label>Event date</label>
+        <input #eventDate type="text" placeholder="start time" name="starttime" class="form-control" id="starttime">
     </div>
     <div class="form-group">
-        <label>Duration</label>
-        <input type="text" placeholder="duration" name="duration" class="form-control" id="duration">
+        <label>Event state</label>
+        <input #eventState type="text" placeholder="duration" name="duration" class="form-control" id="duration">
     </div>
     <div class="form-group">
         <label>Event description</label>
-        <textarea name="eventdescription" placeholder="event description" class="form-control"></textarea>
+        <textarea #eventDescription name="eventdescription" placeholder="event description" class="form-control"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Create event</button>
+    <button type="submit" class="btn btn-primary" (click)="createEvent(eventName.value, eventDescription.value, eventDate.value, eventGroup.value, taskName.value, authorName.value, eventState.value)">Create event</button>
 </form>
