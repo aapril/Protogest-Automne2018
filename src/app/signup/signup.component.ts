@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../router.animations';
+import { MemberService } from '../member.service';
+import { Member } from '../member';
 
 @Component({
     selector: 'app-signup',
@@ -8,7 +10,21 @@ import { routerTransition } from '../router.animations';
     animations: [routerTransition()]
 })
 export class SignupComponent implements OnInit {
-    constructor() {}
+
+    member: Member;
+    members: Member[];
+
+    constructor(private memberService: MemberService) {}
 
     ngOnInit() {}
+
+    register(firstNameFromTemplate: string, lastNameFromTemplate: string, emailFromTemplate: string): void {
+
+        this.member = {
+            firstName: firstNameFromTemplate,
+            lastName: lastNameFromTemplate,
+            email: emailFromTemplate
+        }
+        this.memberService.createMember(this.member).subscribe(member => this.members.push(member));
+    }
 }
