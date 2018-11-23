@@ -34,6 +34,8 @@ export class CreateEventComponent implements OnInit {
           eventStateId: 1
       }
       console.log(nameEvent);
-      this.eventService.createEvent(this.event).subscribe(event => this.events.push(event));
+      let observable = this.eventService.createEvent(this.event);
+
+      observable.subscribe();
   }
 }
