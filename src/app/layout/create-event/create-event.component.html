@@ -24,7 +24,7 @@
 
     <div class="form-group">
         <label for="yearSelect">Year</label>
-        <select class="form-control" id="yearSelect">
+        <select #year class="form-control" id="yearSelect">
             <option>2018</option>
             <option>2019</option>
             <option>2020</option>
@@ -35,7 +35,7 @@
 
     <div class="form-group">
         <label for="monthSelect">Month</label>
-        <select class="form-control" id="monthSelect">
+        <select #month class="form-control" id="monthSelect">
             <option>01</option>
             <option>02</option>
             <option>03</option>
@@ -52,7 +52,7 @@
 
     <div class="form-group">
         <label for="daySelect">Day</label>
-        <select class="form-control" id="daySelect">
+        <select #day class="form-control" id="daySelect">
             <option>01</option>
             <option>02</option>
             <option>03</option>
@@ -94,5 +94,5 @@
         <label>Event description</label>
         <textarea #eventDescription name="eventdescription" placeholder="event description" class="form-control"></textarea>
     </div>
-    <button class="btn btn-primary" (click)="createEvent(eventName.value, eventDescription.value, eventDate.value, eventGroup.value, taskName.value, authorName.value, eventState.value)">Create event</button>
+    <button class="btn btn-primary" (click)="createEvent(eventName.value, eventDescription.value, year.value, month.value, day.value, eventGroup.value, taskName.value, authorName.value, eventState.value)">Create event</button>
 </form>

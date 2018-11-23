@@ -17,11 +17,16 @@ export class CreateEventComponent implements OnInit {
 
   }
 
-  createEvent(nameEvent: string, descriptionEvent: string, date: string,
+  createEvent(nameEvent: string, descriptionEvent: string, year: string, month: string, day: string,
               groupId: string, taskId: string, authorId: string, stateId: string): void {
      console.log(nameEvent);
     console.log(descriptionEvent);
       console.log('asbed 2');
+      console.log(year + month + day);
+
+      let date: string;
+      date = year + '-' + month + '-' + day + 'T18:18:48.855Z'
+      console.log(date);
 
       this.event = {
           id: 0,
