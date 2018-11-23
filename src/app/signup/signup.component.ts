@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../router.animations';
-import { MemberService } from '../member.service';
-import { Member } from '../member';
+import { UserService } from '../user.service';
+import { User } from '../user';
 
 @Component({
     selector: 'app-signup',
@@ -11,20 +11,52 @@ import { Member } from '../member';
 })
 export class SignupComponent implements OnInit {
 
-    member: Member;
-    members: Member[];
+//    member: Member;
+//    members: Member[];
+    user: User;
+    users: User[];
 
-    constructor(private memberService: MemberService) {}
+    constructor(private userService: UserService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.getUsers();
+    }
 
-    register(firstNameFromTemplate: string, lastNameFromTemplate: string, emailFromTemplate: string): void {
+    getUsers(): void {
+        this.users = [
+            {
+                username: 'hay',
+                email: 'hay@.com',
+                roles: ['hay']
+            }
+        ]
+        this.userService.getUsers().subscribe(users => this.users = users);
+        console.log(this.users + 'it is right');
+        console.log(this.users.toString());
 
-        this.member = {
-            firstName: firstNameFromTemplate,
-            lastName: lastNameFromTemplate,
+        this.users = [new User()];
+    }
+
+    register(usernameFromTemplate: string, roleFromTemplate: string, emailFromTemplate: string): void {
+        console.log(this.users + 'opengl');
+         this.users = [];
+
+        this.user = {
+            username: usernameFromTemplate,
+            roles: [roleFromTemplate],
             email: emailFromTemplate
-        }
-        this.memberService.createMember(this.member).subscribe(member => this.members.push(member));
+        };
+
+        console.log(this.user.username);
+        console.log(this.user.email);
+        console.log(this.user.roles);
+        console.log(this.users);
+        let observable = this.userService.createUser(this.user);
+
+
+        observable.subscribe();
+        observable.subscribe();
+
+        console.log('finished execution');
     }
 }

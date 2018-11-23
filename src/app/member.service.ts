@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import { Member } from './member';
+import {catchError} from 'rxjs/operators';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -11,11 +12,17 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class MemberService {
-    private createMemberUrl = 'localhost:52175/member';
+    private createMemberUrl = 'http://localhost:52175/member';
 
   constructor(private http: HttpClient) { }
 
   createMember(member: Member): Observable<Member> {
-    return this.http.post<Member>(this.createMemberUrl, member, httpOptions);
+      console.log(member.email);
+    return this.http.post<Member>(this.createMemberUrl, member, httpOptions)
+        .pipe(
+            catchError((error: any) => {
+                return throwError(error.statusText);
+            })
+        );
   }
 }
