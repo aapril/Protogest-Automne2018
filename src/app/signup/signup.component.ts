@@ -10,9 +10,6 @@ import { User } from '../user';
     animations: [routerTransition()]
 })
 export class SignupComponent implements OnInit {
-
-//    member: Member;
-//    members: Member[];
     user: User;
     users: User[];
 
@@ -23,7 +20,7 @@ export class SignupComponent implements OnInit {
     }
 
     getUsers(): void {
-        this.users = [
+/*        this.users = [
             {
                 username: 'hay',
                 email: 'hay@.com',
@@ -31,32 +28,27 @@ export class SignupComponent implements OnInit {
             }
         ]
         this.userService.getUsers().subscribe(users => this.users = users);
-        console.log(this.users + 'it is right');
-        console.log(this.users.toString());
 
-        this.users = [new User()];
+
+        this.users = [new User()];*/
     }
 
     register(usernameFromTemplate: string, roleFromTemplate: string, emailFromTemplate: string): void {
-        console.log(this.users + 'opengl');
-         this.users = [];
-
-        this.user = {
-            username: usernameFromTemplate,
-            roles: [roleFromTemplate],
-            email: emailFromTemplate
-        };
-
-        console.log(this.user.username);
-        console.log(this.user.email);
-        console.log(this.user.roles);
-        console.log(this.users);
-        let observable = this.userService.createUser(this.user);
 
 
-        observable.subscribe();
-        observable.subscribe();
+        this.users = [];
 
-        console.log('finished execution');
+        if (roleFromTemplate !== 'Choose a role') {
+            this.user = {
+                username: usernameFromTemplate,
+                roles: [roleFromTemplate],
+                email: emailFromTemplate
+            };
+
+
+            let observable = this.userService.createUser(this.user);
+
+            observable.subscribe();
+        }
     }
 }

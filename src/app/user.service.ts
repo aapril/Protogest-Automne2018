@@ -16,19 +16,17 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUsers (): Observable<User[]> {
+/*  getUsers (): Observable<User[]> {
 
      let users = this.http.get<User[]>(this.userSignUpUrl);
      if (!users) {
          return new Observable<User[]>();
      }
      return users;
-  }
+  }*/
 
   createUser(user: User): Observable<User> {
-      console.log(user.username);
-      console.log(user.email);
-      console.log(user.roles);
+
       return this.http.post<User>(this.userSignUpUrl, user, httpOptions);
   }
 }
