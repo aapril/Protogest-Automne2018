@@ -20,7 +20,6 @@ export interface Event {
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
   })
 };
 
@@ -69,10 +68,7 @@ export class EventService {
 
   /** PUT: update an event information */
   updateEvent (event: Event): Observable<Event> {
-    httpOptions.headers =
-      httpOptions.headers.set('Authorization', 'my-new-auth-token');
-
-    return this.httpClient.put<Event>(environment.apiUrl + "/event-service/event/" + event.id, event, httpOptions)
+    return this.httpClient.put<Event>(environment.apiUrl + "/event/" + event.id, event, httpOptions)
       .pipe(
         catchError((error:any) => {
           return throwError(error.statusText);
@@ -82,7 +78,7 @@ export class EventService {
 
   /** DELETE: delete an event */
   deleteEvent(id: number) {
-    const url = `${environment.apiUrl}/${id}`;
+    const url = `${environment.apiUrl}/event/${id}`;
     return this.httpClient.delete(url, httpOptions)
       .pipe(
         catchError((error:any) => {
