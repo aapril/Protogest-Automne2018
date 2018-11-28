@@ -7,87 +7,16 @@
     </div>
       <div class="form-group">
           <label>Event group</label>
-          <input #eventGroup type="text" placeholder="laywer name" name="lawyername" class="form-control" id="lawyername">
+          <input #eventGroup type="text" placeholder="event group name" name="eventgroupname" class="form-control" id="eventgroupname">
       </div>
     <div class="form-group">
-        <label>task name</label>
-        <input #taskName type="text" placeholder="client name" name="clientname" class="form-control" id="clientname">
-    </div>
-    <div class="form-group">
-        <label>Author name</label>
-        <input #authorName type="text" placeholder="location" name="location" class="form-control" id="location">
-    </div>
-<!--    <div class="form-group">
-        <label>Event date</label>
-        <input #eventDate type="text" placeholder="start time" name="starttime" class="form-control" id="starttime">
-    </div>-->
-
-    <div class="form-group">
-        <label for="yearSelect">Year</label>
-        <select #year class="form-control" id="yearSelect">
-            <option>2018</option>
-            <option>2019</option>
-            <option>2020</option>
-            <option>2021</option>
-            <option>2022</option>
-        </select>
+        <label>member name</label>
+        <input #memberName type="text" placeholder="member name" name="membername" class="form-control" id="membername">
     </div>
 
-    <div class="form-group">
-        <label for="monthSelect">Month</label>
-        <select #month class="form-control" id="monthSelect">
-            <option>01</option>
-            <option>02</option>
-            <option>03</option>
-            <option>04</option>
-            <option>06</option>
-            <option>07</option>
-            <option>08</option>
-            <option>09</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="daySelect">Day</label>
-        <select #day class="form-control" id="daySelect">
-            <option>01</option>
-            <option>02</option>
-            <option>03</option>
-            <option>04</option>
-            <option>06</option>
-            <option>07</option>
-            <option>08</option>
-            <option>09</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-            <option>13</option>
-            <option>14</option>
-            <option>15</option>
-            <option>16</option>
-            <option>17</option>
-            <option>18</option>
-            <option>19</option>
-            <option>20</option>
-            <option>21</option>
-            <option>22</option>
-            <option>23</option>
-            <option>24</option>
-            <option>25</option>
-            <option>26</option>
-            <option>27</option>
-            <option>28</option>
-            <option>29</option>
-            <option>30</option>
-            <option>31</option>
-        </select>
-    </div>
     <div class="form-group">
         <div class="input-group">
-            <input class="form-control" placeholder="yyyy-mm-dd"
+            <input #date class="form-control" placeholder="yyyy-mm-dd"
                    name="dp"  ngbDatepicker #d="ngbDatepicker">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
@@ -95,13 +24,12 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label>Event state</label>
-        <input #eventState type="text" placeholder="duration" name="duration" class="form-control" id="duration">
-    </div>
+
+
     <div class="form-group">
         <label>Event description</label>
         <textarea #eventDescription name="eventdescription" placeholder="event description" class="form-control"></textarea>
     </div>
-    <button class="btn btn-primary" (click)="createEvent(eventName.value, eventDescription.value, year.value, month.value, day.value, eventGroup.value, taskName.value, authorName.value, eventState.value)">Create event</button>
+
 </form>
+<button class="btn btn-primary" (click)="createEvent(eventName.value, eventDescription.value, date.value, eventGroup.value, memberName.value)">Create event</button>

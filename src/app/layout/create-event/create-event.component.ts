@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Event, EventService} from '../events/event.service';
+import { CreateEvent } from './create-event';
 
 @Component({
   selector: 'app-create-event',
@@ -8,8 +9,10 @@ import {Event, EventService} from '../events/event.service';
 })
 export class CreateEventComponent implements OnInit {
 
-    event: Event;
-    events: Event[];
+//    event: Event;
+ //   events: Event[];
+    event: CreateEvent;
+    time: String;
 
   constructor(private eventService: EventService) { }
 
@@ -17,26 +20,23 @@ export class CreateEventComponent implements OnInit {
 
   }
 
-  createEvent(nameEvent: string, descriptionEvent: string, year: string, month: string, day: string,
-              groupId: string, taskId: string, authorId: string, stateId: string): void {
+  createEvent(nameEvent: string, descriptionEvent: string, date: string,
+              eventGroup: string, member: string): void {
      console.log(nameEvent);
     console.log(descriptionEvent);
-      console.log('asbed 2');
-      console.log(year + month + day);
 
-      let date: string;
-      date = year + '-' + month + '-' + day + 'T18:18:48.855Z'
-      console.log(date);
+
+
+
+//      date = year + '-' + month + '-' + day + 'T18:18:48.855Z'
+ 
 
       this.event = {
-          id: 0,
           name: nameEvent,
           description: descriptionEvent,
-          eventDate: new Date(date),
+          eventDate: date,
           eventGroupId: 1,
-          taskId: 2,
-          authorId: 1,
-          eventStateId: 1
+          memberId: 1
       }
       console.log(nameEvent);
       let observable = this.eventService.createEvent(this.event);

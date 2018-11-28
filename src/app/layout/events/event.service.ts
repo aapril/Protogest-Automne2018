@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-
+import { CreateEvent} from '../create-event/create-event';
 
 export interface Event {
   id: number,
@@ -53,11 +53,11 @@ export class EventService {
   }
 
   /** POST: add a new event to the database */
-  createEvent (event: Event): Observable<Event> {
+  createEvent (event: CreateEvent): Observable<CreateEvent> {
       console.log(event.description);
       console.log('asbed 3');
       alert('hello 2');
-      return this.httpClient.post<Event>(environment.apiUrl + '/event', event, httpOptions);
+      return this.httpClient.post<CreateEvent>(environment.apiUrl + '/event', event, httpOptions);
 /*    return this.httpClient.post<Event>(environment.apiUrl + "/event", event, httpOptions)
       .pipe(
         catchError((error: any) => {
