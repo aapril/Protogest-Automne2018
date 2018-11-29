@@ -1,13 +1,13 @@
 <div class="inner-container">
-<!-- Table view of all events -->
-<table class="table table-condensed" *ngIf="taskGroups != null && !taskView">
-  <tr *ngFor="let group of taskGroups" (click)="getTasks(group.id)">
-    <td>{{group.name}}</td>
-    <td>{{group.description}}</td>
-    <!-- <td>
-      <a routerLink="{{event.id}}/tasks"><i class="fa fa-tasks" aria-hidden="true"></i></a>
-      <i class="fa fa-pencil-square-o event-link" (click)="editEvent(event)" aria-hidden="true"></i>
-      <i class="fa fa-times event-link" (click)="deleteEvent(event)" aria-hidden="true"></i>
-    </td> -->
-  </tr>
-</table>
+  <!-- Table view of all events -->
+  <table class="table table-condensed table-hover" *ngIf="taskGroups != null && !taskView">
+    <tr *ngFor="let group of taskGroups" (click)="getTasks(group.id)" class="task-row">
+      <td>{{group.name}}</td>
+      <td>{{group.description}}</td>
+    </tr>
+  </table>
+  <div *ngIf="taskView">
+    <div class="btn btn-primary" (click)="toggleTaskView()">Go back</div>
+    <app-task [tasks]="tasks"></app-task>
+  </div>
+</div>

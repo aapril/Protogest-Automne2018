@@ -11,7 +11,9 @@ export class TasksComponent implements OnInit {
   taskGroups: TaskGroup[]
   tasks: Task[]
   taskView: boolean = false
-  constructor(private taskService: TaskService, private route: ActivatedRoute) { }
+  constructor(private taskService: TaskService, private route: ActivatedRoute) {
+
+  }
 
   ngOnInit() {
     this.eventId = this.route.snapshot.params['id']
@@ -28,7 +30,11 @@ export class TasksComponent implements OnInit {
   getTasks(taskGroupId: number) {
     this.taskService.getTasksFromGroup(taskGroupId).subscribe(t => {
       this.tasks = t
+      this.toggleTaskView()
     })
   }
 
+  toggleTaskView() {
+    this.taskView = !this.taskView
+  }
 }
