@@ -46,7 +46,7 @@
     
     <div class="inner-container">
       <!-- Table view of all events -->
-      <table class="table table-condensed" *ngIf="!editView">
+      <table class="table table-condensed" *ngIf="!editView && events != null">
         <tr *ngFor="let event of (events | eventFilter:currentFilter | searchFilter:search)">
           <td>{{event.name}}</td>
           <td>{{event.description}}</td>
