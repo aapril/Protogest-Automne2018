@@ -21,7 +21,7 @@ export class TasksComponent implements OnInit {
   }
 
   getTaskGroups() {
-    this.taskService.getTaskGroups(this.eventId).subscribe(t => { 
+    this.taskService.getTaskGroupsFromEvent(this.eventId).subscribe(t => { 
       this.taskGroups = t; 
       console.log(this.taskGroups) 
     })
