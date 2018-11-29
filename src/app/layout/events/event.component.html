@@ -52,6 +52,7 @@
           <td>{{event.description}}</td>
           <td>{{event.eventDate | date:"yyyy-MM-dd"}}</td>
           <td>
+            <a routerLink="{{event.id}}/tasks"><i class="fa fa-tasks" aria-hidden="true"></i></a>
             <i class="fa fa-pencil-square-o event-link" (click)="editEvent(event)" aria-hidden="true"></i>
             <i class="fa fa-times event-link" (click)="deleteEvent(event)" aria-hidden="true"></i>
           </td>
