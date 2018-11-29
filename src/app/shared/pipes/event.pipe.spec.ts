@@ -1,8 +1,8 @@
-import { EventPipe } from './event.pipe';
+import { EventFilterPipe } from './event.pipe';
 
 describe('EventPipe', () => {
   it('create an instance', () => {
-    const pipe = new EventPipe();
+    const pipe = new EventFilterPipe();
     expect(pipe).toBeTruthy();
   });
 });
