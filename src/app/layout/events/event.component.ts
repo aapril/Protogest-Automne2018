@@ -59,7 +59,7 @@ export class EventComponent implements OnInit {
         this.currentFilter = 0;
     }
   }
-  
+
   getEventGroup(group: string): void {
     if (group) {
       this.eventService.getEventsGroup(group)

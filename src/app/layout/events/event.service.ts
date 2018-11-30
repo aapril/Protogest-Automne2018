@@ -41,7 +41,7 @@ export class EventService {
     }));
   }
 
-  getEventsGroup(): Observable<Event[]> {
+  getEventsGroup(group): Observable<Event[]> {
       console.log('true');
     return this.httpClient.get<Event[]>(environment.apiUrl + "/eventGroup/all").pipe(catchError((error:any) => {
       return throwError(error.statusText);
