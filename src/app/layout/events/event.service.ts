@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { CreateEvent} from '../create-event/create-event';
+import { EventGroup} from '../create-event/event-group';
 
 export interface Event {
   id: number,
@@ -40,10 +41,16 @@ export class EventService {
     }));
   }
 
-  getEventsGroup(group: string): Observable<Event[]> {
+  getEventsGroup(): Observable<Event[]> {
+      console.log('true');
     return this.httpClient.get<Event[]>(environment.apiUrl + "/eventGroup/all").pipe(catchError((error:any) => {
       return throwError(error.statusText);
     }));
+  }
+
+
+  getAllEventGroups(): Observable<EventGroup[]> {
+      return this.httpClient.get<EventGroup[]>("http://localhost:52172/eventGroup/all");
   }
 
   getUserEvents(): Observable<Event[]> {
@@ -54,10 +61,9 @@ export class EventService {
 
   /** POST: add a new event to the database */
   createEvent (event: CreateEvent): Observable<CreateEvent> {
-      console.log(event.description);
-      console.log('asbed 3');
-      alert('hello 2');
-      return this.httpClient.post<CreateEvent>(environment.apiUrl + '/event', event, httpOptions);
+
+      console.log(event);
+      return this.httpClient.post<CreateEvent>("http://localhost:52172/event", event, httpOptions);
 /*    return this.httpClient.post<Event>(environment.apiUrl + "/event", event, httpOptions)
       .pipe(
         catchError((error: any) => {
