@@ -1,0 +1,10 @@
+<div *ngIf="tasks != null">
+  <div class="card task-card" *ngFor="let task of tasks">
+    <div class="card-body">
+      <h5 class="card-title">{{task.name}}</h5>
+      <p class="card-text">{{task.description}}</p>
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,7 @@
+.task-card {
+    display: inline-flex;
+    width: calc(25% - 20px);
+    margin: 10px;
+    height: 150px;
+    overflow-y: auto;
+}
