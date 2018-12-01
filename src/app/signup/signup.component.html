@@ -7,30 +7,26 @@
                     <div class="form-group">
                         <input #usernameFromTemplate type="text" class="form-control input-underline input-lg" id="username" placeholder="Username">
                     </div>
-
                     <div class="form-group">
-                        <select  #roleFromTemplate class="form-control" id="exampleFormControlSelect1">
-                            <option>Choose a role</option>
-                            <option>Authority</option>
-                            <option>Client</option>
-                            <option>Mediator</option>
-                        </select>
+                        <input type="password" class="form-control input-underline input-lg" id="password" placeholder="Password">
                     </div>
 
-<!--                    <div class="form-group">
-                        <input #roleFromTemplate type="text" class="form-control input-underline input-lg" id="role" placeholder="Role">
-                    </div>-->
+                    <div class="form-group">
+                        <input type="password" class="form-control input-underline input-lg" id="passwordconfirmation" placeholder="Repeat Password">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control input-underline input-lg" id="firstName" placeholder="first name">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control input-underline input-lg" id="lastName" placeholder="last name">
+                    </div>
 
                     <div class="form-group">
                         <input #emailFromTemplate type="text" class="form-control input-underline input-lg" id="email" placeholder="Email">
                     </div>
 
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="password" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="passwordconfirmation" placeholder="Repeat Password">
-                    </div>
                 </div>
                 <a class="btn rounded-btn" (click)="register(usernameFromTemplate.value, roleFromTemplate.value, emailFromTemplate.value); usernameFromTemplate.value=''; emailFromTemplate.value=''; roleFromTemplate.value='Choose a role'"> Register </a>&nbsp;
                 <a class="btn rounded-btn" [routerLink]="['/login']"> Log in </a>
