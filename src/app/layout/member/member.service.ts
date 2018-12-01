@@ -18,11 +18,7 @@ export class MemberService {
 
   createMember(member: Member): Observable<Member> {
       console.log(member.email);
-    return this.http.post<Member>(this.createMemberUrl, member, httpOptions)
-        .pipe(
-            catchError((error: any) => {
-                return throwError(error.statusText);
-            })
-        );
+    return this.http.post<Member>(this.createMemberUrl, member, httpOptions);
+
   }
 }

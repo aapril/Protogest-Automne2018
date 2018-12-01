@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../router.animations';
 import { UserService } from '../user.service';
 import { User } from '../user';
+import { Member } from '../layout/member/member';
+import { MemberService } from '../layout/member/member.service';
 
 @Component({
     selector: 'app-signup',
@@ -13,8 +15,9 @@ export class SignupComponent implements OnInit {
     user: User;
  //   users: User[];
     userId: number;
+    member: Member;
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private memberService: MemberService) {}
 
     ngOnInit() {
 //        this.getUsers();
@@ -53,18 +56,44 @@ export class SignupComponent implements OnInit {
             id: null,
             username: usernameFromTemplate,
             password: passwordFromTemplate
-        }
+        };
 
         console.log(this.user);
 
-            let observable = this.userService.createUser(this.user);
+            let observableUser = this.userService.createUser(this.user);
 
-           observable.subscribe(user => {
+           observableUser.subscribe(user => {
                this.userId = user.id;
                console.log(this.userId);
+
+               this.member = {
+                   id: null,
+                   firstName: firstNameFromTemplate,
+                   lastName: lastNameFromTemplate,
+                   email: emailFromTemplate,
+                   userId: this.userId
+               };
+
+               console.log(this.member);
+               const observableMember = this.memberService.createMember(this.member);
+               observableMember.subscribe();
            });
 
+  /*      if (this.userId != null) {
 
+            console.log('inside if condition');
+            this.member = {
+                id: null,
+                firstName: firstNameFromTemplate,
+                lastName: lastNameFromTemplate,
+                email: emailFromTemplate,
+                userId: this.userId
+            };
+
+            console.log(this.member);
+            const observableMember = this.memberService.createMember(this.member);
+            observableMember.subscribe();
+        }*/
 
         }
     }
