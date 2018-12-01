@@ -12,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-    private userSignUpUrl = 'http://localhost:52177/user/signup';
+    private userSignUpUrl = 'http://localhost:52177/user/signUp';
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +27,7 @@ export class UserService {
 
   createUser(user: User): Observable<User> {
 
+      console.log(user);
       return this.http.post<User>(this.userSignUpUrl, user, httpOptions);
   }
 }

@@ -11,16 +11,17 @@ import { User } from '../user';
 })
 export class SignupComponent implements OnInit {
     user: User;
-    users: User[];
+ //   users: User[];
+    userId: number;
 
     constructor(private userService: UserService) {}
 
     ngOnInit() {
-        this.getUsers();
+//        this.getUsers();
     }
 
     getUsers(): void {
-/*        this.users = [
+  /*      this.users = [
             {
                 username: 'hay',
                 email: 'hay@.com',
@@ -33,22 +34,38 @@ export class SignupComponent implements OnInit {
         this.users = [new User()];*/
     }
 
-    register(usernameFromTemplate: string, roleFromTemplate: string, emailFromTemplate: string): void {
+    register(usernameFromTemplate: string, passwordFromTemplate: string, passwordConfirmationFromTemplate: string,
+             firstNameFromTemplate: string, lastNameFromTemplate: string, emailFromTemplate: string): void {
 
 
-        this.users = [];
 
-        if (roleFromTemplate !== 'Choose a role') {
+ //       this.users = [];
+
+
+/*        if (roleFromTemplate !== 'Choose a role') {
             this.user = {
                 username: usernameFromTemplate,
                 roles: [roleFromTemplate],
                 email: emailFromTemplate
-            };
+            };*/
 
+        this.user = {
+            id: null,
+            username: usernameFromTemplate,
+            password: passwordFromTemplate
+        }
+
+        console.log(this.user);
 
             let observable = this.userService.createUser(this.user);
 
-            observable.subscribe();
+           observable.subscribe(user => {
+               this.userId = user.id;
+               console.log(this.userId);
+           });
+
+
+
         }
     }
-}
+
