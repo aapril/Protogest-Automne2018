@@ -28,6 +28,7 @@
         "@ngx-translate/http-loader": "^3.0.1",
         "chart.js": "^2.7.2",
         "core-js": "^2.5.5",
+        "daypilot-pro-angular": "https://npm.daypilot.org/daypilot-pro-angular/trial/2018.2.3297.tar.gz",
         "font-awesome": "^4.7.0",
         "ng2-charts": "^1.6.0",
         "rxjs": "^6.1.0",
