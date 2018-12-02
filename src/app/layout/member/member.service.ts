@@ -19,7 +19,8 @@ export class MemberService {
 
   createMember(member: Member): Observable<Member> {
 
-    return this.http.post<Member>(environment.memberApiUrl + '/member', member, httpOptions);
-
+    return this.http.post<Member>(environment.memberApiUrl + '/member', member, httpOptions).pipe(catchError((error: any) => {
+        return throwError(error.statusText);
+    }));
   }
 }

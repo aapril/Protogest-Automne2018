@@ -28,6 +28,8 @@ export class UserService {
 
   createUser(user: User): Observable<User> {
 
-      return this.http.post<User>(environment.userApiUrl + '/user/signUp', user, httpOptions);
+      return this.http.post<User>(environment.userApiUrl + '/user/signUp', user, httpOptions).pipe(catchError((error: any) => {
+          return throwError(error.statusText);
+      }));
   }
 }
