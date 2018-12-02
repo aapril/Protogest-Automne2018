@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit {
            }
 
         } else {
-            alert('Mots de passe sont différents');
+            alert('Password does not match with the password confirmation.');
         }
       }
     }
