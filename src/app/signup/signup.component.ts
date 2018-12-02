@@ -20,81 +20,55 @@ export class SignupComponent implements OnInit {
     constructor(private userService: UserService, private memberService: MemberService) {}
 
     ngOnInit() {
-//        this.getUsers();
+
     }
 
     getUsers(): void {
-  /*      this.users = [
-            {
-                username: 'hay',
-                email: 'hay@.com',
-                roles: ['hay']
-            }
-        ]
-        this.userService.getUsers().subscribe(users => this.users = users);
 
-
-        this.users = [new User()];*/
     }
 
     register(usernameFromTemplate: string, passwordFromTemplate: string, passwordConfirmationFromTemplate: string,
              firstNameFromTemplate: string, lastNameFromTemplate: string, emailFromTemplate: string): void {
 
+        if (passwordFromTemplate === passwordConfirmationFromTemplate) {
 
+           console.log(emailFromTemplate.search('@'));
 
- //       this.users = [];
+           if (emailFromTemplate.search('@') !== -1) {
 
-
-/*        if (roleFromTemplate !== 'Choose a role') {
-            this.user = {
-                username: usernameFromTemplate,
-                roles: [roleFromTemplate],
-                email: emailFromTemplate
-            };*/
-
-        this.user = {
-            id: null,
-            username: usernameFromTemplate,
-            password: passwordFromTemplate
-        };
-
-        console.log(this.user);
-
-            let observableUser = this.userService.createUser(this.user);
-
-           observableUser.subscribe(user => {
-               this.userId = user.id;
-               console.log(this.userId);
-
-               this.member = {
+               this.user = {
                    id: null,
-                   firstName: firstNameFromTemplate,
-                   lastName: lastNameFromTemplate,
-                   email: emailFromTemplate,
-                   userId: this.userId
+                   username: usernameFromTemplate,
+                   password: passwordFromTemplate
                };
 
-               console.log(this.member);
-               const observableMember = this.memberService.createMember(this.member);
-               observableMember.subscribe();
-           });
+               console.log(this.user);
 
-  /*      if (this.userId != null) {
+               const observableUser = this.userService.createUser(this.user);
 
-            console.log('inside if condition');
-            this.member = {
-                id: null,
-                firstName: firstNameFromTemplate,
-                lastName: lastNameFromTemplate,
-                email: emailFromTemplate,
-                userId: this.userId
-            };
+               observableUser.subscribe(user => {
+                   this.userId = user.id;
+                   console.log(this.userId);
 
-            console.log(this.member);
-            const observableMember = this.memberService.createMember(this.member);
-            observableMember.subscribe();
-        }*/
+                   this.member = {
+                       id: null,
+                       firstName: firstNameFromTemplate,
+                       lastName: lastNameFromTemplate,
+                       email: emailFromTemplate,
+                       userId: this.userId
+                   };
 
+                   console.log(this.member);
+                   const observableMember = this.memberService.createMember(this.member);
+                   observableMember.subscribe();
+               });
+           } else {
+               alert('Enter valid email');
+           }
+
+        } else {
+            alert('Mots de passe sont différents');
         }
+      }
     }
 
