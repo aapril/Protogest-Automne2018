@@ -17,7 +17,7 @@ export class MemberService {
   constructor(private http: HttpClient) { }
 
   createMember(member: Member): Observable<Member> {
-      console.log(member.email);
+
     return this.http.post<Member>(this.createMemberUrl, member, httpOptions);
 
   }

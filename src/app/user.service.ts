@@ -27,7 +27,7 @@ export class UserService {
 
   createUser(user: User): Observable<User> {
 
-      console.log(user);
+      
       return this.http.post<User>(this.userSignUpUrl, user, httpOptions);
   }
 }

@@ -13,7 +13,7 @@ import { MemberService } from '../layout/member/member.service';
 })
 export class SignupComponent implements OnInit {
     user: User;
- //   users: User[];
+
     userId: number;
     member: Member;
 
@@ -23,16 +23,13 @@ export class SignupComponent implements OnInit {
 
     }
 
-    getUsers(): void {
-
-    }
 
     register(usernameFromTemplate: string, passwordFromTemplate: string, passwordConfirmationFromTemplate: string,
              firstNameFromTemplate: string, lastNameFromTemplate: string, emailFromTemplate: string): void {
 
         if (passwordFromTemplate === passwordConfirmationFromTemplate) {
 
-           console.log(emailFromTemplate.search('@'));
+
 
            if (emailFromTemplate.search('@') !== -1) {
 
@@ -42,13 +39,13 @@ export class SignupComponent implements OnInit {
                    password: passwordFromTemplate
                };
 
-               console.log(this.user);
+
 
                const observableUser = this.userService.createUser(this.user);
 
                observableUser.subscribe(user => {
                    this.userId = user.id;
-                   console.log(this.userId);
+
 
                    this.member = {
                        id: null,
@@ -58,7 +55,7 @@ export class SignupComponent implements OnInit {
                        userId: this.userId
                    };
 
-                   console.log(this.member);
+
                    const observableMember = this.memberService.createMember(this.member);
                    observableMember.subscribe();
                });
