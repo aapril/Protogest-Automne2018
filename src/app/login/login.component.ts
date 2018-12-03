@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { routerTransition } from '../router.animations';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { LoginService } from './login.service';
 import { first } from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ import { first } from 'rxjs/operators';
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
-    loginForm: FormGroup;
+    loginform: FormGroup;
     loading = false;    
     submitted: boolean = false; 
     returnUrl: string;
@@ -23,12 +23,11 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router) { }                
 
-    ngOnInit() {
-        this.loginForm = this.formBuilder.group({
+    ngOnInit() {             
+        this.loginform = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
           });
-          
           // reset login status   
           this.loginService.logout();
 
@@ -37,16 +36,17 @@ export class LoginComponent implements OnInit {
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.loginForm.controls; }
+    get f() { return this.loginform.controls; }
 
-    onLoggedin() {
+ 
+    onLoggedin() {        
         this.submitted = true;
 
-        // stop here if form is invalid
-        if (this.loginForm.invalid) {
+       // stop here if form is invalid
+        if (this.loginform.invalid) {
+            console.log(true)
             return;
-        }
-
+        }         
         this.loading = true;
         this.loginService.login(this.f.username.value, this.f.password.value)
             .pipe(first())

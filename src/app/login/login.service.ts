@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 
 @Injectable()
 export class LoginService {
-    private userSignInUrl = 'http://localhost:52177/user/signin';
     constructor(private http: HttpClient) { }
 
     login(username: string, password: string) {
-        return this.http.post<any>(`userSignInUrl`, { username: username, password: password })
+        return this.http.post<any>(environment.apiUrl + "/user/signin", { username: username, password: password })
             .pipe(map(user => {
-                if (user && user.token) {                    
+                if (user) {                               
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }
                 return user;
