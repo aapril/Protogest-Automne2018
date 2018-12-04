@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../router.animations';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
+
 import { UserService } from '../user.service';
 import { User } from '../user';
 import { Member } from '../layout/member/member';
@@ -18,12 +20,12 @@ export class SignupComponent implements OnInit {
     userId: number;
     member: Member;
     signupForm = new FormGroup({
-        username: new FormControl(''),
-        password: new FormControl(''),
-        passwordConfirmation: new FormControl(''),
-        firstName: new FormControl(''),
-        lastName: new FormControl(''),
-        email: new FormControl(''),
+        username: new FormControl('', Validators.required),
+        password: new FormControl('', Validators.required),
+        passwordConfirmation: new FormControl('', Validators.required),
+        firstName: new FormControl('', Validators.required),
+        lastName: new FormControl('', Validators.required),
+        email: new FormControl('', [Validators.required, Validators.email]),
     });
 
     // Form values
@@ -57,15 +59,11 @@ export class SignupComponent implements OnInit {
         if (this.password === this.passwordConfirmation) {
 
 
-
-           if (this.email.search('@') !== -1) {
-
                this.user = {
                    id: null,
                    username: this.username,
                    password: this.password
                };
-
 
 
                const observableUser = this.userService.createUser(this.user);
@@ -86,9 +84,7 @@ export class SignupComponent implements OnInit {
                    const observableMember = this.memberService.createMember(this.member);
                    observableMember.subscribe();
                });
-           } else {
-               alert('Enter valid email');
-           }
+
 
         } else {
             alert('Password does not match with the password confirmation.');
