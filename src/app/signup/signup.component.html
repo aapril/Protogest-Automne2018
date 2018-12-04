@@ -2,39 +2,39 @@
     <div class="row justify-content-md-center">
         <div class="col-md-4">
             <img class="user-avatar" src="assets/images/logo.png" width="150px" />           
-            <form role="form">
+            <form role="form" [formGroup]="signupForm">
                 <div class="form-content">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input #usernameFromTemplate type="text" class="form-control input-underline input-lg" id="username" placeholder="Username">
+                        <input #usernameFromTemplate formControlName="username" type="text" class="form-control input-underline input-lg" id="username" placeholder="Username">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input #passwordFromTemplate type="password" class="form-control input-underline input-lg" id="password" placeholder="Password">
+                        <input #passwordFromTemplate formControlName="password" type="password" class="form-control input-underline input-lg" id="password" placeholder="Password">
                     </div>
 
                     <div class="form-group">
                         <label for="passwordconfirmation">Password confirmation</label>
-                        <input #passwordConfirmationFromTemplate type="password" class="form-control input-underline input-lg" id="passwordconfirmation" placeholder="Repeat Password">
+                        <input #passwordConfirmationFromTemplate formControlName="passwordConfirmation" type="password" class="form-control input-underline input-lg" id="passwordconfirmation" placeholder="Repeat Password">
                     </div>
 
                     <div class="form-group">
                         <label for="firstName">first name</label>
-                        <input #firstNameFromTemplate type="text" class="form-control input-underline input-lg" id="firstName" placeholder="first name">
+                        <input #firstNameFromTemplate formControlName="firstName" type="text" class="form-control input-underline input-lg" id="firstName" placeholder="first name">
                     </div>
 
                     <div class="form-group">
                         <label for="lastName">last name</label>
-                        <input #lastNameFromTemplate type="text" class="form-control input-underline input-lg" id="lastName" placeholder="last name">
+                        <input #lastNameFromTemplate  formControlName="lastName" type="text" class="form-control input-underline input-lg" id="lastName" placeholder="last name">
                     </div>
 
                     <div class="form-group">
                         <label for="email">email</label>
-                        <input #emailFromTemplate type="text" class="form-control input-underline input-lg" id="email" placeholder="Email">
+                        <input #emailFromTemplate formControlName="email" type="text" class="form-control input-underline input-lg" id="email" placeholder="Email">
                     </div>
 
                 </div>
-                <a class="btn rounded-btn" (click)="register(usernameFromTemplate.value, passwordFromTemplate.value, passwordConfirmationFromTemplate.value, firstNameFromTemplate.value, lastNameFromTemplate.value, emailFromTemplate.value); usernameFromTemplate.value='';"> Register </a>&nbsp;
+                <a class="btn rounded-btn" (click)="register()"> Register </a>&nbsp;
                 <a class="btn rounded-btn" [routerLink]="['/login']"> Log in </a>
             </form>
         </div>
