@@ -31,5 +31,6 @@ export class UserService {
       return this.http.post<User>(environment.userApiUrl + '/user/signUp', user, httpOptions).pipe(catchError((error: any) => {
           return throwError(error.statusText);
       }));
+
   }
 }
