@@ -8,7 +8,7 @@ export class LoginService {
     constructor(private http: HttpClient) { }
 
     login(username: string, password: string) {
-        return this.http.post<any>(environment.apiUrl + "/user/signin", { username: username, password: password })
+        return this.http.post<LoginService>(environment.userApiUrl + "/user/signin", { username: username, password: password })
             .pipe(map(user => {
                 if (user) {                               
                     localStorage.setItem('currentUser', JSON.stringify(user));
