@@ -30,12 +30,12 @@ export class SignupComponent implements OnInit {
 
     // Form values
 
-    username: string;
+/*    username: string;
     password: string;
     passwordConfirmation: string;
     firstName: string;
     lastName: string;
-    email: string;
+    email: string;*/
 
     constructor(private userService: UserService, private memberService: MemberService) {}
 
@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
 
     register(): void {
 
-        this.username = this.signupForm.get('username').value;
+/*        this.username = this.signupForm.get('username').value;
         this.password = this.signupForm.get('password').value;
         this.passwordConfirmation = this.signupForm.get('passwordConfirmation').value;
         this.firstName = this.signupForm.get('firstName').value;
@@ -54,15 +54,15 @@ export class SignupComponent implements OnInit {
         this.email = this.signupForm.get('email').value;
 
         console.log(this.username);
-        console.log(this.email);
+        console.log(this.email);*/
 
-        if (this.password === this.passwordConfirmation) {
+        if (this.signupForm.get('password').value === this.signupForm.get('passwordConfirmation').value) {
 
 
                this.user = {
                    id: null,
-                   username: this.username,
-                   password: this.password
+                   username: this.signupForm.get('username').value,
+                   password: this.signupForm.get('password').value
                };
 
 
@@ -74,9 +74,9 @@ export class SignupComponent implements OnInit {
 
                    this.member = {
                        id: null,
-                       firstName: this.firstName,
-                       lastName: this.lastName,
-                       email: this.email,
+                       firstName: this.signupForm.get('firstName').value,
+                       lastName: this.signupForm.get('lastName').value,
+                       email: this.signupForm.get('email').value,
                        userId: this.userId
                    };
 
