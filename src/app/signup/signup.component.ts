@@ -30,14 +30,7 @@ export class SignupComponent implements OnInit {
     });
     errorMessage: boolean;
 
-    // Form values
 
-/*    username: string;
-    password: string;
-    passwordConfirmation: string;
-    firstName: string;
-    lastName: string;
-    email: string;*/
 
     constructor(private userService: UserService, private memberService: MemberService, private router: Router) {}
 
@@ -72,29 +65,11 @@ export class SignupComponent implements OnInit {
 
     register(): void {
 
-/*        this.username = this.signupForm.get('username').value;
-        this.password = this.signupForm.get('password').value;
-        this.passwordConfirmation = this.signupForm.get('passwordConfirmation').value;
-        this.firstName = this.signupForm.get('firstName').value;
-        this.lastName = this.signupForm.get('lastName').value;
-        this.email = this.signupForm.get('email').value;
 
-        console.log(this.username);
-        console.log(this.email);*/
 
         this.errorMessage = true;
 
-        if (this.signupForm.get('email').invalid) {
-            alert('email is invalid');
-        }
 
-        if (this.signupForm.get('username').invalid) {
-            alert('enter a username');
-        }
-
-        if (this.signupForm.get('firstName').invalid) {
-            alert('enter a first name');
-        }
 
 
         if (!this.signupForm.get('username').invalid && !this.signupForm.get('password').invalid &&
