@@ -56,39 +56,44 @@ export class SignupComponent implements OnInit {
         console.log(this.username);
         console.log(this.email);*/
 
+        console.log(this.signupForm.get('password').value);
         if (this.signupForm.get('password').value === this.signupForm.get('passwordConfirmation').value) {
 
+            if (this.signupForm.get('password').value != null && this.signupForm.get('password').value !== '') {
 
-               this.user = {
-                   id: null,
-                   username: this.signupForm.get('username').value,
-                   password: this.signupForm.get('password').value
-               };
-
-
-               const observableUser = this.userService.createUser(this.user);
-
-               observableUser.subscribe(user => {
-                   this.userId = user.id;
+                this.user = {
+                    id: null,
+                    username: this.signupForm.get('username').value,
+                    password: this.signupForm.get('password').value
+                };
 
 
-                   this.member = {
-                       id: null,
-                       firstName: this.signupForm.get('firstName').value,
-                       lastName: this.signupForm.get('lastName').value,
-                       email: this.signupForm.get('email').value,
-                       userId: this.userId
-                   };
+                const observableUser = this.userService.createUser(this.user);
+
+                observableUser.subscribe(user => {
+                    this.userId = user.id;
 
 
-                   const observableMember = this.memberService.createMember(this.member);
-                   observableMember.subscribe();
-                   if (observableUser != null && observableMember != null) {
+                    this.member = {
+                        id: null,
+                        firstName: this.signupForm.get('firstName').value,
+                        lastName: this.signupForm.get('lastName').value,
+                        email: this.signupForm.get('email').value,
+                        userId: this.userId
+                    };
+
+
+                    const observableMember = this.memberService.createMember(this.member);
+                    observableMember.subscribe();
+                    if (observableUser != null && observableMember != null) {
                         alert('The user is successfully created');
-                   }
+                    }
 
-               });
+                });
 
+            } else {
+                alert('Enter a password and confirm the password');
+            }
 
         } else {
             alert('Password does not match with the password confirmation.');
