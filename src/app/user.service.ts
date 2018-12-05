@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-//    private userSignUpUrl = 'http://localhost:52177/user/signUp';
+
 
   constructor(private http: HttpClient) {}
 
@@ -29,6 +29,10 @@ export class UserService {
   createUser(user: User): Observable<User> {
 
       return this.http.post<User>(environment.userApiUrl + '/user/signUp', user, httpOptions).pipe(catchError((error: any) => {
+
+          if (error.status === 422) {
+              alert('Username is already in use');
+          }
           return throwError(error.statusText);
       }));
 

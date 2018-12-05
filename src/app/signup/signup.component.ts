@@ -87,7 +87,10 @@ export class SignupComponent implements OnInit {
 
                 const observableUser = this.userService.createUser(this.user);
 
+
+
                 observableUser.subscribe(user => {
+
                     this.userId = user.id;
 
 
@@ -100,8 +103,12 @@ export class SignupComponent implements OnInit {
                     };
 
 
+
                     const observableMember = this.memberService.createMember(this.member);
                     observableMember.subscribe();
+
+
+
                     if (observableUser != null && observableMember != null) {
                         alert('The user is successfully created');
                         this.router.navigate(['/login']);
