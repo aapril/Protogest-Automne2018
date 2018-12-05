@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../router.animations';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { UserService } from '../user.service';
 import { User } from '../user';
@@ -37,7 +38,7 @@ export class SignupComponent implements OnInit {
     lastName: string;
     email: string;*/
 
-    constructor(private userService: UserService, private memberService: MemberService) {}
+    constructor(private userService: UserService, private memberService: MemberService, private router: Router) {}
 
     ngOnInit() {
 
@@ -87,6 +88,7 @@ export class SignupComponent implements OnInit {
                     observableMember.subscribe();
                     if (observableUser != null && observableMember != null) {
                         alert('The user is successfully created');
+                        this.router.navigate(['/login']);
                     }
 
                 });
