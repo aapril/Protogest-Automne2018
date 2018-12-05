@@ -1,0 +1,24 @@
+<div *ngIf="editView">
+  <form [formGroup]="taskFormGroup" (ngSubmit)="createEvent()">
+      <div class="form-group">
+        <label for="name">Event name</label>
+        <input type="text" class="form-control" formControlName="name" value="{{event.name}}">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" formControlName="description" value="{{event.description}}" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-MM-dd"
+                  name="dp" formControlName="eventDate" ngbDatepicker #d="ngbDatepicker" value="{{event.eventDate | date: 'yyyy-MM-dd'}}">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><span class="fa fa-calendar"></span></button>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="button" class="btn btb-default" (click)="cancelEdit()">Back</button>
+    </form>
+</div>

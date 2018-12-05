@@ -4,7 +4,8 @@ import { TasksRoutingModule } from './tasks-routing.module';
 import { PageHeaderModule } from '../../shared';
 import { TasksComponent } from './tasks.component';
 import { TaskService } from '../../shared/services/task.service';
-import { TaskComponent } from './task/task.component'
+import { TaskComponent } from './task/task.component';
+import { CreateTaskComponent } from './create-task/create-task.component'
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { TaskComponent } from './task/task.component'
     TasksRoutingModule,
     PageHeaderModule
   ],
-  declarations: [TasksComponent, TaskComponent],
+  declarations: [TasksComponent, TaskComponent, CreateTaskComponent],
   providers: [TaskService]
 })
 export class TasksModule { }
