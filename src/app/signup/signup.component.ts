@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
         passwordConfirmation: new FormControl('', Validators.required),
         firstName: new FormControl('', Validators.required),
         lastName: new FormControl('', Validators.required),
-        email: new FormControl('', [Validators.required, Validators.email]),
+        email: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]),
     });
     errorMessage: boolean;
 
