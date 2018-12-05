@@ -7,30 +7,36 @@
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input #usernameFromTemplate formControlName="username" type="text" class="form-control input-underline input-lg" id="username" placeholder="Username">
+                        <span class="text-error" *ngIf="username.invalid && errorMessage">Enter a username</span>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input #passwordFromTemplate formControlName="password" type="password" class="form-control input-underline input-lg" id="password" placeholder="Password">
+                        <span class="text-error" *ngIf="password.invalid && errorMessage">Enter a password</span>
                     </div>
 
                     <div class="form-group">
                         <label for="passwordConfirmation">Password confirmation</label>
                         <input #passwordConfirmationFromTemplate formControlName="passwordConfirmation" type="password" class="form-control input-underline input-lg" id="passwordConfirmation" placeholder="Password Confirmation">
+                        <span class="text-error" *ngIf="passwordConfirmation.invalid && errorMessage">Enter a password confirmation</span>
                     </div>
 
                     <div class="form-group">
                         <label for="firstName">First name</label>
                         <input #firstNameFromTemplate formControlName="firstName" type="text" class="form-control input-underline input-lg" id="firstName" placeholder="First name">
+                        <span class="text-error" *ngIf="firstName.invalid && errorMessage">Enter a first name</span>
                     </div>
 
                     <div class="form-group">
                         <label for="lastName">Last name</label>
                         <input #lastNameFromTemplate  formControlName="lastName" type="text" class="form-control input-underline input-lg" id="lastName" placeholder="Last name">
+                        <span class="text-error" *ngIf="lastName.invalid && errorMessage">Enter a last name</span>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input #emailFromTemplate formControlName="email" type="text" class="form-control input-underline input-lg" id="email" placeholder="Email">
+                        <span class="text-error" *ngIf="email.invalid && errorMessage">Enter a valid email</span>
                     </div>
 
                 </div>

@@ -28,6 +28,7 @@ export class SignupComponent implements OnInit {
         lastName: new FormControl('', Validators.required),
         email: new FormControl('', [Validators.required, Validators.email]),
     });
+    errorMessage: boolean;
 
     // Form values
 
@@ -44,6 +45,30 @@ export class SignupComponent implements OnInit {
 
     }
 
+    get username() {
+        return this.signupForm.get('username');
+    }
+
+    get password() {
+        return this.signupForm.get('password');
+    }
+
+    get passwordConfirmation() {
+        return this.signupForm.get('passwordConfirmation');
+    }
+
+    get firstName() {
+        return this.signupForm.get('firstName');
+    }
+
+    get lastName() {
+        return this.signupForm.get('lastName');
+    }
+
+    get email() {
+        return this.signupForm.get('email');
+    }
+
 
     register(): void {
 
@@ -57,10 +82,26 @@ export class SignupComponent implements OnInit {
         console.log(this.username);
         console.log(this.email);*/
 
-        console.log(this.signupForm.get('password').value);
-        if (this.signupForm.get('password').value === this.signupForm.get('passwordConfirmation').value) {
+        this.errorMessage = true;
 
-            if (this.signupForm.get('password').value != null && this.signupForm.get('password').value !== '') {
+        if (this.signupForm.get('email').invalid) {
+            alert('email is invalid');
+        }
+
+        if (this.signupForm.get('username').invalid) {
+            alert('enter a username');
+        }
+
+        if (this.signupForm.get('firstName').invalid) {
+            alert('enter a first name');
+        }
+
+
+        if (!this.signupForm.get('username').invalid && !this.signupForm.get('password').invalid &&
+            !this.signupForm.get('passwordConfirmation').invalid && !this.signupForm.get('firstName').invalid &&
+            !this.signupForm.get('lastName').invalid && !this.signupForm.get('email').invalid) {
+            if (this.signupForm.get('password').value === this.signupForm.get('passwordConfirmation').value) {
+
 
                 this.user = {
                     id: null,
@@ -93,12 +134,11 @@ export class SignupComponent implements OnInit {
 
                 });
 
+
             } else {
-                alert('Enter a password and confirm the password');
+                alert('Password does not match with the password confirmation.');
             }
 
-        } else {
-            alert('Password does not match with the password confirmation.');
         }
       }
     }
