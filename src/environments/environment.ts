@@ -5,7 +5,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://localhost:52171",
-  memberApiUrl: "http://localhost:52175",
-  userApiUrl: "http://localhost:52177"
+  apiUrl:false,
+  eventApiUrl: "http://localhost:52172",
+  taskApiUrl: "http://localhost:52171",
+  userApiUrl: "http://localhost:52177",
+  memberApiUrl: "http://localhost:52175"
 };
