@@ -8,7 +8,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import { EventService } from './layout/events/event.service';
+import { EventService } from './shared/services/event.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 

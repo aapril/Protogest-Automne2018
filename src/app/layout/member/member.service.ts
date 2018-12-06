@@ -1,16 +1,29 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Member} from './member';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Observable, of, throwError} from 'rxjs';
+import { Member } from './member';
+import {catchError} from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MemberService {
 
-  constructor(private httpClient: HttpClient) { }
+//    private createMemberUrl = 'http://localhost:52175/member';
 
-    getAllMembers(): Observable<Member[]> {
-        return this.httpClient.get<Member[]>('http://localhost:52175/member/all');
-    }
+  constructor(private http: HttpClient) { }
+
+  createMember(member: Member): Observable<Member> {
+
+    return this.http.post<Member>(environment.memberApiUrl + '/member', member, httpOptions).pipe(catchError((error: any) => {
+        return throwError(error.statusText);
+    }));
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Event } from './event.service';
+import { Event } from '../services/event.service';
 
 @Pipe({
   name: 'eventFilter'

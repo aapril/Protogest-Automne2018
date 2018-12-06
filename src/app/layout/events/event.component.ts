@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from './event.service';
-import { Event } from './event.service';
+import { EventService } from '../../shared/services/event.service';
+import { Event } from '../../shared/services/event.service';
 import { routerTransition } from '../../router.animations';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CreateEvent} from '../create-event/create-event';
