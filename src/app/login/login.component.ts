@@ -4,6 +4,7 @@ import { routerTransition } from '../router.animations';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { LoginService } from './login.service';
 import { first } from 'rxjs/operators';
+import { CanActivate } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -55,7 +56,5 @@ export class LoginComponent implements OnInit {
                     //this.router.navigate([this.returnUrl]);
                     this.router.navigate(['/dashboard']);
                 });
-        
-        //localStorage.setItem('isLoggedin', 'true');
     }
 }
