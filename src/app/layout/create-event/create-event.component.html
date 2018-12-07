@@ -4,6 +4,7 @@
     <div class="form-group">
         <label for="eventname">Event name</label>
         <input #eventName formControlName="name" type="text" placeholder="event name" name="eventname" class="form-control" id="eventname">
+        <span class="text-error" *ngIf="name.invalid && errorMessage">Enter an event name</span>
     </div>
 
 
@@ -16,12 +17,16 @@
             </div>
         </div>
     </div>
+ 
 
+
+    <span class="text-error" *ngIf="date.invalid && errorMessage">Choose a date</span>
 
 
     <div class="form-group">
         <label>Event description</label>
         <textarea #eventDescription formControlName="description" name="eventdescription" placeholder="event description" class="form-control"></textarea>
+        <span class="text-error" *ngIf="description.invalid && errorMessage">Enter a description</span>
     </div>
 
 </form>

@@ -24,7 +24,7 @@ export class CreateEventComponent implements OnInit {
         description: new FormControl('', Validators.required),
         });
 
-
+    errorMessage: boolean;
 
   constructor(private eventService: EventService) { }
 
@@ -33,23 +33,39 @@ export class CreateEventComponent implements OnInit {
   }
 
 
+    get name() {
+        return this.createEventForm.get('name');
+    }
+
+    get date() {
+        return this.createEventForm.get('date');
+    }
+
+    get description() {
+        return this.createEventForm.get('description');
+    }
+
   createEvent(): void {
 
+      this.errorMessage = true;
 
-        this.event = {
-            name: this.createEventForm.get('name').value,
-            description: this.createEventForm.get('description').value,
-            eventDate: '2018-11-11T18:18:48.855Z',
-            eventGroupId: 4,
-            memberId: 25
-        };
+      if (!this.createEventForm.get('name').invalid && !this.createEventForm.get('date').invalid
+      && !this.createEventForm.get('description').invalid) {
 
-        console.log(this.event);
+          this.event = {
+              name: this.createEventForm.get('name').value,
+              description: this.createEventForm.get('description').value,
+              eventDate: '2018-11-11T18:18:48.855Z',
+              eventGroupId: 4,
+              memberId: 25
+          };
 
-        const observable = this.eventService.createEvent2(this.event);
+          console.log(this.event);
 
-        observable.subscribe();
+          const observable = this.eventService.createEvent2(this.event);
 
+          observable.subscribe();
+      }
 
   }
 }

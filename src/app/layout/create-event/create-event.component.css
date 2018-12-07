@@ -10,6 +10,10 @@
     margin: 20px;
 }
 
+.text-error {
+    color: red;
+}
+
 
 input {
     width: 350px;
