@@ -1,22 +1,15 @@
 <h1>Create Event</h1>
 
-<form>
+<form [formGroup]="createEventForm">
     <div class="form-group">
         <label for="eventname">Event name</label>
-        <input #eventName type="text" placeholder="event name" name="eventname" class="form-control" id="eventname">
+        <input #eventName formControlName="name" type="text" placeholder="event name" name="eventname" class="form-control" id="eventname">
     </div>
-      <div class="form-group">
-          <label>Event group</label>
-          <input #eventGroup type="text" placeholder="event group name" name="eventgroupname" class="form-control" id="eventgroupname">
-      </div>
-    <div class="form-group">
-        <label>member name</label>
-        <input #memberName type="text" placeholder="member name" name="membername" class="form-control" id="membername">
-    </div>
+
 
     <div class="form-group">
         <div class="input-group">
-            <input #date class="form-control" placeholder="yyyy-mm-dd"
+            <input #date formControlName="date" class="form-control" placeholder="yyyy-mm-dd"
                    name="dp"  ngbDatepicker #d="ngbDatepicker">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
@@ -28,8 +21,8 @@
 
     <div class="form-group">
         <label>Event description</label>
-        <textarea #eventDescription name="eventdescription" placeholder="event description" class="form-control"></textarea>
+        <textarea #eventDescription formControlName="description" name="eventdescription" placeholder="event description" class="form-control"></textarea>
     </div>
 
 </form>
-<button class="btn btn-primary" (click)="createEvent(eventName.value, eventDescription.value, date.value, eventGroup.value, memberName.value)">Create event</button>
+<button class="btn btn-primary" (click)="createEvent()">Create event</button>
