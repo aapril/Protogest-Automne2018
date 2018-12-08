@@ -14,9 +14,12 @@
     color: red;
 }
 
+.time {
+    width: 35px;
+}
 
 input {
-    width: 350px;
+    /*width: 350px;*/
 }
 
 textarea {
@@ -25,11 +28,12 @@ textarea {
 
 form {
     width: 400px;
+    height: 600px;
     margin: auto;
     margin-top: 50px;
-    border-style: solid;
+/*    border-style: solid;
     border-width: 1px;
-    border-color: black;
+    border-color: black;*/
     padding-left: 10px;
     padding-bottom: 10px;
 }
