@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Event, EventService} from '../../shared/services/event.service';
 import { CreateEvent } from './create-event';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { TimepickerBasicComponent } from '../../timepicker-basic/timepicker-basic.component';
 
 import { Observable } from 'rxjs';
 import { MemberService } from '../member/member.service';
@@ -16,6 +17,12 @@ import {Router} from '@angular/router';
 })
 export class CreateEventComponent implements OnInit {
 
+    @ViewChild(TimepickerBasicComponent) timePicker: TimepickerBasicComponent;
+
+    time: {
+        hour: any;
+        minute: any;
+    };
 
     event: CreateEvent;
 
@@ -70,6 +77,11 @@ export class CreateEventComponent implements OnInit {
   createEvent(): void {
 
       this.errorMessage = true;
+
+      this.time = this.timePicker.time;
+
+      console.log(this.time);
+
 
       if (!this.createEventForm.get('name').invalid && !this.createEventForm.get('date').invalid
       && !this.createEventForm.get('description').invalid && !this.createEventForm.get('hours').invalid &&
