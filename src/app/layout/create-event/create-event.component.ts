@@ -7,6 +7,7 @@ import { Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { MemberService } from '../member/member.service';
 import { Member } from '../member/member';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-event',
@@ -26,7 +27,7 @@ export class CreateEventComponent implements OnInit {
 
     errorMessage: boolean;
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private router: Router) { }
 
   ngOnInit() {
 
@@ -65,6 +66,11 @@ export class CreateEventComponent implements OnInit {
           const observable = this.eventService.createEvent2(this.event);
 
           observable.subscribe();
+
+          if (observable != null) {
+              alert('The event is successfully created.');
+              this.router.navigate(['/event']);
+          }
       }
 
   }
