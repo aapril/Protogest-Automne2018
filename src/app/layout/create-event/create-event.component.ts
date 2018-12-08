@@ -42,6 +42,8 @@ export class CreateEventComponent implements OnInit {
     eventMonth: string;
     eventDay: string;
 
+    formatedHours: string;
+    formatedMinutes: string;
 
   constructor(private eventService: EventService, private router: Router) { }
 
@@ -84,16 +86,31 @@ export class CreateEventComponent implements OnInit {
 
 
       if (!this.createEventForm.get('name').invalid && !this.createEventForm.get('date').invalid
-      && !this.createEventForm.get('description').invalid && !this.createEventForm.get('hours').invalid &&
-          !this.createEventForm.get('minutes').invalid && !this.createEventForm.get('seconds').invalid) {
+      && !this.createEventForm.get('description').invalid) {
 
+
+         console.log(typeof(this.timePicker.time.hour));
+
+         if (this.timePicker.time.hour < 10) {
+            this.formatedHours = '0' + this.timePicker.time.hour;
+         }
+
+         if (this.timePicker.time.minute < 10) {
+             this.formatedMinutes = '0' + this.timePicker.time.minute;
+         }
+
+         console.log(typeof(this.formatedHours));
+         console.log(this.formatedHours);
 
 
         this.eventDateTime = this.createEventForm.get('date').value.year + '-' + this.createEventForm.get('date').value.month + '-' +
-            this.createEventForm.get('date').value.day + 'T' + this.createEventForm.get('hours').value + ':' +
-            this.createEventForm.get('minutes').value + ':' + this.createEventForm.get('seconds').value + '.855Z';
+            this.createEventForm.get('date').value.day + 'T' + this.formatedHours + ':' +
+            this.formatedMinutes + ':00.855Z';
 
 
+        console.log(this.timePicker.time.hour);
+        console.log(this.timePicker.time.minute);
+        console.log(this.eventDateTime);
 
 
           this.event = {
