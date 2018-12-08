@@ -11,6 +11,7 @@ export class TasksComponent implements OnInit {
   taskGroups: TaskGroup[]
   tasks: Task[]
   taskView: boolean = false
+  currentTaskGroupId: number
   constructor(private taskService: TaskService, private route: ActivatedRoute) {
 
   }
@@ -23,15 +24,12 @@ export class TasksComponent implements OnInit {
   getTaskGroups() {
     this.taskService.getTaskGroupsFromEvent(this.eventId).subscribe(t => { 
       this.taskGroups = t; 
-      console.log(this.taskGroups) 
     })
   }
 
   getTasks(taskGroupId: number) {
-    this.taskService.getTasksFromGroup(taskGroupId).subscribe(t => {
-      this.tasks = t
-      this.toggleTaskView()
-    })
+    this.currentTaskGroupId = taskGroupId
+    this.toggleTaskView()
   }
 
   toggleTaskView() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TaskService } from '../../../shared/services/task.service';
 
@@ -9,6 +9,7 @@ import { TaskService } from '../../../shared/services/task.service';
 })
 export class CreateTaskComponent implements OnInit {
   taskFormGroup: FormGroup
+  @Input() taskGroupId: number
   constructor(private ts: TaskService) {
     this.taskFormGroup = new FormGroup({
       name: new FormControl(''),
@@ -18,6 +19,7 @@ export class CreateTaskComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.taskGroupId)
   }
 
 }

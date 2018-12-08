@@ -8,6 +8,6 @@
   </table>
   <div *ngIf="taskView">
     <div class="btn btn-primary" (click)="toggleTaskView()">Go back</div>
-    <app-task [tasks]="tasks"></app-task>
+    <app-task [taskGroupId]="currentTaskGroupId"></app-task>
   </div>
 </div>
