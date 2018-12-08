@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { EventService } from './shared/services/event.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DatepickerPopupComponent } from './datepicker-popup/datepicker-popup.component';
+
 
 
 // AoT requires an exported function for factories
