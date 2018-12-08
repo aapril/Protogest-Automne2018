@@ -11,19 +11,20 @@
     <label>Date</label>
     <div class="form-group">
         <div class="input-group">
-            <input #date formControlName="date" class="form-control" placeholder="yyyy-mm-dd"
+            <input formControlName="date" class="form-control" placeholder="yyyy-mm-dd"
                    name="dp"  ngbDatepicker #d="ngbDatepicker">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
             </div>
         </div>
+        <span class="text-error" *ngIf="date.invalid && errorMessage">Choose a date</span>
     </div>
-    <span class="text-error" *ngIf="date.invalid && errorMessage">Choose a date</span>
+
 
 
     <label>Time</label>
     <br>
-    <input  class="time" type="text" maxlength="2" placeholder="HH">:<input class="time" type="text" maxlength="2" placeholder="MM">:<input class="time" type="text" maxlength="2" placeholder="SS">
+    <input formControlName="hours" class="time" type="text" maxlength="2" placeholder="HH">:<input formControlName="minutes" class="time" type="text" maxlength="2" placeholder="MM">:<input formControlName="seconds" class="time" type="text" maxlength="2" placeholder="SS">
     <br>
     <br>
     <div class="form-group">
