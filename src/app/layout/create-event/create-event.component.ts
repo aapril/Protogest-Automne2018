@@ -94,7 +94,7 @@ export class CreateEventComponent implements OnInit {
 
 
 
-          const observable = this.eventService.createEvent2(this.event);
+          const observable = this.eventService.createEvent(this.event);
 
           observable.subscribe();
 

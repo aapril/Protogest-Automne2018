@@ -60,8 +60,8 @@ export class EventService {
 
   /** POST: add a new event to the database */
 
-  createEvent (event: Event): Observable<Event> {
-    return this.httpClient.post<Event>(environment.eventApiUrl + "/event", event, httpOptions)
+  createEvent (event: CreateEvent): Observable<CreateEvent> {
+    return this.httpClient.post<CreateEvent>(environment.eventApiUrl + "/event", event, httpOptions)
       .pipe(
         catchError((error: any) => {
           return throwError(error.statusText);
@@ -71,14 +71,14 @@ export class EventService {
 
     /** POST: add a new event to the database */
 
-    createEvent2 (event: CreateEvent): Observable<CreateEvent> {
+/*    createEvent2 (event: CreateEvent): Observable<CreateEvent> {
         return this.httpClient.post<CreateEvent>(environment.eventApiUrl + "/event", event, httpOptions)
             .pipe(
                 catchError((error: any) => {
                     return throwError(error.statusText);
                 })
             );
-    }
+    }*/
 
   /** PUT: update an event information */
   updateEvent (event: Event): Observable<Event> {
