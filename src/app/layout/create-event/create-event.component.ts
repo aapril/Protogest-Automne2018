@@ -55,21 +55,34 @@ export class CreateEventComponent implements OnInit {
         return this.createEventForm.get('description');
     }
 
+    get hours() {
+        return this.createEventForm.get('hours');
+    }
+
+    get minutes() {
+        return this.createEventForm.get('minutes');
+    }
+
+    get seconds() {
+        return this.createEventForm.get('seconds');
+    }
+
   createEvent(): void {
 
       this.errorMessage = true;
 
       if (!this.createEventForm.get('name').invalid && !this.createEventForm.get('date').invalid
-      && !this.createEventForm.get('description').invalid) {
+      && !this.createEventForm.get('description').invalid && !this.createEventForm.get('hours').invalid &&
+          !this.createEventForm.get('minutes').invalid && !this.createEventForm.get('seconds').invalid) {
 
-          console.log(this.createEventForm.get('date').value);
+
 
         this.eventDateTime = this.createEventForm.get('date').value.year + '-' + this.createEventForm.get('date').value.month + '-' +
             this.createEventForm.get('date').value.day + 'T' + this.createEventForm.get('hours').value + ':' +
             this.createEventForm.get('minutes').value + ':' + this.createEventForm.get('seconds').value + '.855Z';
 
 
-        console.log(this.eventDateTime);
+
 
           this.event = {
               name: this.createEventForm.get('name').value,
@@ -79,7 +92,7 @@ export class CreateEventComponent implements OnInit {
               memberId: 25
           };
 
-          console.log(this.event);
+         
 
           const observable = this.eventService.createEvent2(this.event);
 
