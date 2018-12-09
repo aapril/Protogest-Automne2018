@@ -5,9 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { TimepickerBasicComponent } from '../../timepicker-basic/timepicker-basic.component';
 
-import { Observable } from 'rxjs';
-import { MemberService } from '../member/member.service';
-import { Member } from '../member/member';
+
 import {Router} from '@angular/router';
 
 @Component({
@@ -26,10 +24,7 @@ export class CreateEventComponent implements OnInit {
     createEventForm = new FormGroup({
         name: new FormControl('', Validators.required),
         date: new FormControl('', Validators.required),
-        description: new FormControl('', Validators.required),
-        hours: new FormControl('', Validators.required),
-        minutes: new FormControl('', Validators.required),
-        seconds: new FormControl('', Validators.required)
+        description: new FormControl('', Validators.required)
         });
 
     errorMessage: boolean;
@@ -52,29 +47,6 @@ export class CreateEventComponent implements OnInit {
   }
 
 
-    get name() {
-        return this.createEventForm.get('name');
-    }
-
-    get date() {
-        return this.createEventForm.get('date');
-    }
-
-    get description() {
-        return this.createEventForm.get('description');
-    }
-
-    get hours() {
-        return this.createEventForm.get('hours');
-    }
-
-    get minutes() {
-        return this.createEventForm.get('minutes');
-    }
-
-    get seconds() {
-        return this.createEventForm.get('seconds');
-    }
 
   createEvent(): void {
 
