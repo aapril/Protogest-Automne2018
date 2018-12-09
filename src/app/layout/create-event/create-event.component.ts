@@ -74,12 +74,12 @@ export class CreateEventComponent implements OnInit {
 
           const observable = this.eventService.createEvent(this.event);
 
-          observable.subscribe();
+          observable.subscribe(event => {
 
-          if (observable != null) {
               alert('The event is successfully created.');
               this.router.navigate(['/event']);
-          }
+          });
+
       }
 
   }
