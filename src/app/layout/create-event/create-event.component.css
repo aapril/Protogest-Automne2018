@@ -1,0 +1,48 @@
+#eventdescription {
+    display: inline-block;
+    margin-top: 60px;
+}
+
+.textfield {
+
+    margin-bottom: 20px;
+    display: block;
+    margin: 20px;
+}
+
+.text-error {
+    color: red;
+}
+
+.time {
+    width: 35px;
+}
+
+input {
+    /*width: 350px;*/
+}
+
+textarea {
+    width: 350px;
+}
+
+form {
+    width: 400px;
+    height: 600px;
+    margin: auto;
+    margin-top: 50px;
+/*    border-style: solid;
+    border-width: 1px;
+    border-color: black;*/
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+
+textarea {
+    resize: none;
+}
+h1 {
+    width: 300px;
+    margin: auto;
+}

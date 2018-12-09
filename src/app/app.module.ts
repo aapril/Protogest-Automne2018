@@ -11,6 +11,8 @@ import { AuthGuard } from './shared';
 import { EventService } from './shared/services/event.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
+
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
     /* for development
@@ -38,6 +40,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         AppRoutingModule,
         NgbModule.forRoot()
     ],
+
     declarations: [AppComponent],
     providers: [
       AuthGuard,

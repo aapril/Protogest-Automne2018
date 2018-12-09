@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../shared/services/event.service';
 import { Event } from '../../shared/services/event.service';
 import { routerTransition } from '../../router.animations';
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormGroup, FormControl } from '@angular/forms';
+import { CreateEvent} from '../create-event/create-event';
 
 @Component({
   selector: 'app-event',
@@ -58,7 +59,7 @@ export class EventComponent implements OnInit {
         this.currentFilter = 0;
     }
   }
-  
+
   getEventGroup(group: string): void {
     if (group) {
       this.eventService.getEventsGroup(group)
@@ -67,12 +68,12 @@ export class EventComponent implements OnInit {
     this.eventService.getEvents().subscribe(event => this.events = event)
   }
 
-  createEvent(event: Event) {
+/*  createEvent(event: CreateEvent) {
     if (event){
       this.eventService.createEvent(event)
         .subscribe(event => this.events.push(event));
     }
-  }
+  }*/
 
   getUserEvents() {
     this.eventService.getEvents().subscribe(events => this.events = events)
