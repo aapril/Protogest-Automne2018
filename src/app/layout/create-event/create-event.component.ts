@@ -33,6 +33,7 @@ export class CreateEventComponent implements OnInit {
         });
 
     errorMessage: boolean;
+    timePickerMessage: boolean;
 
     eventDateTime: string;
     eventYear: string;
@@ -82,7 +83,7 @@ export class CreateEventComponent implements OnInit {
       console.log('testing man');
 
       if (this.timePicker.time == null) {
-          console.log('time is working');
+          this.timePickerMessage = true;
       }
 
       if (!this.createEventForm.get('name').invalid && !this.createEventForm.get('date').invalid
