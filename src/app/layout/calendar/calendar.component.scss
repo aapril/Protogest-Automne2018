@@ -1,0 +1,48 @@
+.fullscreen {
+  position: absolute; top:90px; left: 0px; right: 0px; bottom: 0px;
+}
+h2 {
+  padding-left: 5px;
+  margin: 0;
+}
+
+input[type=checkbox] {
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
+}
+
+.main-body {
+  position:absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  overflow:hidden;
+}
+.main-bottom {
+  border-top: 1px solid #ccc;
+}
+.row {
+  margin-top: 2px;
+  white-space: nowrap;
+  display: block;
+}
+
+:host ::ng-deep .calendar_default_colheader_inner {
+  padding: 5px;
+}
+
+:host ::ng-deep .calendar_default_rowheader_inner {
+  padding: 5px;
+}
+
+:host ::ng-deep .navigator_default_main,
+:host ::ng-deep .navigator_default_title,
+:host ::ng-deep .navigator_default_titleleft,
+:host ::ng-deep .navigator_default_titleright,
+:host ::ng-deep .navigator_default_line
+{
+  border: 0px;
+  background: #ffffff;
+}
