@@ -25,7 +25,7 @@ export class CreateEventComponent implements OnInit {
 
     createEventForm = new FormGroup({
         name: new FormControl('', Validators.required),
-        date: new FormControl('', [Validators.required, Validators.pattern('^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]')]),
+        date: new FormControl('', Validators.required),
         description: new FormControl('', Validators.required),
         hours: new FormControl('', Validators.required),
         minutes: new FormControl('', Validators.required),
@@ -40,6 +40,8 @@ export class CreateEventComponent implements OnInit {
     eventMonth: string;
     eventDay: string;
 
+    formatedMonth: string;
+    formatedDay: string;
     formatedHours: string;
     formatedMinutes: string;
 
@@ -79,12 +81,11 @@ export class CreateEventComponent implements OnInit {
       this.errorMessage = true;
 
 
-      console.log(this.timePicker.time);
-      console.log('testing man');
 
-      if (this.createEventForm.get('date').invalid) {
-          alert('at least you got it bro');
+      if (typeof(this.createEventForm.get('date').value) !== 'object') {
+          alert('The date is invalid.');
       }
+
 
       if (this.timePicker.time == null) {
           this.timePickerMessage = true;
@@ -92,25 +93,41 @@ export class CreateEventComponent implements OnInit {
 
       if (!this.createEventForm.get('name').invalid && !this.createEventForm.get('date').invalid
       && !this.createEventForm.get('description').invalid && this.timePicker.time != null &&
-      this.timePicker.time.hour < 24 && this.timePicker.time.minute < 60 && this.timePicker.time.minute != null) {
+      this.timePicker.time.hour < 24 && this.timePicker.time.minute < 60 && typeof(this.createEventForm.get('date').value) === 'object') {
 
 
          console.log(typeof(this.timePicker.time.hour));
 
          if (this.timePicker.time.hour < 10) {
             this.formatedHours = '0' + this.timePicker.time.hour;
+         } else {
+             this.formatedHours = '' + this.timePicker.time.hour;
          }
 
          if (this.timePicker.time.minute < 10) {
              this.formatedMinutes = '0' + this.timePicker.time.minute;
+         } else {
+             this.formatedMinutes = '' + this.timePicker.time.minute;
          }
 
-         console.log(typeof(this.formatedHours));
+         if (this.createEventForm.get('date').value.month < 10) {
+            this.formatedMonth = '0' + this.createEventForm.get('date').value.month;
+         } else {
+             this.formatedMonth = this.createEventForm.get('date').value.month;
+         }
+
+          if (this.createEventForm.get('date').value.day < 10) {
+              this.formatedDay = '0' + this.createEventForm.get('date').value.day;
+          } else {
+              this.formatedDay = this.createEventForm.get('date').value.day;
+          }
+
+          console.log(typeof(this.formatedHours));
          console.log(this.formatedHours);
 
 
-        this.eventDateTime = this.createEventForm.get('date').value.year + '-' + this.createEventForm.get('date').value.month + '-' +
-            this.createEventForm.get('date').value.day + 'T' + this.formatedHours + ':' +
+        this.eventDateTime = this.createEventForm.get('date').value.year + '-' + this.formatedMonth + '-' +
+            this.formatedDay + 'T' + this.formatedHours + ':' +
             this.formatedMinutes + ':00.855Z';
 
 
