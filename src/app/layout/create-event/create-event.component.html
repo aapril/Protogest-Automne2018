@@ -21,7 +21,8 @@
     </div>
 
     <label>Time</label>
-    <app-timepicker-basic></app-timepicker-basic>
+    <ngb-timepicker formControlName="time"></ngb-timepicker>
+    <!--<app-timepicker-basic></app-timepicker-basic>-->
     <span class="text-error" *ngIf="timePickerMessage && errorMessage">Choose a time</span>
 
     <br>

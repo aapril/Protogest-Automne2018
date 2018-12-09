@@ -24,11 +24,13 @@ export class CreateEventComponent implements OnInit {
     createEventForm = new FormGroup({
         name: new FormControl('', Validators.required),
         date: new FormControl('', Validators.required),
-        description: new FormControl('', Validators.required)
+        description: new FormControl('', Validators.required),
+        time: new FormControl('')
         });
 
     errorMessage: boolean;
     timePickerMessage: boolean;
+    time = {hour: 13, minute: 30};
 
     eventDateTime: Date;
 
@@ -50,6 +52,7 @@ export class CreateEventComponent implements OnInit {
 
       this.errorMessage = true;
 
+      console.log(this.createEventForm.get('time').value);
 
 
       if (typeof(this.createEventForm.get('date').value) !== 'object') {
@@ -57,17 +60,17 @@ export class CreateEventComponent implements OnInit {
       }
 
 
-      if (this.timePicker.time == null) {
+/*      if (this.timePicker.time == null) {
           this.timePickerMessage = true;
-      }
+      }*/
 
       if (!this.createEventForm.get('name').invalid && !this.createEventForm.get('date').invalid
-      && !this.createEventForm.get('description').invalid && this.timePicker.time != null &&
-      this.timePicker.time.hour < 24 && this.timePicker.time.minute < 60 && typeof(this.createEventForm.get('date').value) === 'object') {
+      && !this.createEventForm.get('description').invalid && this.createEventForm.get('time') != null &&
+      typeof(this.createEventForm.get('date').value) === 'object') {
 
 
 
-         if (this.timePicker.time.hour < 10) {
+/*         if (this.timePicker.time.hour < 10) {
             this.formatedHours = '0' + this.timePicker.time.hour;
          } else {
              this.formatedHours = '' + this.timePicker.time.hour;
@@ -89,7 +92,7 @@ export class CreateEventComponent implements OnInit {
               this.formatedDay = '0' + this.createEventForm.get('date').value.day;
           } else {
               this.formatedDay = this.createEventForm.get('date').value.day;
-          }
+          }*/
 
 
 
@@ -101,9 +104,13 @@ export class CreateEventComponent implements OnInit {
 */
 
 
-        this.eventDateTime = new Date(this.createEventForm.get('date').value.year, this.createEventForm.get('date').value.month - 1,
-            this.createEventForm.get('date').value.day, this.timePicker.time.hour, this.timePicker.time.minute);
+        this.eventDateTime = new Date(this.createEventForm.get('date').value.year,
+            this.createEventForm.get('date').value.month - 1,
+            this.createEventForm.get('date').value.day,
+            this.createEventForm.get('time').value.hour,
+            this.createEventForm.get('time').value.minute);
 
+        console.log(this.eventDateTime);
 
           this.event = {
               name: this.createEventForm.get('name').value,
