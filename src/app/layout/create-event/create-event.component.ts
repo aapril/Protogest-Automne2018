@@ -30,7 +30,7 @@ export class CreateEventComponent implements OnInit {
     errorMessage: boolean;
     timePickerMessage: boolean;
 
-    eventDateTime: string;
+    eventDateTime: Date;
 
 
     formatedMonth: string;
@@ -94,12 +94,15 @@ export class CreateEventComponent implements OnInit {
 
 
 
+/*
         this.eventDateTime = this.createEventForm.get('date').value.year + '-' + this.formatedMonth + '-' +
             this.formatedDay + 'T' + this.formatedHours + ':' +
             this.formatedMinutes + ':00.855Z';
+*/
 
 
-
+        this.eventDateTime = new Date(this.createEventForm.get('date').value.year, this.createEventForm.get('date').value.month - 1,
+            this.createEventForm.get('date').value.day, this.timePicker.time.hour, this.timePicker.time.minute);
 
 
           this.event = {
