@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Event, EventService} from '../../shared/services/event.service';
+import {Component, OnInit } from '@angular/core';
+import { EventService } from '../../shared/services/event.service';
 import { CreateEvent } from './create-event';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { TimepickerBasicComponent } from '../../timepicker-basic/timepicker-basic.component';
+
 
 
 import {Router} from '@angular/router';
@@ -14,9 +14,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
-
-    @ViewChild(TimepickerBasicComponent) timePicker: TimepickerBasicComponent;
-
 
 
     event: CreateEvent;
@@ -29,16 +26,12 @@ export class CreateEventComponent implements OnInit {
         });
 
     errorMessage: boolean;
-    timePickerMessage: boolean;
+
     time = {hour: 13, minute: 30};
 
     eventDateTime: Date;
 
 
-    formatedMonth: string;
-    formatedDay: string;
-    formatedHours: string;
-    formatedMinutes: string;
 
   constructor(private eventService: EventService, private router: Router) { }
 
@@ -54,49 +47,11 @@ export class CreateEventComponent implements OnInit {
 
 
 
-
-/*      if (this.timePicker.time == null) {
-          this.timePickerMessage = true;
-      }*/
-
       if (!this.createEventForm.get('name').invalid && !this.createEventForm.get('date').invalid
       && !this.createEventForm.get('description').invalid && !this.createEventForm.get('time').invalid &&
       typeof(this.createEventForm.get('date').value) === 'object') {
 
 
-
-/*         if (this.timePicker.time.hour < 10) {
-            this.formatedHours = '0' + this.timePicker.time.hour;
-         } else {
-             this.formatedHours = '' + this.timePicker.time.hour;
-         }
-
-         if (this.timePicker.time.minute < 10) {
-             this.formatedMinutes = '0' + this.timePicker.time.minute;
-         } else {
-             this.formatedMinutes = '' + this.timePicker.time.minute;
-         }
-
-         if (this.createEventForm.get('date').value.month < 10) {
-            this.formatedMonth = '0' + this.createEventForm.get('date').value.month;
-         } else {
-             this.formatedMonth = this.createEventForm.get('date').value.month;
-         }
-
-          if (this.createEventForm.get('date').value.day < 10) {
-              this.formatedDay = '0' + this.createEventForm.get('date').value.day;
-          } else {
-              this.formatedDay = this.createEventForm.get('date').value.day;
-          }*/
-
-
-
-
-/*
-        this.eventDateTime = this.createEventForm.get('date').value.year + '-' + this.formatedMonth + '-' +
-            this.formatedDay + 'T' + this.formatedHours + ':' +
-            this.formatedMinutes + ':00.855Z';
-*/
 
 
         this.eventDateTime = new Date(this.createEventForm.get('date').value.year,
@@ -105,7 +60,7 @@ export class CreateEventComponent implements OnInit {
             this.createEventForm.get('time').value.hour,
             this.createEventForm.get('time').value.minute);
 
-        console.log(this.eventDateTime);
+
 
           this.event = {
               name: this.createEventForm.get('name').value,
