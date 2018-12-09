@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { CreateEvent} from '../../layout/create-event/create-event';
 
 
 export interface Event {
@@ -12,7 +13,7 @@ export interface Event {
   description: string,
   eventDate: Date,
   eventGroupId: number,
-  taskId: number,
+  taskGroupId: number,
   authorId: number,
   eventStateId: number
 }
@@ -20,7 +21,6 @@ export interface Event {
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
   })
 };
 
@@ -36,39 +36,43 @@ export class EventService {
    * Returns: List of Event objects
    */
   getEvents(): Observable<Event[]> {
-    return this.httpClient.get<Event[]>(environment.apiUrl + "/eventGroup/all").pipe(catchError((error:any) => {
+    return this.httpClient.get<Event[]>(environment.eventApiUrl + "/eventGroup/all").pipe(catchError((error:any) => {
       return throwError(error.statusText);
     }));
   }
+
+
 
   getEventsGroup(group: string): Observable<Event[]> {
-    return this.httpClient.get<Event[]>(environment.apiUrl + "/eventGroup/all").pipe(catchError((error:any) => {
+    return this.httpClient.get<Event[]>(environment.eventApiUrl + "/eventGroup/all").pipe(catchError((error:any) => {
       return throwError(error.statusText);
     }));
   }
 
+
+
+
   getUserEvents(): Observable<Event[]> {
-    return this.httpClient.get<Event[]>(environment.apiUrl + "/event/mine").pipe(catchError((error:any) => {
+    return this.httpClient.get<Event[]>(environment.eventApiUrl + "/event/mine").pipe(catchError((error:any) => {
       return throwError(error.statusText);
     }));
   }
 
   /** POST: add a new event to the database */
-  createEvent (event: Event): Observable<Event> {
-    return this.httpClient.post<Event>(environment.apiUrl + "/event", event, httpOptions)
+
+  createEvent (event: CreateEvent): Observable<CreateEvent> {
+    return this.httpClient.post<CreateEvent>(environment.eventApiUrl + "/event", event, httpOptions)
       .pipe(
-        catchError((error:any) => {
+        catchError((error: any) => {
           return throwError(error.statusText);
         })
       );
   }
 
+
   /** PUT: update an event information */
   updateEvent (event: Event): Observable<Event> {
-    httpOptions.headers =
-      httpOptions.headers.set('Authorization', 'my-new-auth-token');
-
-    return this.httpClient.put<Event>(environment.apiUrl + "/event-service/event/" + event.id, event, httpOptions)
+    return this.httpClient.put<Event>(environment.eventApiUrl + "/event/" + event.id, event, httpOptions)
       .pipe(
         catchError((error:any) => {
           return throwError(error.statusText);
@@ -78,7 +82,7 @@ export class EventService {
 
   /** DELETE: delete an event */
   deleteEvent(id: number) {
-    const url = `${environment.apiUrl}/${id}`;
+    const url = `${environment.eventApiUrl}/event/${id}`;
     return this.httpClient.delete(url, httpOptions)
       .pipe(
         catchError((error:any) => {

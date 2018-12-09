@@ -9,10 +9,12 @@ const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class MemberService {
+
 //    private createMemberUrl = 'http://localhost:52175/member';
 
   constructor(private http: HttpClient) { }
@@ -23,4 +25,6 @@ export class MemberService {
         return throwError(error.statusText);
     }));
   }
+
 }
+
