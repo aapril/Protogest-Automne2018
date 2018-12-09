@@ -31,9 +31,7 @@ export class CreateEventComponent implements OnInit {
     timePickerMessage: boolean;
 
     eventDateTime: string;
-    eventYear: string;
-    eventMonth: string;
-    eventDay: string;
+
 
     formatedMonth: string;
     formatedDay: string;
@@ -68,7 +66,6 @@ export class CreateEventComponent implements OnInit {
       this.timePicker.time.hour < 24 && this.timePicker.time.minute < 60 && typeof(this.createEventForm.get('date').value) === 'object') {
 
 
-         console.log(typeof(this.timePicker.time.hour));
 
          if (this.timePicker.time.hour < 10) {
             this.formatedHours = '0' + this.timePicker.time.hour;
@@ -94,8 +91,7 @@ export class CreateEventComponent implements OnInit {
               this.formatedDay = this.createEventForm.get('date').value.day;
           }
 
-          console.log(typeof(this.formatedHours));
-         console.log(this.formatedHours);
+
 
 
         this.eventDateTime = this.createEventForm.get('date').value.year + '-' + this.formatedMonth + '-' +
@@ -103,9 +99,7 @@ export class CreateEventComponent implements OnInit {
             this.formatedMinutes + ':00.855Z';
 
 
-        console.log(this.timePicker.time.hour);
-        console.log(this.timePicker.time.minute);
-        console.log(this.eventDateTime);
+
 
 
           this.event = {
