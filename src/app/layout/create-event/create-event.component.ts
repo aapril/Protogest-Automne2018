@@ -25,7 +25,7 @@ export class CreateEventComponent implements OnInit {
         name: new FormControl('', Validators.required),
         date: new FormControl('', Validators.required),
         description: new FormControl('', Validators.required),
-        time: new FormControl('')
+        time: new FormControl('', Validators.required)
         });
 
     errorMessage: boolean;
@@ -52,12 +52,7 @@ export class CreateEventComponent implements OnInit {
 
       this.errorMessage = true;
 
-      console.log(this.createEventForm.get('time').value);
 
-
-      if (typeof(this.createEventForm.get('date').value) !== 'object') {
-          alert('The date is invalid.');
-      }
 
 
 /*      if (this.timePicker.time == null) {
@@ -65,7 +60,7 @@ export class CreateEventComponent implements OnInit {
       }*/
 
       if (!this.createEventForm.get('name').invalid && !this.createEventForm.get('date').invalid
-      && !this.createEventForm.get('description').invalid && this.createEventForm.get('time') != null &&
+      && !this.createEventForm.get('description').invalid && !this.createEventForm.get('time').invalid &&
       typeof(this.createEventForm.get('date').value) === 'object') {
 
 
