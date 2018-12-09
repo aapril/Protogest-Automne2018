@@ -25,7 +25,7 @@ export class CreateEventComponent implements OnInit {
 
     createEventForm = new FormGroup({
         name: new FormControl('', Validators.required),
-        date: new FormControl('', Validators.required),
+        date: new FormControl('', [Validators.required, Validators.pattern('^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]')]),
         description: new FormControl('', Validators.required),
         hours: new FormControl('', Validators.required),
         minutes: new FormControl('', Validators.required),
@@ -82,12 +82,17 @@ export class CreateEventComponent implements OnInit {
       console.log(this.timePicker.time);
       console.log('testing man');
 
+      if (this.createEventForm.get('date').invalid) {
+          alert('at least you got it bro');
+      }
+
       if (this.timePicker.time == null) {
           this.timePickerMessage = true;
       }
 
       if (!this.createEventForm.get('name').invalid && !this.createEventForm.get('date').invalid
-      && !this.createEventForm.get('description').invalid && this.timePicker.time != null) {
+      && !this.createEventForm.get('description').invalid && this.timePicker.time != null &&
+      this.timePicker.time.hour < 24 && this.timePicker.time.minute < 60 && this.timePicker.time.minute != null) {
 
 
          console.log(typeof(this.timePicker.time.hour));
