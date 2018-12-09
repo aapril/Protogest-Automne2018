@@ -4,5 +4,9 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  eventApiUrl: "http://localhost:52172",
+  taskApiUrl: "http://localhost:52171",
+  userApiUrl: "http://localhost:52177",
+  memberApiUrl: "http://localhost:52175"
 };

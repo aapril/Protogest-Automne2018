@@ -6,14 +6,7 @@ import {HttpClient} from "@angular/common/http";
 @Injectable()
 export class CalendarService {
 
-  events: any[] = [
-    {
-      id: "1",
-      start: DayPilot.Date.today().addHours(10),
-      end: DayPilot.Date.today().addHours(12),
-      text: "Event 1"
-    }
-  ];
+  events: any[] = [ ];
 
   constructor(private http : HttpClient){
   }
@@ -27,7 +20,7 @@ export class CalendarService {
       }, 200);
     });
 
-    // return this.http.get("/api/events?from=" + from.toString() + "&to=" + to.toString());
+    // return this.http.get(eventApiUrl+ "/api/events?from=" + from.toString() + "&to=" + to.toString());
   }
 
 }
