@@ -9,7 +9,8 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-            { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
+            { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },            
+            { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarModule' },
             { path: 'event', loadChildren: './events/event.module#EventModule' },
             { path: 'event/:id/tasks', loadChildren: './tasks/tasks.module#TasksModule' },
             { path: 'create-event', loadChildren: './create-event/create-event.module#CreateEventModule'}
