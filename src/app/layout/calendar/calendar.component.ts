@@ -1,7 +1,7 @@
 import {Component, ViewChild, OnInit, AfterViewInit} from '@angular/core';
 import {DayPilot, DayPilotCalendarComponent, DayPilotNavigatorComponent} from "daypilot-pro-angular";
-import {CalendarService} from "./calendar.service";
 import { routerTransition } from '../../router.animations';
+import { EventService, Event } from '../../shared/services/event.service'
 
 @Component({
   selector: 'app-calendar',
@@ -9,9 +9,9 @@ import { routerTransition } from '../../router.animations';
   styleUrls: ['./calendar.component.scss'],
   animations: [routerTransition()]
 })
-export class CalendarComponent implements OnInit, AfterViewInit {
+export class CalendarComponent implements OnInit {
   @ViewChild("calendar") calendar : DayPilotCalendarComponent;
-
+  events: Event[]
   calendarConfig = {
     locale: "en-ca",
     timeHeaders: [
@@ -51,17 +51,28 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     ]
   };
 
-  events: any[] = [
-    { id: 1, start: "2018-12-09", end: "2018-12-12", resource: "R1", text: "Event 1" }
-  ]
+  calendarEvents: any[] = []
 
 
-  constructor(private ds: CalendarService) {  }
+  constructor(private es: EventService) {  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserEvents()
+  }
 
-  ngAfterViewInit(): void {
-    //this.ds.getEvents(this.calendar.control.visibleStart(), this.calendar.control.visibleEnd()).subscribe(result => this.events = result);
+  getUserEvents() {
+    this.es.getUserEvents().subscribe(events => { 
+      this.events = events
+      this.events.forEach(e => {
+        this.calendarEvents.push({
+          id: e.id,
+          start: new Date(e.eventDate),
+          end: new Date(e.eventDate),
+          resource: "R1",
+          text: e.name
+        })
+      })
+    })
   }
 
 }
