@@ -94,10 +94,7 @@ export class EventComponent implements OnInit {
   }
 
   deleteEvent(event: Event) {
-    // console.log(event.name)
     event.eventStateId = 3;
-    // this.events = this.eventFilterPipe.transform(this.events, this.currentFilter);
-    //this.events = this.events.filter(e => e !== event);
     this.eventService.deleteEvent(event.id).subscribe();
   }
 
