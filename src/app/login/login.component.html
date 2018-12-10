@@ -1,0 +1,33 @@
+<div class="login-page" [@routerTransition]>
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">     
+            <img src="assets/images/logo.png" width="150px" class="user-avatar" />               
+            <form [formGroup]="loginform">
+               
+                    <div class="form-group">                      
+                        <input type="text" 
+                        class="form-control"
+                        formControlName="username"
+                        class="form-control input-underline input-lg" 
+                        id="username"
+                        placeholder="Username"                 
+                        required>
+                    </div>
+
+                    <div class="form-group">                      
+                        <input type="password" 
+                        class="form-control"
+                        formControlName="password"
+                        class="form-control input-underline input-lg" 
+                        id="password"
+                        placeholder="Password"
+                        required>
+                    </div>                  
+               
+                <a class="btn rounded-btn" (click)="onLoggedin()"> Log in </a>
+                &nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
+            </form>
+        </div>
+    </div>
+</div>
