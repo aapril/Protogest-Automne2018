@@ -4,4 +4,7 @@ export class Member {
     lastName: string;
     email: string;
     userId: number;
+
 }
+
+
