@@ -49,12 +49,14 @@ export class LoginComponent implements OnInit {
             return;
         }         
        
-        this.loginService.login(this.f.username.value, this.f.password.value)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    //this.router.navigate([this.returnUrl]);
-                    this.router.navigate(['/dashboard']);
-                });
+        // this.loginService.login(this.f.username.value, this.f.password.value)
+        //     .pipe(first())
+        //     .subscribe(
+        //         data => {
+        //             //this.router.navigate([this.returnUrl]);
+        //             this.router.navigate(['/dashboard']);
+        //         });
+        localStorage.setItem('currentUser', this.f.username.value);
+        this.router.navigate(['/dashboard']);
     }
 }
