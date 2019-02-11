@@ -18,15 +18,22 @@ export class ScheduleComponent implements OnInit {
   constructor(protected eventService: EventService) { }
 
   ngOnInit() {
+    this.loadevents();
+
     this.calendarOptions = {
       editable: true,
       eventLimit: false,
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay,listMonth'
+        right: 'month,agendaWeek,agendaDay'
       },
-      events: []
+      events: this.events,
+      displayEventTime: true,
+      allDayText: 'All day',
+      allDayDefault: true,
+      timeFormat: 'H:mm',
+      selectable: true,
     };
   }
   loadevents() {
@@ -38,7 +45,12 @@ export class ScheduleComponent implements OnInit {
     this.displayEvent = model;
   }
   dayClick(model: any) {
-    console.log(model);
+    let el = {
+      title: 'New event',
+      start: model.date._d.toISOString()
+    };
+    this.ucCalendar.fullCalendar('renderEvent', el);
+    this.ucCalendar.fullCalendar('rerenderEvents');
   }
   eventClick(model: any) {
     model = {

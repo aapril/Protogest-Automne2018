@@ -1,5 +1,16 @@
-<p>Display event : {{displayEvent | json}}</p>
-<div *ngIf="calendarOptions">
-    <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
-        (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+<br>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-8">
+            <div *ngIf="calendarOptions">
+                <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (dayClick)="dayClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
+                    (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- <h3>{{ 'Events' | translate }}</h3> -->
+            <h3>Events</h3>
+            <hr>
+        </div>
+    </div>
 </div>
