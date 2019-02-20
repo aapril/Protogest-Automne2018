@@ -13,11 +13,11 @@ import {Router} from '@angular/router';
 export class CreateEventComponent{
 
   titles = [{id:1,title: 'gkdgjkf'},{id:2,title: 'gffgg'}];
-
-  myClickFunction() { 
+  t = {};
+  saveForm() { 
       //just added console.log which will display the event details in browser on click of the button.
       alert("Button is clicked");
-      console.log(event);
+      console.log(this);
    }
 
 
