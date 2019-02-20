@@ -11,7 +11,7 @@ export class EventService {
             title: 'All Day Event',
             start: yearMonth + '-01',
             allDay: true,
-            color: '#FF6859',
+            color: '#6E7BC4'
         },
         {
             protocol_event_id: 12,
@@ -19,21 +19,21 @@ export class EventService {
             start: yearMonth + '-07',
             end: yearMonth + '-12',
             allDay: true,
-            color: '#1EB980'
+            color: '#6E7BC4'
         },
         {
             protocol_event_id: 23,
             title: 'Conference',
             start: yearMonth + '-12',
             allDay: true,
-            color: '#FFCF44',
+            color: '#6E7BC4'
         },
         {
             protocol_event_id: 34,
             title: 'Click for Google',
             start: yearMonth + '-28',
             allDay: true,
-            color: '#B15DFF',
+            color: '#6E7BC4'
         }];
         return of(data);
     }
