@@ -49,6 +49,7 @@ export class ScheduleComponent implements OnInit {
       title: 'New event',
       start: model.date._d.toISOString()
     };
+    this.events.push(el);
     this.ucCalendar.fullCalendar('renderEvent', el);
     this.ucCalendar.fullCalendar('rerenderEvents');
   }
