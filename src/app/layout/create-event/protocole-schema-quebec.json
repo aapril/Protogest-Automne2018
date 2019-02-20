@@ -1,33 +1,44 @@
-import {Component, OnInit } from '@angular/core';
-import { EventService } from '../../shared/services/event.service';
-import { CreateEvent } from './create-event';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import {Router} from '@angular/router';
-
-@Component({
-  selector: 'app-create-event',
-  templateUrl: './create-event.component.html',
-  styleUrls: ['./create-event.component.scss']
-})
-export class CreateEventComponent{
-
-  titles = [{id:1,title: 'gkdgjkf'},{id:2,title: 'gffgg'}];
-  t = {};
-  saveForm() { 
-      //just added console.log which will display the event details in browser on click of the button.
-      alert("Button is clicked");
-      console.log(this);
-   }
-
-
- data = {
+{
     "_comments": "Assumer que tous les champs sont des OUI/NON à part si indiquer autrement par le champ 'type' (Assume all fields are YES/NO question except if specified otherwise in the field 'type'",
     "protocole": [
         {
             "description": "Protocole d'instance du Québec",
-          
-            "protocol_fields": [
+            "preliminary_fields": [
+                {
+                    "num": 1,
+                    "desc": "Les parties demandent une prolongation de délai pour la mise en état du dossier"
+                },
+                {
+                    "num": 2,
+                    "desc": "Les parties demandent une conférence de gestion de l’instance lors du dépôt du premier protocole"
+                },
+                {
+                    "num": 3,
+                    "desc": "Les parties requièrent une durée approximative de l’instruction de plus de deux jours"
+                },
+                {
+                    "num": 4,
+                    "desc": "Les parties demandent la tenue d’une conférence de règlement à l’amiable"
+                },
+                {
+                    "num": 5,
+                    "desc": "Les parties prévoient produire plus d’une expertise par partie"
+                },
+                {
+                    "num": 6,
+                    "desc": "Les parties prévoient procéder à plus d’un interrogatoire par partie"
+                },
+                {
+                    "num": 7,
+                    "desc": "Les parties conviennent que la défense sera écrite"
+                },
+                {
+                    "num": 8,
+                    "desc": "Le litige a fait ou fait l’objet d’une gestion de l’instance avant le dépôt du protocole selon l’article 157 C.p.c.",
+                    "note": "Dans l’affirmative, le protocole ci-joint n’est pas soumis à l’examen par le tribunal selon l’article 150 C.p.c., sauf décision contraire de ce dernier."
+                }
+            ],
+             "protocol_fields": [
                 {
                     "sectionID" : "1",
                     "sectionName": "Preliminary Exceptions",
@@ -45,7 +56,7 @@ export class CreateEventComponent{
                           {
                             "num" : 9,
                             "desc" : "Other Exception",
-                            "type" : "date"
+                            "type" "date"
                           },
                           {
                             "num" : 10,
@@ -180,13 +191,8 @@ export class CreateEventComponent{
                             "type": "string"
                           }
                         ]
-                      }]
-                },
-              
-            ]
+                      
+                }]
         }
     ]
-}
-
-
 }

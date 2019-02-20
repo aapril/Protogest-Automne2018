@@ -1,37 +1,56 @@
-<h1>Create Event</h1>
+<div class="col-md-12">
+    <h1 class="text-center">Create Instance Protocol</h1>
+</div>
 
-<form [formGroup]="createEventForm">
-    <div class="form-group">
-        <label for="eventname">Event name</label>
-        <input #eventName formControlName="name" type="text" placeholder="event name" name="eventname" class="form-control" id="eventname">
-        <span class="text-error" *ngIf="createEventForm.get('name').invalid && errorMessage">Enter an event name</span>
-    </div>
-
-
-    <label>Date</label>
-    <div class="form-group">
-        <div class="input-group">
-            <input formControlName="date" class="form-control" placeholder="yyyy-mm-dd"
-                   name="dp"  ngbDatepicker #d="ngbDatepicker">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><span class="fa fa-calendar"></span></button>
+<ngb-accordion [closeOthers]="true" activeIds="static-1" >
+  <ngb-panel *ngFor="let section of data.protocole[0].protocol_fields" id="static-{{section.sectionID}}">
+    <ng-template ngbPanelTitle>
+        <span>{{section.sectionName}}</span>
+    </ng-template>
+    <ng-template ngbPanelContent>
+        <div *ngFor="let subsection of section.subsection">
+            <div class='row' >
+                <div class="col-md-10">
+                    <label>{{subsection.desc}}</label>
+                </div>
+                <div class="col-md-1">
+                    <input id="chk-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="yes" [(ngModel)]="t[subsection.num]" >
+                    <label for="chk1-{{subsection.num}}">Yes</label>
+                </div>
+                <div class="col-md-1">
+                    <input id="chk2-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="no" [(ngModel)]="t[subsection.num]" >
+                    <label for="chk2-{{subsection.num}}">No</label>    
+                </div> 
+            </div>
+            <div class='row' *ngFor="let dateFields of subsection.dateSection">
+                <div class="col-md-10">
+                    <label>{{dateFields.desc}}</label>
+                </div>
+                <div class="col-md-2" *ngIf="dateFields.type=='date'">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="t[dateFields.num]" ngbDatepicker #d="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                 <div class="col-md-2" *ngIf="dateFields.type=='string'">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" [(ngModel)]="t[dateFields.num]">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <span class="text-error" *ngIf="createEventForm.get('date').invalid && errorMessage">Choose a date</span>
-    </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
 
-    <label>Time</label>
-    <ngb-timepicker formControlName="time"></ngb-timepicker>
-    <span class="text-error" *ngIf="createEventForm.get('time').invalid && errorMessage">Choose a time</span>
 
-    <br>
-    <br>
-    <div class="form-group">
-        <label>Event description</label>
-        <textarea #eventDescription formControlName="description" name="eventdescription" placeholder="event description" class="form-control"></textarea>
-        <span class="text-error" *ngIf="createEventForm.get('description').invalid && errorMessage">Enter a description</span>
-    </div>
 
-    <button class="btn btn-primary" (click)="createEvent()">Create event</button>
-</form>
-
+<button class="btn" (click)="saveForm()" type="button">Test</button>
