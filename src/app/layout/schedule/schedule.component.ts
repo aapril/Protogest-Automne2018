@@ -87,9 +87,9 @@ export class ScheduleComponent implements OnInit {
   eventRender(model) {
     // const html = `<h6 class="blue-test">`+model.event.title+`</h6>`;
     const html = `<div class="card-color-inherit">
-                        <div class="card-body">
+                        <div class="card-body" style="padding: 0.50rem;">
                             <h6 class="card-subtitle">`+model.event.title+`</h6>
-                            <p class="card-text">Sous-titre</p>
+                            <p class="card-text text-right"><b>`+model.event.protocol_event_id+`</b></p>
                         </div>
                     </div>
                 </div>`;

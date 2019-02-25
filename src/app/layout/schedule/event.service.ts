@@ -15,9 +15,8 @@ export class EventService {
         },
         {
             protocol_event_id: 12,
-            title: 'Long Event',
+            title: 'Event',
             start: yearMonth + '-07',
-            end: yearMonth + '-12',
             allDay: true,
             color: '#6E7BC4'
         },

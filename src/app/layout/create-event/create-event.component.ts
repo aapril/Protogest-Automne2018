@@ -14,14 +14,8 @@ export class CreateEventComponent{
 
   titles = [{id:1,title: 'gkdgjkf'},{id:2,title: 'gffgg'}];
   t = {};
-  saveForm() { 
-      //just added console.log which will display the event details in browser on click of the button.
-      alert("Button is clicked");
-      console.log(this);
-   }
 
-
- data = {
+  data = {
     "_comments": "Assumer que tous les champs sont des OUI/NON à part si indiquer autrement par le champ 'type' (Assume all fields are YES/NO question except if specified otherwise in the field 'type'",
     "protocole": [
         {
@@ -186,7 +180,14 @@ export class CreateEventComponent{
             ]
         }
     ]
-}
+  }
 
+  saveForm() { 
+    //just added console.log which will display the event details in browser on click of the button.
+    let protocol_answers = {'key' : 'value'};
+
+    localStorage.setItem('protocol_answers', JSON.stringify(protocol_answers));
+    return true;
+  }  
 
 }
