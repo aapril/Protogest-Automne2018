@@ -14,11 +14,11 @@
                     <label>{{subsection.desc}}</label>
                 </div>
                 <div class="col-md-1">
-                    <input id="chk-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="yes" [(ngModel)]="t[subsection.num]" >
+                    <input id="chk-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="yes" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
                     <label for="chk1-{{subsection.num}}">Yes</label>
                 </div>
                 <div class="col-md-1">
-                    <input id="chk2-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="no" [(ngModel)]="t[subsection.num]" >
+                    <input id="chk2-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="no" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
                     <label for="chk2-{{subsection.num}}">No</label>    
                 </div> 
             </div>
@@ -30,7 +30,7 @@
                 <form class="form-inline">
                     <div class="form-group">
                         <div class="input-group">
-                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="t[dateFields.num]" ngbDatepicker #d="ngbDatepicker">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="temp[dateFields.num]" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
                             </div>
@@ -41,7 +41,7 @@
                  <div class="col-md-2" *ngIf="dateFields.type=='string'">
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" [(ngModel)]="t[dateFields.num]">
+                            <input type="text" [(ngModel)]="temp[dateFields.num]" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
                         </div>
                     </div>
                 </div>
