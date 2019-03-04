@@ -3,59 +3,60 @@
 </div>
 
 <ngb-accordion [closeOthers]="true" activeIds="static-1" >
-  <ngb-panel *ngFor="let section of data.protocole[0].protocol_fields" id="static-{{section.sectionID}}">
-    <ng-template ngbPanelTitle>
-        <span>{{section.sectionName}}</span>
-    </ng-template>
-    <ng-template ngbPanelContent>
-        <div *ngFor="let subsection of section.subsection">
-            <div class='row' >
-                <div class="col-md-10">
-                    <label>{{subsection.desc}}</label>
-                </div>
-                <div class="col-md-1">
-                    <input id="chk-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="yes" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
-                    <label for="chk1-{{subsection.num}}">Yes</label>
-                </div>
-                <div class="col-md-1">
-                    <input id="chk2-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="no" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
-                    <label for="chk2-{{subsection.num}}">No</label>    
-                </div> 
-            </div>
-            <div class='row' *ngFor="let dateFields of subsection.dateSection">
-                <div class="col-md-10">
-                    <label>{{dateFields.desc}}</label>
-                </div>
-                <div class="col-md-2" *ngIf="dateFields.type=='date'">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="temp[dateFields.num]" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                            </div>
-                        </div>
+    <ngb-panel *ngFor="let section of data.protocole[0].protocol_fields" id="static-{{section.sectionID}}">
+        <ng-template ngbPanelTitle>
+            <span>{{section.sectionName}}</span>
+        </ng-template>
+        <ng-template ngbPanelContent>
+            <div *ngFor="let subsection of section.subsection">
+                <div class='row' >
+                    <div class="col-md-10">
+                        <label>{{subsection.desc}}</label>
                     </div>
-                    </form>
+                    <div class="col-md-1">
+                        <input id="chk-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="yes" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
+                        <label for="chk1-{{subsection.num}}">Yes</label>
+                    </div>
+                    <div class="col-md-1">
+                        <input id="chk2-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="no" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
+                        <label for="chk2-{{subsection.num}}">No</label>    
+                    </div> 
                 </div>
-                 <div class="col-md-2" *ngIf="dateFields.type=='string'">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" [(ngModel)]="temp[dateFields.num]" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
-                        </div>
-                        <div class="col-md-2" *ngIf="dateFields.type=='string'">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" [(ngModel)]="t[dateFields.num]">
+                <div class='row' *ngFor="let dateFields of subsection.dateSection">
+                    <div class="col-md-10">
+                        <label>{{dateFields.desc}}</label>
+                    </div>
+                    <div class="col-md-2" *ngIf="dateFields.type=='date'">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="temp[dateFields.num]" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
                                 </div>
                             </div>
-                      </div>
-                  </div>
-              </div>
-          </ng-template>
-        </ngb-panel>
-    </ngb-accordion>
-</div>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2" *ngIf="dateFields.type=='string'">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" [(ngModel)]="temp[dateFields.num]" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
+                            </div>
+                            <div class="col-md-2" *ngIf="dateFields.type=='string'">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" [(ngModel)]="t[dateFields.num]">
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>
 
 
 

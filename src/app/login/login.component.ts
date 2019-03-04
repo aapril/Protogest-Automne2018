@@ -14,22 +14,22 @@ import { CanActivate } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
     loginform: FormGroup;
-    loading = false;    
-    submitted: boolean = false; 
+    loading = false;
+    submitted = false;
     returnUrl: string;
 
     constructor(
-        private formBuilder: FormBuilder, 
+        private formBuilder: FormBuilder,
         private loginService: LoginService,
         private route: ActivatedRoute,
-        private router: Router) { }                
+        private router: Router) { }
 
-    ngOnInit() {             
+    ngOnInit() {
         this.loginform = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
           });
-          // reset login status   
+          // reset login status
           this.loginService.logout();
 
           // get return url from route parameters or default to '/'
@@ -39,13 +39,13 @@ export class LoginComponent implements OnInit {
     // convenience getter for easy access to form fields
     get f() { return this.loginform.controls; }
 
- 
-    onLoggedin() {        
+
+    onLoggedin() {
         this.submitted = true;
 
        // stop here if form is invalid
         if (this.loginform.invalid) {
-            console.log(true)
+            console.log(true);
             return;
         }         
        
@@ -58,5 +58,10 @@ export class LoginComponent implements OnInit {
         //         });
         localStorage.setItem('currentUser', this.f.username.value);
         this.router.navigate(['/dashboard']);
+
+    }
+
+    printEvents() {
+       this.loginService.printEvents();
     }
 }

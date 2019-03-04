@@ -1,0 +1,56 @@
+<div class="col-md-10 offset-md-1 mt-5">
+  <h3>Create a Protocol</h3>
+  <hr>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Please select a type of protocol</ng-template>
+        <mat-radio-group formControlName="thirdCtrl" required>
+          <mat-radio-button value="quebec">Quebec protocol</mat-radio-button>
+          <br>
+          <mat-radio-button value="canada">Canadian protocol</mat-radio-button>
+        </mat-radio-group>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Add people</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="secondCtrl">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput placeholder="Email #2" formControlName="secondCtrl">
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Give a name to your protocol</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="The JFK case" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+    
+</div>
