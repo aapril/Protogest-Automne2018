@@ -13,7 +13,31 @@ import {Router} from '@angular/router';
 export class CreateEventComponent{
 
   titles = [{id:1,title: 'gkdgjkf'},{id:2,title: 'gffgg'}];
-  t = {};
+  temp = {};
+  final = [];
+
+  onChange(t2, value){
+    var update = false;
+    for(var i = 0; i < this.final.length; i++) {
+      var obj = this.final[i];
+
+      if(obj.num == t2.num){
+        update = true;
+        this.final[i].value = value;
+      }
+    }
+
+    if(!update){
+      this.final.push(
+        {
+          type : t2.type,
+          num : t2.num,
+          value : value
+        }
+      );
+    }
+
+  }
 
   data = {
     "_comments": "Assumer que tous les champs sont des OUI/NON à part si indiquer autrement par le champ 'type' (Assume all fields are YES/NO question except if specified otherwise in the field 'type'",
@@ -184,6 +208,7 @@ export class CreateEventComponent{
 
   saveForm() { 
     //just added console.log which will display the event details in browser on click of the button.
+    console.log(this.final);
     let protocol_answers = {'key' : 'value'};
 
     localStorage.setItem('protocol_answers', JSON.stringify(protocol_answers));
