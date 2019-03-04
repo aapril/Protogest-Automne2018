@@ -5,10 +5,11 @@
             <form role="form" [formGroup]="signupForm">
                 <div class="form-content">
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <input #usernameFromTemplate formControlName="username" type="text" class="form-control input-underline input-lg" id="username" placeholder="Username">
-                        <span class="text-error" *ngIf="username.invalid && errorMessage">Enter a username</span>
+                        <label for="email">Email</label>
+                        <input #emailFromTemplate formControlName="email" type="text" class="form-control input-underline input-lg" id="email" placeholder="Email">
+                        <span class="text-error" *ngIf="email.invalid && errorMessage">Enter a valid email</span>
                     </div>
+
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input #passwordFromTemplate formControlName="password" type="password" class="form-control input-underline input-lg" id="password" placeholder="Password">
@@ -31,12 +32,6 @@
                         <label for="lastName">Last name</label>
                         <input #lastNameFromTemplate  formControlName="lastName" type="text" class="form-control input-underline input-lg" id="lastName" placeholder="Last name">
                         <span class="text-error" *ngIf="lastName.invalid && errorMessage">Enter a last name</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input #emailFromTemplate formControlName="email" type="text" class="form-control input-underline input-lg" id="email" placeholder="Email">
-                        <span class="text-error" *ngIf="email.invalid && errorMessage">Enter a valid email</span>
                     </div>
 
                 </div>

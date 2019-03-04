@@ -12,6 +12,7 @@ import { AuthGuard } from './shared';
 import { EventService } from './shared/services/event.service';
 import { LoginService } from './login/login.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {AuthorizationService} from "./shared/authorization.service";
 
 
 
@@ -48,7 +49,8 @@ export const createTranslateLoader = (http: HttpClient) => {
     providers: [
       AuthGuard,
       LoginService,
-      EventService
+      EventService,
+      AuthorizationService
     ],
     bootstrap: [AppComponent]
 })
