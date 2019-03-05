@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { LoginService } from './login.service';
 import { first } from 'rxjs/operators';
 import { CanActivate } from '@angular/router';
+import {AuthorizationService} from "../shared/authorization.service";
 
 @Component({
     selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     returnUrl: string;
 
     constructor(
+        private auth: AuthorizationService,
         private formBuilder: FormBuilder,
         private loginService: LoginService,
         private route: ActivatedRoute,
@@ -49,15 +51,13 @@ export class LoginComponent implements OnInit {
             return;
         }         
        
-        // this.loginService.login(this.f.username.value, this.f.password.value)
-        //     .pipe(first())
-        //     .subscribe(
-        //         data => {
-        //             //this.router.navigate([this.returnUrl]);
-        //             this.router.navigate(['/dashboard']);
-        //         });
-        localStorage.setItem('currentUser', this.f.username.value);
-        this.router.navigate(['/dashboard']);
+        this.auth.signIn(this.f.username.value, this.f.password.value).subscribe((data) => {
+            console.log(data);
+            localStorage.setItem('currentUser', this.f.username.value);
+            this.router.navigate(['/dashboard']);
+        }, (err)=> {
+            alert('A problem has occured.');
+        });   
 
     }
 
