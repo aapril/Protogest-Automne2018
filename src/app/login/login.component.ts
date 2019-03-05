@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
+    cognitoErrorMsg: string;
+    emailVerificationMessage = false;
+    cognitoError = false;
 
     constructor(
         private auth: AuthorizationService,
@@ -27,6 +30,8 @@ export class LoginComponent implements OnInit {
         private router: Router) { }
 
     ngOnInit() {
+        this.cognitoErrorMsg = "";
+
         this.loginform = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
@@ -47,7 +52,8 @@ export class LoginComponent implements OnInit {
 
        // stop here if form is invalid
         if (this.loginform.invalid) {
-            console.log(true);
+            this.cognitoError = false;
+            this.emailVerificationMessage = true;
             return;
         }         
        
@@ -56,7 +62,9 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('currentUser', this.f.username.value);
             this.router.navigate(['/dashboard']);
         }, (err)=> {
-            alert('A problem has occured.');
+            this.cognitoErrorMsg = err.message;
+            this.emailVerificationMessage = false;
+            this.cognitoError = true;
         });   
 
     }
