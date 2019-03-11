@@ -4,8 +4,8 @@
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Please select a type of protocol</ng-template>
-        <mat-radio-group formControlName="thirdCtrl" required>
+        <ng-template matStepLabel>Please select a type</ng-template>
+        <mat-radio-group formControlName="firstCtrl" required>
           <mat-radio-button value="quebec">Quebec protocol</mat-radio-button>
           <br>
           <mat-radio-button value="canada">Canadian protocol</mat-radio-button>
@@ -34,10 +34,8 @@
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup">
       <form [formGroup]="thirdFormGroup">
-        <ng-template matStepLabel>Give a name to your protocol</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="The JFK case" formControlName="firstCtrl" required>
-        </mat-form-field>
+        <ng-template matStepLabel>Fill in the details</ng-template>
+        <app-create-event></app-create-event>
         <div>
           <button mat-button matStepperNext>Next</button>
         </div>

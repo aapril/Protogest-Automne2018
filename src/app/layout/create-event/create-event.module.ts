@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [CommonModule, CreateEventRootingModule, PageHeaderModule, NgbModule, ReactiveFormsModule, FormsModule],
-  declarations: [CreateEventComponent]
+  declarations: [CreateEventComponent],
+  exports: [CreateEventComponent]
 })
 export class CreateEventModule { }

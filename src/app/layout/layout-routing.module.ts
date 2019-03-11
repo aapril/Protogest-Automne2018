@@ -7,8 +7,7 @@ const routes: Routes = [
         path: '',
         component: LayoutComponent,
         children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
-            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+            { path: '', redirectTo: 'schedule', pathMatch: 'prefix' },
             { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },            
             { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarModule' },
             { path: 'schedule', loadChildren: './schedule/schedule.module#ScheduleModule' },

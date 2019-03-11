@@ -6,6 +6,7 @@ import { MatRadioModule } from '@angular/material';
 import { CreateProtocolRoutingModule } from './create-protocol-routing.module';
 import { CreateProtocolComponent } from './create-protocol.component';
 import { MatStepperModule, MatInputModule, MatButtonModule, MatAutocompleteModule } from '@angular/material';
+import { CreateEventModule } from '../create-event/create-event.module';
 
 
 @NgModule({
@@ -18,8 +19,9 @@ import { MatStepperModule, MatInputModule, MatButtonModule, MatAutocompleteModul
     MatInputModule,
     MatButtonModule,
     MatAutocompleteModule,
-    MatRadioModule
+    MatRadioModule,
+    CreateEventModule
   ],
-  declarations: [CreateProtocolComponent]
+  declarations: [CreateProtocolComponent],
 })
 export class CreateProtocolModule { }
