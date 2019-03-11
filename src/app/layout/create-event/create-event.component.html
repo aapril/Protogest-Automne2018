@@ -7,53 +7,51 @@
         <span>{{section.sectionName}}</span>
     </ng-template>
     <ng-template ngbPanelContent>
-        <div *ngFor="let subsection of section.subSection">
-            <div class='row' >
+        <div *ngFor="let subsection of section.subSection" class="subsection-border">
+            <div class='row mt-3'>
                 <div class="col-md-10">
                     <label>{{subsection.desc}}</label>
                 </div>
                 <div class="col-md-1">
                     <input id="chk-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="yes" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
-                    <label for="chk1-{{subsection.num}}">Yes</label>
+                    <label for="chk1-{{subsection.num}}">&nbsp;Yes</label>
                 </div>
                 <div class="col-md-1">
                     <input id="chk2-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="no" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
-                    <label for="chk2-{{subsection.num}}">No</label>    
+                    <label for="chk2-{{subsection.num}}">&nbsp;No</label>    
                 </div> 
             </div>
+            <div class="col-md-12">
+                <hr>
+            </div>
             <div class='row' *ngFor="let dateFields of subsection.dateSection">
-                <div class="col-md-10">
-                    <label>{{dateFields.desc}}</label>
+                <div class="col-md-12">
+                    <label><b>{{dateFields.desc}}</b></label>
                 </div>
-                <div class='row' *ngFor="let dateFields of subsection.dateSection">
-                    <div class="col-md-10">
-                        <label>{{dateFields.desc}}</label>
-                    </div>
-                    <div class="col-md-2" *ngIf="dateFields.type=='date'">
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="temp[dateFields.num]" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                                </div>
-                            </div>
+                <div class="col-md-11 offset-md-1">
+                    <div class='row mb-2' *ngFor="let dateFields of subsection.dateSection">
+                        <div class="col-md-7">
+                            <label>{{dateFields.desc}}</label>
                         </div>
-                        </form>
-                    </div>
-                    <div class="col-md-2" *ngIf="dateFields.type=='string'">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="text" [(ngModel)]="temp[dateFields.num]" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
-                            </div>
-                            <div class="col-md-2" *ngIf="dateFields.type=='string'">
+                        <div *ngIf="dateFields.type=='date'" class="col-md-4 float-left">
+                            <form class="form-inline">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" [(ngModel)]="temp[dateFields.num]">
+                                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="temp[dateFields.num]" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                                        </div>
                                     </div>
                                 </div>
+                            </form>
                         </div>
-                    </div>
+                        <div *ngIf="dateFields.type=='string'" class="col-md-4 float-left">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" [(ngModel)]="temp[dateFields.num]" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
