@@ -1,26 +1,29 @@
 <div class="col-md-12">
     <h1 class="text-center">Create Instance Protocol</h1>
 </div>
-
 <ngb-accordion [closeOthers]="true" activeIds="static-1" >
-    <ngb-panel *ngFor="let section of data.protocole[0].protocol_fields" id="static-{{section.sectionID}}">
-        <ng-template ngbPanelTitle>
-            <span>{{section.sectionName}}</span>
-        </ng-template>
-        <ng-template ngbPanelContent>
-            <div *ngFor="let subsection of section.subsection">
-                <div class='row' >
-                    <div class="col-md-10">
-                        <label>{{subsection.desc}}</label>
-                    </div>
-                    <div class="col-md-1">
-                        <input id="chk-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="yes" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
-                        <label for="chk1-{{subsection.num}}">Yes</label>
-                    </div>
-                    <div class="col-md-1">
-                        <input id="chk2-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="no" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
-                        <label for="chk2-{{subsection.num}}">No</label>    
-                    </div> 
+  <ngb-panel *ngFor="let section of data.protocole[0].protocol_fields" id="static-{{section.sectionID}}">
+    <ng-template ngbPanelTitle>
+        <span>{{section.sectionName}}</span>
+    </ng-template>
+    <ng-template ngbPanelContent>
+        <div *ngFor="let subsection of section.subSection">
+            <div class='row' >
+                <div class="col-md-10">
+                    <label>{{subsection.desc}}</label>
+                </div>
+                <div class="col-md-1">
+                    <input id="chk-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="yes" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
+                    <label for="chk1-{{subsection.num}}">Yes</label>
+                </div>
+                <div class="col-md-1">
+                    <input id="chk2-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="no" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
+                    <label for="chk2-{{subsection.num}}">No</label>    
+                </div> 
+            </div>
+            <div class='row' *ngFor="let dateFields of subsection.dateSection">
+                <div class="col-md-10">
+                    <label>{{dateFields.desc}}</label>
                 </div>
                 <div class='row' *ngFor="let dateFields of subsection.dateSection">
                     <div class="col-md-10">
@@ -46,7 +49,7 @@
                             <div class="col-md-2" *ngIf="dateFields.type=='string'">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" [(ngModel)]="t[dateFields.num]">
+                                        <input type="text" [(ngModel)]="temp[dateFields.num]">
                                     </div>
                                 </div>
                         </div>
@@ -54,8 +57,9 @@
                     </div>
                 </div>
             </div>
-        </ng-template>
-    </ngb-panel>
+        </div>
+    </ng-template>
+  </ngb-panel>
 </ngb-accordion>
 
 
