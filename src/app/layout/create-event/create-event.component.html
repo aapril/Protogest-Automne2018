@@ -1,6 +1,3 @@
-<div class="col-md-12">
-    <h1 class="text-center">Create Instance Protocol</h1>
-</div>
 <ngb-accordion [closeOthers]="true" activeIds="static-1" >
   <ngb-panel *ngFor="let section of data.protocole[0].protocol_fields" id="static-{{section.sectionID}}">
     <ng-template ngbPanelTitle>
@@ -59,7 +56,3 @@
     </ng-template>
   </ngb-panel>
 </ngb-accordion>
-
-
-
-<button class="btn" (click)="saveForm()" type="button">Test</button>

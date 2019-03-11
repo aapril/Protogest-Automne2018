@@ -44,5 +44,10 @@ export class CreateEventComponent{
         }
       );
     }
+    console.log(this.final);
+  }
+
+  saveForm() {
+    alert('bup');
   }
 }

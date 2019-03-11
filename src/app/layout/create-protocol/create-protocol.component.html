@@ -37,7 +37,8 @@
         <ng-template matStepLabel>Fill in the details</ng-template>
         <app-create-event></app-create-event>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious (click)='saveForm()'>Back</button>
+          <button mat-button matStepperNext (click)='saveForm()'>Next</button>
         </div>
       </form>
     </mat-step>
