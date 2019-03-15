@@ -28,7 +28,6 @@
                 &nbsp;
                 <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
                 &nbsp;
-                <a class="btn rounded-btn" href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=eaa9e663-4d2c-4552-98e9-e525a11d27e5&redirect_uri=http://localhost:8080/authorize&response_type=code%20id_token&scope=openid%20offline_access%20profile%20User.Read%20Mail.Read%20Calendars.Read%20Contacts.Read&state=5a2853cd-b18d-4805-8443-07db6068be95&nonce=62489277-35b9-44bc-a6d7-cd1887144cc4&response_mode=form_post">Outlook!</a>
             </form>
             <br>
             <div *ngIf="emailVerificationMessage" class="alert alert-danger" role="alert">

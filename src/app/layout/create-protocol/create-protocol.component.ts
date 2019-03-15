@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { CreateEventComponent } from '../create-event/create-event.component'
 
@@ -9,6 +9,7 @@ import { CreateEventComponent } from '../create-event/create-event.component'
   providers: [CreateEventComponent]
 })
 export class CreateProtocolComponent implements OnInit {
+  @ViewChild('openModal') openModal:ElementRef;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -25,6 +26,8 @@ export class CreateProtocolComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
+    this.openModal.nativeElement.click();
+    console.log('fdfsdf');
   }
 
   saveForm() {
