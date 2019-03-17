@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { LoginService } from './login.service';
 import { first } from 'rxjs/operators';
 import { CanActivate } from '@angular/router';
+import {AuthorizationService} from "../shared/authorization.service";
 
 @Component({
     selector: 'app-login',
@@ -14,22 +15,28 @@ import { CanActivate } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
     loginform: FormGroup;
-    loading = false;    
-    submitted: boolean = false; 
+    loading = false;
+    submitted = false;
     returnUrl: string;
+    cognitoErrorMsg: string;
+    emailVerificationMessage = false;
+    cognitoError = false;
 
     constructor(
-        private formBuilder: FormBuilder, 
+        private auth: AuthorizationService,
+        private formBuilder: FormBuilder,
         private loginService: LoginService,
         private route: ActivatedRoute,
-        private router: Router) { }                
+        private router: Router) { }
 
-    ngOnInit() {             
+    ngOnInit() {
+        this.cognitoErrorMsg = "";
+
         this.loginform = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
           });
-          // reset login status   
+          // reset login status
           this.loginService.logout();
 
           // get return url from route parameters or default to '/'
@@ -39,24 +46,30 @@ export class LoginComponent implements OnInit {
     // convenience getter for easy access to form fields
     get f() { return this.loginform.controls; }
 
- 
-    onLoggedin() {        
+
+    onLoggedin() {
         this.submitted = true;
 
        // stop here if form is invalid
         if (this.loginform.invalid) {
-            console.log(true)
+            this.cognitoError = false;
+            this.emailVerificationMessage = true;
             return;
         }         
        
-        // this.loginService.login(this.f.username.value, this.f.password.value)
-        //     .pipe(first())
-        //     .subscribe(
-        //         data => {
-        //             //this.router.navigate([this.returnUrl]);
-        //             this.router.navigate(['/dashboard']);
-        //         });
-        localStorage.setItem('currentUser', this.f.username.value);
-        this.router.navigate(['/dashboard']);
+        this.auth.signIn(this.f.username.value, this.f.password.value).subscribe((data) => {
+            console.log(data);
+            localStorage.setItem('currentUser', this.f.username.value);
+            this.router.navigate(['/dashboard']);
+        }, (err)=> {
+            this.cognitoErrorMsg = err.message;
+            this.emailVerificationMessage = false;
+            this.cognitoError = true;
+        });   
+
+    }
+
+    printEvents() {
+       this.loginService.printEvents();
     }
 }

@@ -1,12 +1,12 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
     <div class="list-group">
-        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
-            <span>{{ 'Dashboard' | translate }}</span>
-        </a>
         <a [routerLink]="['/create-event']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-th-list"></i>&nbsp;
             <span>{{ 'Create Event' | translate }}</span>
+        </a>
+        <a [routerLink]="['/create-protocol']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-hourglass-start"></i>&nbsp;
+            <span>{{ 'Create Protocol' | translate }}</span>
         </a>      
         <a [routerLink]="['/event']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-desktop"></i>&nbsp;

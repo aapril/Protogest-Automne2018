@@ -34,6 +34,8 @@ export class ScheduleComponent implements OnInit {
       allDayDefault: true,
       timeFormat: 'H:mm',
       selectable: true,
+      eventTextColor: 'white',
+      eventRender: (v,el) => {console.log(v, el)}
     };
   }
   loadevents() {
@@ -49,6 +51,7 @@ export class ScheduleComponent implements OnInit {
       title: 'New event',
       start: model.date._d.toISOString()
     };
+    this.events.push(el);
     this.ucCalendar.fullCalendar('renderEvent', el);
     this.ucCalendar.fullCalendar('rerenderEvents');
   }
@@ -80,5 +83,16 @@ export class ScheduleComponent implements OnInit {
       }
     }
     this.displayEvent = model;
+  }
+  eventRender(model) {
+    // const html = `<h6 class="blue-test">`+model.event.title+`</h6>`;
+    const html = `<div class="card-color-inherit">
+                        <div class="card-body" style="padding: 0.50rem;">
+                            <h6 class="card-subtitle">`+model.event.title+`</h6>
+                            <p class="card-text text-right"><b>`+model.event.protocol_event_id+`</b></p>
+                        </div>
+                    </div>
+                </div>`;
+    model.element.html(html)
   }
 }

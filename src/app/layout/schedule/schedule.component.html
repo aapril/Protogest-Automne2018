@@ -4,13 +4,24 @@
         <div class="col-md-8">
             <div *ngIf="calendarOptions">
                 <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (dayClick)="dayClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
-                    (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+                    (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)" (eventRender)="eventRender($event.detail)"></ng-fullcalendar>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" id="list_events">
             <!-- <h3>{{ 'Events' | translate }}</h3> -->
             <h3>Events</h3>
             <hr>
+            <div class="card mb-2 offset-md-1 col-md-10 col-sm-12" *ngFor="let event of events">
+                <div class="row">
+                    <div class="col-md-2 pl-4 pr-0">
+                        <span class="text-center align-middle event-number">{{ event.protocol_event_id }}</span>
+                    </div>
+                    <div class="card-body col-md-10">
+                        <h6 class="card-subtitle mt-0 mb-2 text-muted">{{ event.title }}</h6>
+                        <p class="card-text">{{ event.start }}</p>
+                    </div>
+                </div>
+              </div>
         </div>
     </div>
 </div>

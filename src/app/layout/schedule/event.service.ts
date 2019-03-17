@@ -7,28 +7,32 @@ export class EventService {
         const dateObj = new Date();
         const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
         let data: any = [{
+            protocol_event_id: 1,
             title: 'All Day Event',
             start: yearMonth + '-01',
-            color: '#FF6859',
-        },
-        {
-            title: 'Long Event',
-            start: yearMonth + '-07',
-            end: yearMonth + '-12',
             allDay: true,
-            color: '#1EB980'
+            color: '#6E7BC4'
         },
         {
+            protocol_event_id: 12,
+            title: 'Event',
+            start: yearMonth + '-07',
+            allDay: true,
+            color: '#6E7BC4'
+        },
+        {
+            protocol_event_id: 23,
             title: 'Conference',
             start: yearMonth + '-12',
-            allDay: false,
-            color: '#FFCF44',
+            allDay: true,
+            color: '#6E7BC4'
         },
         {
+            protocol_event_id: 34,
             title: 'Click for Google',
-            url: 'http://google.com/',
             start: yearMonth + '-28',
-            color: '#B15DFF',
+            allDay: true,
+            color: '#6E7BC4'
         }];
         return of(data);
     }

@@ -1,0 +1,78 @@
+<div class="col-md-10 offset-md-1 mt-5">
+  <h3>Create a Protocol</h3>
+  <hr>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Please select a type</ng-template>
+        <mat-radio-group formControlName="firstCtrl" required>
+          <mat-radio-button value="quebec">Quebec protocol</mat-radio-button>
+          <br>
+          <mat-radio-button value="canada">Canadian protocol</mat-radio-button>
+        </mat-radio-group>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Add people</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="secondCtrl">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput placeholder="Email #2" formControlName="secondCtrl">
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Fill in the details</ng-template>
+        <app-create-event></app-create-event>
+        <div>
+          <button mat-button matStepperPrevious (click)='saveForm()'>Back</button>
+          <button mat-button matStepperNext (click)='saveForm()'>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+    
+</div>
+
+<button id="openModal" #openModal [hidden]="true" 
+ data-toggle="modal" data-target="#exampleModal"></button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Import your calendar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Would you like to import your calendar to better estimate available dates?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a class="btn btn-purple" href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=eaa9e663-4d2c-4552-98e9-e525a11d27e5&redirect_uri=http://localhost:8080/authorize&response_type=code%20id_token&scope=openid%20offline_access%20profile%20User.Read%20Mail.Read%20Calendars.Read%20Contacts.Read&state=5a2853cd-b18d-4805-8443-07db6068be95&nonce=62489277-35b9-44bc-a6d7-cd1887144cc4&response_mode=form_post">Yes, use Outlook</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,10 +18,8 @@ export class CreateEventComponent{
   titles = [{id:1,title: 'gkdgjkf'},{id:2,title: 'gffgg'}];
   temp = {};
   final = [];
-  saveForm(){ 
-      console.log(this.final);
-   }
-   onChange(t2,value){
+
+  onChange(t2, value){
     var update = false;
     for(var i = 0; i < this.final.length; i++) {
       var obj = this.final[i];
@@ -46,7 +44,10 @@ export class CreateEventComponent{
         }
       );
     }
-    
-   }
+    console.log(this.final);
+  }
 
+  saveForm() {
+    alert('bup');
+  }
 }
