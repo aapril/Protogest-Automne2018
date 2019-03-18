@@ -27,7 +27,6 @@ export class CreateProtocolComponent implements OnInit {
       thirdCtrl: ['', Validators.required]
     });
     this.openModal.nativeElement.click();
-    console.log('fdfsdf');
   }
 
   saveForm() {

@@ -1,7 +1,6 @@
 declare var require: any;
 import {Component, OnInit } from '@angular/core';
-import { EventService } from '../../shared/services/event.service';
-import { CreateEvent } from './create-event';
+import { ProtocolService } from '../../shared/services/protocol.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import {Router} from '@angular/router';
@@ -19,14 +18,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class CreateEventComponent{
   
-  constructor(protected http: HttpClient) {}
+  constructor(private protocolService: ProtocolService, protected http: HttpClient) {}
 
 
   data = require('../../../jsonDir/protocole-schema-quebec.json');
 
-  titles = [{id:1,title: 'gkdgjkf'},{id:2,title: 'gffgg'}];
   temp = {};
-  final = [];
+  final: any = [];
 
   onChange(t2, value){
     var update = false;
@@ -47,33 +45,35 @@ export class CreateEventComponent{
     if(!update){
       this.final.push(
         {
-          type : t2.type,
+          type : t2.type.toUpperCase(),
           num : t2.num,
           value : value
         }
       );
     }
-    console.log(this.final);
+    localStorage.setItem('protocol', JSON.stringify(this.final));
   }
 
   saveForm() {
-    var protocole = {
+    var localProtocol = localStorage.getItem('protocol');
+
+    if (localProtocol !== null && localProtocol !== undefined) {
+      var protocole = {
         "relatedUserId" : "t@t.com",
         "protocol" : {
-            "fields" : this.final
+            "fields" : JSON.parse(localProtocol)
         }
-    } 
-    const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json',
-    'Authentification' : 'CognitoId' ,
-    'Access-Control-Allow-Origin': 'http://protogest-api-dev.us-east-1.elasticbeanstalk.com'
-    })
-    };
-
-     return this.http.post(
-      'http://protogest-api-dev.us-east-1.elasticbeanstalk.com/my/protocols', this.final,httpOptions).subscribe(
-        data => { console.log(data); },
-        err => { console.log(err); }
+      } 
+      console.log(protocole);
+      
+      this.protocolService.createProtocol(protocole).subscribe(
+        data => {
+          console.log(data);
+        }
       );
+  ;
+    } else {
+      alert('Problem with saving protocol');
+    }
   }
 }
