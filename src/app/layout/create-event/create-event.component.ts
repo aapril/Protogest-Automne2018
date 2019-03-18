@@ -47,7 +47,7 @@ export class CreateEventComponent{
         {
           type : t2.type.toUpperCase(),
           num : t2.num,
-          value : value
+          value : (t2.type === "date") ? value.year + "-" + value.month + "-" + value.day : value
         }
       );
     }
