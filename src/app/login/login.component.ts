@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
           this.loginService.logout();
 
           // get return url from route parameters or default to '/'
-          this.returnUrl = this.route.snapshot.queryParams['/dashboard'] || '/';
+          this.returnUrl = this.route.snapshot.queryParams['/schedule'] || '/';
     }
 
     // convenience getter for easy access to form fields
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
         this.auth.signIn(this.f.username.value, this.f.password.value).subscribe((data) => {
             console.log(data);
             localStorage.setItem('currentUser', this.f.username.value);
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/schedule']);
         }, (err)=> {
             this.cognitoErrorMsg = err.message;
             this.emailVerificationMessage = false;

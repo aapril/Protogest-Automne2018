@@ -1,7 +1,7 @@
 <div class="col-md-10 offset-md-1 mt-5">
   <h3>Create a Protocol</h3>
   <hr>
-  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Please select a type</ng-template>
