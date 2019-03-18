@@ -5,14 +5,23 @@ import { CreateEvent } from './create-event';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.scss']
 })
+
+
 export class CreateEventComponent{
   
+  constructor(protected http: HttpClient) {}
+
+
   data = require('../../../jsonDir/protocole-schema-quebec.json');
 
   titles = [{id:1,title: 'gkdgjkf'},{id:2,title: 'gffgg'}];
@@ -48,6 +57,23 @@ export class CreateEventComponent{
   }
 
   saveForm() {
-    alert('bup');
+    var protocole = {
+        "relatedUserId" : "t@t.com",
+        "protocol" : {
+            "fields" : this.final
+        }
+    } 
+    const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json',
+    'Authentification' : 'CognitoId' ,
+    'Access-Control-Allow-Origin': 'http://protogest-api-dev.us-east-1.elasticbeanstalk.com'
+    })
+    };
+
+     return this.http.post(
+      'http://protogest-api-dev.us-east-1.elasticbeanstalk.com/my/protocols', this.final,httpOptions).subscribe(
+        data => { console.log(data); },
+        err => { console.log(err); }
+      );
   }
 }
