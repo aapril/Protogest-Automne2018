@@ -4,10 +4,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { UserService } from '../user.service';
 import { User } from '../user';
 import { Member } from '../layout/member/member';
-import { MemberService } from '../layout/member/member.service';
 import {AuthorizationService} from "../shared/authorization.service";
 
 @Component({
@@ -28,10 +26,15 @@ export class SignupComponent implements OnInit {
         firstName: new FormControl('', Validators.required),
         lastName: new FormControl('', Validators.required),
     });
+    codeVerifForm = new FormGroup({
+        code: new FormControl('', Validators.required)
+    });
     errorMessage: boolean;
     strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    confirmCode: boolean = false;
+    codeWasConfirmed: boolean = false;
 
-    constructor(private auth: AuthorizationService, private userService: UserService, private memberService: MemberService, private router: Router) {}
+    constructor(private auth: AuthorizationService, private router: Router) {}
 
     ngOnInit() {
 
@@ -57,6 +60,10 @@ export class SignupComponent implements OnInit {
         return this.signupForm.get('lastName');
     }
 
+    get code() {
+        return this.codeVerifForm.get('code');
+    }
+
     register(): void {
 
         if (!this.signupForm.get('email').invalid &&
@@ -68,39 +75,14 @@ export class SignupComponent implements OnInit {
                 if (this.strongRegex.test(this.signupForm.get('password').value)) {
                     this.auth.register(this.signupForm.get('email').value, this.signupForm.get('password').value).subscribe(
                         (data) => {
-                            this.router.navigate(['/login']);
+                            // this.router.navigate(['/login']);
+                            this.confirmCode = true;
                         },
                         (err) => {
                             console.log(err);
                             alert("Registration Error has occurred");
                         }
                     );
-
-                    // this.user = {
-                    //     id: null,
-                    //     email: this.signupForm.get('email').value,
-                    //     password: this.signupForm.get('password').value
-                    // };
-
-                    // const observableUser = this.userService.createUser(this.user);
-
-                    // observableUser.subscribe(user => {
-                    //     this.userId = user.id;
-                    //     this.member = {
-                    //         id: null,
-                    //         firstName: this.signupForm.get('firstName').value,
-                    //         lastName: this.signupForm.get('lastName').value,
-                    //         email: this.signupForm.get('email').value,
-                    //         userId: this.userId
-                    //     };
-                    //     const observableMember = this.memberService.createMember(this.member);
-                    //     observableMember.subscribe();
-
-                    //     if (observableUser != null && observableMember != null) {
-                    //         alert('The user is successfully created');
-                    //         this.router.navigate(['/login']);
-                    //     }
-                    // });
                 }
                 else {
                     alert('Password is not strong enough. It needs an uppercase letter, a numeric character and a special character.');
@@ -110,6 +92,20 @@ export class SignupComponent implements OnInit {
             }
 
         }
-      }
     }
+
+    validateAuthCode() {
+        if (!this.codeVerifForm.get('code').invalid) {
+            this.auth.confirmAuthCode(this.codeVerifForm.get('code').value).subscribe(
+              (data) => {
+                //this._router.navigateByUrl('/');
+                this.codeWasConfirmed = true;
+                this.confirmCode = false;
+              },
+              (err) => {
+                alert("Confirm Authorization Error has occurred");
+              });
+        }
+    }
+}
 
