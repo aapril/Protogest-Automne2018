@@ -40,6 +40,24 @@
             </form>
         </div>
     </div>
+
+    <div *ngIf="confirmCode" class="row justify-content-md-center" style="margin-top: 60px;">
+        <h5 class="col-md-6 text-center">Please check your email for the validation code and enter it here:</h5>
+    </div>
+    <div *ngIf="confirmCode" class="row justify-content-md-center">
+        <div class="col-md-4">
+            <form role="form" [formGroup]="codeVerifForm">
+            <div class="form-group">
+                <input #codeFromTemplate formControlName="code" type="text" class="form-control input-underline input-lg" id="code" placeholder="Code">
+                <span class="text-error" *ngIf="code.invalid && errorMessage">Enter a valid code</span>
+            </div>
+            <a class="btn rounded-btn" (click)="validateAuthCode()"> Validate Code </a>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="codeWasConfirmed" class="row justify-content-md-center" style="margin-top: 60px;">
+        <h5>Verification Code was confirmed, please click <a routerLink="/login">here</a> to login</h5>
+    </div>
 </div>
 
 <!--,roleFromTemplate.value='Choose a role'   , emailFromTemplate.value=''-->
