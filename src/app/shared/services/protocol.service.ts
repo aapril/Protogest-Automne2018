@@ -6,11 +6,9 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Access-Control-Allow-Origin': '*'
-  })
+const headersDict = {
+  'Content-Type':  'application/json',
+  'Access-Control-Allow-Origin': '*'
 };
 
 @Injectable({
@@ -36,9 +34,11 @@ export class ProtocolService {
     var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
     var localSecretKey = 'CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken';
 
-    httpOptions.headers.append(
-      'Authentification', localStorage.getItem(localSecretKey)
-    );
+    let allHeaders = Object.assign({}, headersDict, {'Authentification': 'bob@bob.ca'});
+
+    const httpOptions = {
+      headers: new HttpHeaders(allHeaders)
+    };
 
     return this.httpClient.post(environment.backendUrl + '/my/protocols', payload, httpOptions)
       .pipe(
