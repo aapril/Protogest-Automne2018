@@ -18,14 +18,10 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Add people</ng-template>
+        <ng-template matStepLabel>Invite</ng-template>
         <mat-form-field>
           <input matInput placeholder="Email" formControlName="secondCtrl">
         </mat-form-field>
-        <br>
-        <mat-form-field>
-            <input matInput placeholder="Email #2" formControlName="secondCtrl">
-          </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
@@ -37,8 +33,8 @@
         <ng-template matStepLabel>Fill in the details</ng-template>
         <app-create-event></app-create-event>
         <div>
-          <button mat-button matStepperPrevious (click)='saveForm()'>Back</button>
-          <button mat-button matStepperNext (click)='saveForm()'>Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -47,7 +43,8 @@
       You are now done.
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)='saveForm()'>Save the protocol!</button>
+        <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
       </div>
     </mat-step>
   </mat-horizontal-stepper>

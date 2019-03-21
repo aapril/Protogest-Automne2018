@@ -46,7 +46,7 @@ export class CreateEventComponent{
       this.final.push(
         {
           type : t2.type.toUpperCase(),
-          num : t2.num,
+          id : String(t2.num),
           value : (t2.type === "date") ? value.year + "-" + value.month + "-" + value.day : value
         }
       );
@@ -59,16 +59,18 @@ export class CreateEventComponent{
 
     if (localProtocol !== null && localProtocol !== undefined) {
       var protocole = {
-        "relatedUserId" : "t@t.com",
         "protocol" : {
-            "fields" : JSON.parse(localProtocol)
-        }
+            "fields" : JSON.parse(localProtocol),
+            "userID" : "test@test.ca",
+            "formUUID": "6a01cac1-f55e-4933-b889-ae00d14c9d17"
+        },
+        "relatedUserId": "bob@bob.ca"
       } 
       console.log(protocole);
       
       this.protocolService.createProtocol(protocole).subscribe(
         data => {
-          console.log(data);
+          alert('Your protocol has been successfully saved.');
         }
       );
   ;
