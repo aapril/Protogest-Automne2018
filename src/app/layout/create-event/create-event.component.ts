@@ -27,31 +27,33 @@ export class CreateEventComponent{
   final: any = [];
 
   onChange(t2, value){
-    var update = false;
-    for(var i = 0; i < this.final.length; i++) {
-      var obj = this.final[i];
+    if (t2.type.toUpperCase() !== "BOOL") {
+      var update = false;
+      for(var i = 0; i < this.final.length; i++) {
+        var obj = this.final[i];
 
-      if(obj.num == t2.num){
-        update = true;
-        if(this.final[i].type == "date"){
-          this.final[i].value = value.year + "-" + value.month + "-" + value.day;
-        }else{
-          this.final[i].value = value;
+        if(obj.num == t2.num){
+          update = true;
+          if(this.final[i].type == "date"){
+            this.final[i].value = value.year + "-" + value.month + "-" + value.day;
+          }else{
+            this.final[i].value = value;
+          }
+          
         }
-        
       }
-    }
 
-    if(!update){
-      this.final.push(
-        {
-          type : t2.type.toUpperCase(),
-          id : String(t2.num),
-          value : (t2.type === "date") ? value.year + "-" + value.month + "-" + value.day : value
-        }
-      );
+      if(!update){
+        this.final.push(
+          {
+            type : t2.type.toUpperCase(),
+            id : String(t2.num),
+            value : (t2.type === "date") ? value.year + "-" + value.month + "-" + value.day : value
+          }
+        );
+      }
+      localStorage.setItem('protocol', JSON.stringify(this.final));
     }
-    localStorage.setItem('protocol', JSON.stringify(this.final));
   }
 
   saveForm() {
