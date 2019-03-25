@@ -95,4 +95,8 @@ export class ScheduleComponent implements OnInit {
                 </div>`;
     model.element.html(html)
   }
+
+  start(){
+      console.log('k');
+  }
 }

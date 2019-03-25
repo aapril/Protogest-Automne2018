@@ -55,6 +55,13 @@ export class CreateEventComponent{
       localStorage.setItem('protocol', JSON.stringify(this.final));
     }
   }
+  
+  setData(fields){
+    fields.forEach(element => {
+      this.temp[7] = true;
+    }); 
+    console.log(this.temp);
+  }
 
   saveForm() {
     var localProtocol = localStorage.getItem('protocol');
@@ -69,6 +76,7 @@ export class CreateEventComponent{
         "relatedUserId": "bob@bob.ca"
       } 
       console.log(protocole);
+      console.log(this.temp);
       
       this.protocolService.createProtocol(protocole).subscribe(
         data => {

@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
+var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
+var localSecretKey = 'CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken';
+
 
 const headersDict = {
   'Content-Type':  'application/json',
@@ -23,7 +26,31 @@ export class ProtocolService {
    * Returns: List of Event objects
    */
   getUserProtocols(): Observable<Event[]> {
-    return this.httpClient.get<Event[]>(environment.eventApiUrl + "/eventGroup/all").pipe(catchError((error:any) => {
+    var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
+    var localSecretKey = 'CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken';
+
+    let allHeaders = Object.assign({}, headersDict, {'Authentification': 'bob@bob.ca'});
+
+    const httpOptions = {
+      headers: new HttpHeaders(allHeaders)
+    };
+
+    return this.httpClient.get<Event[]>(environment.backendUrl + '/my/protocols',httpOptions).pipe(catchError((error:any) => {
+      return throwError(error.statusText);
+    }));
+  }
+
+   getUserRelatedProtocols(): Observable<Event[]> {
+    var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
+    var localSecretKey = 'CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken';
+
+    let allHeaders = Object.assign({}, headersDict, {'Authentification': 'bob@bob.ca'});
+
+    const httpOptions = {
+      headers: new HttpHeaders(allHeaders)
+    };
+
+    return this.httpClient.get<Event[]>(environment.backendUrl + '/my/related-protocols',httpOptions).pipe(catchError((error:any) => {
       return throwError(error.statusText);
     }));
   }

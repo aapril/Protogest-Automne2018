@@ -10,12 +10,12 @@
                     <label>{{subsection.desc}}</label>
                 </div>
                 <div class="col-md-1">
-                    <input id="chk-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="yes" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
-                    <label for="chk1-{{subsection.num}}">&nbsp;Yes</label>
+                    <input id="bool-yes-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="yes" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
+                    <label for="bool-yes-{{subsection.num}}">&nbsp;Yes</label>
                 </div>
                 <div class="col-md-1">
-                    <input id="chk2-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="no" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
-                    <label for="chk2-{{subsection.num}}">&nbsp;No</label>    
+                    <input id="bool-no-{{subsection.num}}" type="radio" name="choice-{{subsection.num}}" value="no" [(ngModel)]="temp[subsection.num]" (ngModelChange)="onChange(subsection,temp[subsection.num])">
+                    <label for="bool-no-{{subsection.num}}">&nbsp;No</label>    
                 </div> 
             </div>
             <div class="col-md-12">
@@ -34,7 +34,7 @@
                             <form class="form-inline">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="temp[dateFields.num]" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
+                                        <input id="date-{{temp[dateFields.num]}}"class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="temp[dateFields.num]" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
                                         </div>
@@ -45,7 +45,7 @@
                         <div *ngIf="dateFields.type=='string'" class="col-md-4 float-left">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" [(ngModel)]="temp[dateFields.num]" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
+                                    <input id="string-{{temp[dateFields.num]}}"type="text" [(ngModel)]="temp[dateFields.num]" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
                                 </div>
                             </div>
                         </div>
