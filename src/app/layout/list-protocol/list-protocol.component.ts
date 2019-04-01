@@ -18,7 +18,7 @@ export class ListProtocolComponent implements OnInit {
    afficherProtocol = false;
    afficherCalendar = false;
 
-   constructor(private protocolService: ProtocolService,protected http: HttpClient,private createEvent: CreateEventComponent private scheduleComponent: ScheduleComponent) {}
+   constructor(private protocolService: ProtocolService,protected http: HttpClient,private createEvent: CreateEventComponent ,private scheduleComponent: ScheduleComponent) {}
    
   ngOnInit() {
 
@@ -36,9 +36,10 @@ export class ListProtocolComponent implements OnInit {
   }
 
   showProtocolCalendar(data) {
+    localStorage.setItem('protocolCalendar', JSON.stringify(data.fields));
     this.afficherList = false;
     this.afficherCalendar = true;
-    this.scheduleComponent.start();
+    this.scheduleComponent.start(data.fields);
   }
   updateProtocol(data){
     this.afficherList = false;
