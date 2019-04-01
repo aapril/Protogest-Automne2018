@@ -5,7 +5,7 @@
 
 export const environment = {
     production: false,
-    backendUrl: "http://protogest-api-dev.us-east-1.elasticbeanstalk.com",
+    backendUrl: "https://protogest-api-dev.us-east-1.elasticbeanstalk.com",
     eventApiUrl: "http://localhost:8080",
     taskApiUrl: "http://proto-task-service.us-east-1.elasticbeanstalk.com",
     userApiUrl: "http://proto-auth-service.us-east-1.elasticbeanstalk.com",
