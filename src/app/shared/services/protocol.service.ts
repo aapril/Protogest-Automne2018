@@ -55,6 +55,21 @@ export class ProtocolService {
     }));
   }
 
+  getProtocolByUUID(uuid): Observable<Event[]> {
+    var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
+    var localSecretKey = 'CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken';
+
+    let allHeaders = Object.assign({}, headersDict, {'Authentification': 'bob@bob.ca'});
+
+    const httpOptions = {
+      headers: new HttpHeaders(allHeaders)
+    };
+
+    return this.httpClient.get<Event[]>(environment.backendUrl + '/my/protocols/' + uuid, httpOptions).pipe(catchError((error:any) => {
+      return throwError(error.statusText);
+    }));
+  }
+
   /** POST: add a new event to the database */
 
   createProtocol (payload) {

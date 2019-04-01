@@ -3,6 +3,8 @@ import { ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { EventService } from './event.service';
+import { ProtocolService } from '../../shared/services/protocol.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-schedule',
@@ -10,15 +12,22 @@ import { EventService } from './event.service';
   styleUrls: ['./schedule.component.scss']
 })
 export class ScheduleComponent implements OnInit {
-
+  protocoleId: String;
   calendarOptions: Options;
   displayEvent: any;
   events = null;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-  constructor(protected eventService: EventService) { }
+  constructor(private protocolService: ProtocolService, protected eventService: EventService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadevents();
+    this.route.queryParams.subscribe((params)=> {
+      if(params['id']){
+        this.protocoleId = params['id'];
+        this.loadevents();
+      } else {
+        this.events = [];
+      }
+    });
 
     this.calendarOptions = {
       editable: true,
@@ -39,9 +48,11 @@ export class ScheduleComponent implements OnInit {
     };
   }
   loadevents() {
-    this.eventService.getEvents().subscribe(data => {
-      this.events = data;
-    });
+    this.protocolService.getProtocolByUUID(this.protocoleId).subscribe(
+      data => {
+         console.log(data);
+      }
+    );
   }
   clickButton(model: any) {
     this.displayEvent = model;
@@ -94,23 +105,5 @@ export class ScheduleComponent implements OnInit {
                     </div>
                 </div>`;
     model.element.html(html)
-  }
-
-  start(fields){
-    var data = [];
-    fields.forEach(element => {
-      if(element.type == "DATE"){
-        data.push({
-           protocol_event_id: element.id,
-            title: "description de levent",
-            start: element.value,
-            allDay: true,
-            color: '#6E7BC4'
-
-        });
-      }
-    }); 
-      this.events = data;
-      console.log(this.events);
   }
 }

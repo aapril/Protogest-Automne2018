@@ -4,6 +4,7 @@ import { CreateEventComponent } from '../create-event/create-event.component';
 import { ScheduleComponent } from '../schedule/schedule.component'
 import { ProtocolService } from '../../shared/services/protocol.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list-protocol',
@@ -18,7 +19,7 @@ export class ListProtocolComponent implements OnInit {
    afficherProtocol = false;
    afficherCalendar = false;
 
-   constructor(private protocolService: ProtocolService,protected http: HttpClient,private createEvent: CreateEventComponent ,private scheduleComponent: ScheduleComponent) {}
+   constructor(private protocolService: ProtocolService,protected http: HttpClient,private createEvent: CreateEventComponent ,private scheduleComponent: ScheduleComponent, private router: Router) {}
    
   ngOnInit() {
 
@@ -36,15 +37,13 @@ export class ListProtocolComponent implements OnInit {
   }
 
   showProtocolCalendar(data) {
-    localStorage.setItem('protocolCalendar', JSON.stringify(data.fields));
-    this.afficherList = false;
-    this.afficherCalendar = true;
-    this.scheduleComponent.start(data.fields);
+    this.router.navigateByUrl('/schedule?id='+data.formUUID);
   }
+
   updateProtocol(data){
     this.afficherList = false;
     this.afficherProtocol = true;
-    this.createEvent.setData(data.fields)
+    this.createEvent.setData(data.fields);
   }  
 
     
