@@ -56,6 +56,25 @@ export class AuthorizationService {
     });
   }
 
+  confirmAuthCodeWithUsername(code, username) {
+    const user = {
+      Username : username,
+      Pool : userPool
+    };
+    return Observable.create(observer => {
+      const cognitoUser = new CognitoUser(user);
+      cognitoUser.confirmRegistration(code, true, function(err, result) {
+        if (err) {
+          console.log(err);
+          observer.error(err);
+        }
+        console.log("confirmAuthCode() success", result);
+        observer.next(result);
+        observer.complete();
+      });
+    });
+  }
+
   signIn(email, password) { 
 
     const authenticationData = {

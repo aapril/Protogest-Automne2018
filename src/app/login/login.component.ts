@@ -21,6 +21,12 @@ export class LoginComponent implements OnInit {
     cognitoErrorMsg: string;
     emailVerificationMessage = false;
     cognitoError = false;
+    confirmCode: boolean = false;
+    codeWasConfirmed: boolean = false;
+
+    codeVerifForm = new FormGroup({
+        code: new FormControl('', Validators.required)
+    });
 
     constructor(
         private auth: AuthorizationService,
@@ -46,6 +52,10 @@ export class LoginComponent implements OnInit {
     // convenience getter for easy access to form fields
     get f() { return this.loginform.controls; }
 
+    get code() {
+        return this.codeVerifForm.get('code');
+    }
+
 
     onLoggedin() {
         this.submitted = true;
@@ -62,6 +72,9 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('currentUser', this.f.username.value);
             this.router.navigate(['/schedule']);
         }, (err)=> {
+            if (err.code === "UserNotConfirmedException") {
+                this.confirmCode = true;
+            }
             this.cognitoErrorMsg = err.message;
             this.emailVerificationMessage = false;
             this.cognitoError = true;
@@ -71,5 +84,20 @@ export class LoginComponent implements OnInit {
 
     printEvents() {
        this.loginService.printEvents();
+    }
+
+    validateAuthCode() {
+        if (!this.codeVerifForm.get('code').invalid) {
+            this.auth.confirmAuthCodeWithUsername(this.codeVerifForm.get('code').value, this.f.username.value).subscribe(
+              (data) => {
+                //this._router.navigateByUrl('/');
+                this.codeWasConfirmed = true;
+                this.confirmCode = false;
+                this.onLoggedin();
+              },
+              (err) => {
+                alert("Confirm Authorization Error has occurred");
+              });
+        }
     }
 }
