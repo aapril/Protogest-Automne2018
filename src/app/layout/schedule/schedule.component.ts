@@ -95,4 +95,22 @@ export class ScheduleComponent implements OnInit {
                 </div>`;
     model.element.html(html)
   }
+
+  start(fields){
+    var data = [];
+    fields.forEach(element => {
+      if(element.type == "DATE"){
+        data.push({
+           protocol_event_id: element.id,
+            title: "description de levent",
+            start: element.value,
+            allDay: true,
+            color: '#6E7BC4'
+
+        });
+      }
+    }); 
+      this.events = data;
+      console.log(this.events);
+  }
 }

@@ -4,36 +4,29 @@ import {  } from 'rxjs';
 @Injectable()
 export class EventService {
     public getEvents(): Observable<any> {
+        var localProtocol = JSON.parse(localStorage.getItem('protocolCalendar'));
+        let data: any = [];
+        localProtocol.forEach(element => {
+            var splitted = element.value.split("-");
+            var year = splitted[0];
+            var month = splitted[1];
+            var day = splitted[2];
+            if(month.length == 1){
+             month = "0" + month;
+            } 
+            if(day.length == 1){
+             day = "0" + day;
+            } 
+            data.push({
+                protocol_event_id: element.id,
+                title: 'All Day Event',
+                start: year + "-" + month + "-" + day,
+                allDay: true,
+                color: '#6E7BC4'
+            }) 
+        }); 
         const dateObj = new Date();
         const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
-        let data: any = [{
-            protocol_event_id: 1,
-            title: 'All Day Event',
-            start: yearMonth + '-01',
-            allDay: true,
-            color: '#6E7BC4'
-        },
-        {
-            protocol_event_id: 12,
-            title: 'Event',
-            start: yearMonth + '-07',
-            allDay: true,
-            color: '#6E7BC4'
-        },
-        {
-            protocol_event_id: 23,
-            title: 'Conference',
-            start: yearMonth + '-12',
-            allDay: true,
-            color: '#6E7BC4'
-        },
-        {
-            protocol_event_id: 34,
-            title: 'Click for Google',
-            start: yearMonth + '-28',
-            allDay: true,
-            color: '#6E7BC4'
-        }];
         return of(data);
     }
 }

@@ -1,7 +1,7 @@
 declare var require: any;
 import {Component, OnInit } from '@angular/core';
 import { ProtocolService } from '../../shared/services/protocol.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import { Injectable } from '@angular/core';
@@ -27,6 +27,7 @@ export class CreateEventComponent{
   final: any = [];
 
   onChange(t2, value){
+    console.log(this.temp);
     if (t2.type.toUpperCase() !== "BOOL") {
       var update = false;
       for(var i = 0; i < this.final.length; i++) {
@@ -55,6 +56,18 @@ export class CreateEventComponent{
       localStorage.setItem('protocol', JSON.stringify(this.final));
     }
   }
+  
+  setData(fields){
+
+    fields.forEach(element => {
+      if(element.type == "DATE" || element.type == "STRING"){
+         this.temp[8] = {year : 2019,month: 5, day : 5};
+      }
+      
+    });
+
+    console.log(this.temp);
+  }
 
   saveForm() {
     var localProtocol = localStorage.getItem('protocol');
@@ -69,6 +82,7 @@ export class CreateEventComponent{
         "relatedUserId": "bob@bob.ca"
       } 
       console.log(protocole);
+      console.log(this.temp);
       
       this.protocolService.createProtocol(protocole).subscribe(
         data => {
