@@ -3,8 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { LoginService } from './login.service';
-import { first } from 'rxjs/operators';
-import { CanActivate } from '@angular/router';
 import {AuthorizationService} from "../shared/authorization.service";
 
 @Component({
@@ -68,7 +66,6 @@ export class LoginComponent implements OnInit {
         }         
        
         this.auth.signIn(this.f.username.value, this.f.password.value).subscribe((data) => {
-            console.log(data);
             localStorage.setItem('currentUser', this.f.username.value);
             this.router.navigate(['/schedule']);
         }, (err)=> {

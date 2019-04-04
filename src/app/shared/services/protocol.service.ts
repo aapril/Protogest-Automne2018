@@ -5,9 +5,6 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
-var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
-var localSecretKey = 'CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken';
-
 
 const headersDict = {
   'Content-Type':  'application/json',
@@ -21,15 +18,19 @@ export class ProtocolService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getSecretKey(): String {
+    var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
+    return localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken');
+  }
+
   /**
    * Gets all the events
    * Returns: List of Event objects
-   */
+   */j
   getUserProtocols(): Observable<Event[]> {
-    var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
-    var localSecretKey = 'CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken';
+    var localSecretKey = this.getSecretKey();
 
-    let allHeaders = Object.assign({}, headersDict, {'Authentification': 'bob@bob.ca'});
+    let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 
     const httpOptions = {
       headers: new HttpHeaders(allHeaders)
@@ -41,10 +42,9 @@ export class ProtocolService {
   }
 
    getUserRelatedProtocols(): Observable<Event[]> {
-    var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
-    var localSecretKey = 'CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken';
+    var localSecretKey = this.getSecretKey();
 
-    let allHeaders = Object.assign({}, headersDict, {'Authentification': 'bob@bob.ca'});
+    let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 
     const httpOptions = {
       headers: new HttpHeaders(allHeaders)
@@ -56,10 +56,9 @@ export class ProtocolService {
   }
 
   getProtocolByUUID(uuid): Observable<Event[]> {
-    var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
-    var localSecretKey = 'CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken';
+    var localSecretKey = this.getSecretKey();
 
-    let allHeaders = Object.assign({}, headersDict, {'Authentification': 'bob@bob.ca'});
+    let allHeaders = Object.assign({}, {'Access-Control-Allow-Origin': '*'}, {'Authentification': localSecretKey});
 
     const httpOptions = {
       headers: new HttpHeaders(allHeaders)
@@ -73,10 +72,9 @@ export class ProtocolService {
   /** POST: add a new event to the database */
 
   createProtocol (payload) {
-    var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
-    var localSecretKey = 'CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken';
+    var localSecretKey = this.getSecretKey();
 
-    let allHeaders = Object.assign({}, headersDict, {'Authentification': 'bob@bob.ca'});
+    let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 
     const httpOptions = {
       headers: new HttpHeaders(allHeaders)
