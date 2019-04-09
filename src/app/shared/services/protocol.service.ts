@@ -26,7 +26,7 @@ export class ProtocolService {
   /**
    * Gets all the events
    * Returns: List of Event objects
-   */j
+   */
   getUserProtocols(): Observable<Event[]> {
     var localSecretKey = this.getSecretKey();
 
@@ -55,16 +55,16 @@ export class ProtocolService {
     }));
   }
 
-  getProtocolByUUID(uuid): Observable<Event[]> {
+  getProtocolByUUID(uuid): Observable<Event> {
     var localSecretKey = this.getSecretKey();
 
-    let allHeaders = Object.assign({}, {'Access-Control-Allow-Origin': '*'}, {'Authentification': localSecretKey});
+    let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 
     const httpOptions = {
       headers: new HttpHeaders(allHeaders)
     };
 
-    return this.httpClient.get<Event[]>(environment.backendUrl + '/my/protocols/' + uuid, httpOptions).pipe(catchError((error:any) => {
+    return this.httpClient.get<Event>(environment.backendUrl + '/my/protocols/' + uuid, httpOptions).pipe(catchError((error:any) => {
       return throwError(error.statusText);
     }));
   }

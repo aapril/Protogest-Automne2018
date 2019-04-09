@@ -15,7 +15,8 @@ export class ScheduleComponent implements OnInit {
   protocoleId: String;
   calendarOptions: Options;
   displayEvent: any;
-  events = null;
+  protocol: any = {};
+  events: any = [];
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
   constructor(private protocolService: ProtocolService, protected eventService: EventService, private route: ActivatedRoute) { }
 
@@ -26,9 +27,12 @@ export class ScheduleComponent implements OnInit {
         this.loadevents();
       } else {
         this.events = [];
+        this.loadCalendar();
       }
     });
+  }
 
+  loadCalendar() {
     this.calendarOptions = {
       editable: true,
       eventLimit: false,
@@ -47,13 +51,35 @@ export class ScheduleComponent implements OnInit {
       eventRender: (v,el) => {console.log(v, el)}
     };
   }
+
   loadevents() {
-    this.protocolService.getProtocolByUUID(this.protocoleId).subscribe(
+    this.protocolService.getUserProtocols().subscribe(
       data => {
-         console.log(data);
+        this.protocol = data.filter(protocol => protocol['formUUID'] === this.protocoleId)[0];
+        this.protocol.fields.filter(event => event.type === "DATE").forEach(event => {
+          var splitted = event.value.split("-");
+            var year = splitted[0];
+            var month = splitted[1];
+            var day = splitted[2];
+            if(month.length == 1){
+             month = "0" + month;
+            } 
+            if(day.length == 1){
+             day = "0" + day;
+            } 
+            this.events.push({
+                protocol_event_id: event.id,
+                title: '',
+                start: year + "-" + month + "-" + day,
+                allDay: true,
+                color: '#6E7BC4'
+            }) 
+        });
+        this.loadCalendar();
       }
     );
   }
+
   clickButton(model: any) {
     this.displayEvent = model;
   }
