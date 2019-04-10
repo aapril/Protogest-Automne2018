@@ -27,14 +27,20 @@
                 </div>
                 <div class="col-md-11 offset-md-1">
                     <div class='row mb-2' *ngFor="let dateFields of subsection.dateSection">
-                        <div class="col-md-7">
+                        <div class="col-md-7" >
                             <label>{{dateFields.desc}}</label>
                         </div>
                         <div *ngIf="dateFields.type=='date'" class="col-md-4 float-left">
                             <form class="form-inline">
                                 <div class="form-group">
-                                    <div class="input-group">
-                                        <input id="date{{dateFields.num}}"class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="temp[dateFields.num]" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
+                                    <div class="input-group" *ngIf="temp[dateFields.num]">
+                                        <input  class="form-control" placeholder="yyyy-mm-dd" name="dp"  [value]="temp[dateFields.num]" ngbDatepicker #d="ngbDatepicker" (change)="onChange(dateFields,temp[dateFields.num],$event)">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                                        </div>
+                                    </div>
+                                    <div class="input-group" *ngIf="temp[dateFields.num] == undefined">
+                                        <input  class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker" (change)="onChange(dateFields,temp[dateFields.num],$event)">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
                                         </div>
@@ -44,8 +50,11 @@
                         </div>
                         <div *ngIf="dateFields.type=='string'" class="col-md-4 float-left">
                             <div class="form-group">
-                                <div class="input-group">
-                                    <input id="string-{{dateFields.num}}" name="temp[dateFields.num]" type="text" [(ngModel)]="temp[dateFields.num]" (ngModelChange)="onChange(dateFields,temp[dateFields.num])">
+                                <div class="input-group" *ngIf="temp[dateFields.num]" >
+                                    <input  name="temp[dateFields.num]" type="text" [value]="temp[dateFields.num]" (ngModelChange)="onChange(dateFields,temp[dateFields.num],$event)">
+                                </div>
+                                 <div class="input-group" *ngIf="temp[dateFields.num] == undefined" >
+                                    <input  name="temp[dateFields.num]" type="text" (change)="onChange(dateFields,temp[dateFields.num],$event)">
                                 </div>
                             </div>
                         </div>
@@ -53,6 +62,8 @@
                 </div>
             </div>
         </div>
+
     </ng-template>
   </ngb-panel>
 </ngb-accordion>
+<button mat-button (click)='saveForm()'>Save the protocol!</button>

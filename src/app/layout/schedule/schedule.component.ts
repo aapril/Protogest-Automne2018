@@ -50,7 +50,9 @@ export class ScheduleComponent implements OnInit {
   loadevents() {
     this.protocolService.getProtocolByUUID(this.protocoleId).subscribe(
       data => {
-         console.log(data);
+        this.eventService.getEvents(data).subscribe(data2 => {
+          this.events = data2;
+        });
       }
     );
   }

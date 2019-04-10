@@ -3,10 +3,9 @@ import { Observable, of } from 'rxjs';
 import {  } from 'rxjs';
 @Injectable()
 export class EventService {
-    public getEvents(): Observable<any> {
-        var localProtocol = JSON.parse(localStorage.getItem('protocolCalendar'));
-        let data: any = [];
-        localProtocol.forEach(element => {
+    public getEvents(protocol): Observable<any> {
+        var data = [];
+        protocol.fields.forEach(element => {
             var splitted = element.value.split("-");
             var year = splitted[0];
             var month = splitted[1];
@@ -25,6 +24,7 @@ export class EventService {
                 color: '#6E7BC4'
             }) 
         }); 
+        console.log(data);
         const dateObj = new Date();
         const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
         return of(data);

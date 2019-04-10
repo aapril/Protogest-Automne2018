@@ -41,9 +41,7 @@ export class ListProtocolComponent implements OnInit {
   }
 
   updateProtocol(data){
-    this.afficherList = false;
-    this.afficherProtocol = true;
-    this.createEvent.setData(data.fields);
+    this.router.navigateByUrl('/create-event?id='+data.formUUID);
   }  
 
     

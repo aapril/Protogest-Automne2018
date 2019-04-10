@@ -87,4 +87,21 @@ export class ProtocolService {
         })
     );
   }
+
+  updateProtocol (payload,uuid) {
+    var localSecretKey = this.getSecretKey();
+
+    let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey,'formUUID': uuid});
+
+    const httpOptions = {
+      headers: new HttpHeaders(allHeaders)
+    };
+
+    return this.httpClient.put(environment.backendUrl + '/my/protocols/' + uuid, payload, httpOptions)
+      .pipe(
+        catchError((error: any) => {
+          return throwError(error.statusText);
+        })
+    );
+  }
 }

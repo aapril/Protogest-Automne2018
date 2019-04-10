@@ -75,4 +75,14 @@ export class CalendarComponent implements OnInit {
     })
   }
 
+  testFromList(fields){
+    this.calendarEvents.push({
+          id: fields[0].id,
+          start: fields[0].value,
+          end: fields[0].value,
+          resource: "R1",
+          text: ""
+        })
+  }
+
 }
