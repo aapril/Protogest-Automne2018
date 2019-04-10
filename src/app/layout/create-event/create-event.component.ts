@@ -43,7 +43,7 @@ export class CreateEventComponent{
     this.protocolService.getProtocolByUUID(this.protocoleId).subscribe(
       data2 => {
           console.log(data2);
-          /*data2.fields.forEach(element => {
+          data2.fields.forEach(element => {
             if(element.type == "DATE" || element.type == "STRING"){
               this.temp[element.id] = element.value;
               this.final.push(
@@ -54,7 +54,7 @@ export class CreateEventComponent{
               }
               );
             }
-          });*/
+          });
       }
     );
    
