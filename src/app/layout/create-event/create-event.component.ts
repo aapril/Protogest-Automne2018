@@ -25,9 +25,13 @@ export class CreateEventComponent{
 
   temp = {};
   final: any = [];
+  occupiedDates: any = [];
 
   onChange(t2, value){
-    console.log(this.temp);
+    if (localStorage.getItem('occupiedDates') !== null) {
+      this.occupiedDates = localStorage.getItem('occupiedDates');
+      localStorage.removeItem('occupiedDates');
+    }
     if (t2.type.toUpperCase() !== "BOOL") {
       var update = false;
       for(var i = 0; i < this.final.length; i++) {
@@ -36,7 +40,11 @@ export class CreateEventComponent{
         if(obj.num == t2.num){
           update = true;
           if(this.final[i].type == "date"){
-            this.final[i].value = value.year + "-" + value.month + "-" + value.day;
+            if (this.occupiedDates.indexOf(value.year + "-" + ((value.month < 10) ? "0"+value.month : value.month) + "-" + ((value.day < 10) ? "0"+value.day : value.day)) > -1) {
+              this.final[i].value = value.year + "-" + value.month + "-" + value.day;
+            }else{
+              alert("This date is already occupied in your calendar.");
+            }
           }else{
             this.final[i].value = value;
           }
@@ -45,13 +53,20 @@ export class CreateEventComponent{
       }
 
       if(!update){
-        this.final.push(
-          {
-            type : t2.type.toUpperCase(),
-            id : String(t2.num),
-            value : (t2.type === "date") ? value.year + "-" + value.month + "-" + value.day : value
-          }
-        );
+        var doIt = true;
+        if (t2.type === "date" && this.occupiedDates.indexOf(value.year + "-" + ((value.month < 10) ? "0"+value.month : value.month) + "-" + ((value.day < 10) ? "0"+value.day : value.day)) > -1) {
+          doIt = false;
+          alert("This date is already occupied in your calendar.");
+        }
+        if (doIt) {
+          this.final.push(
+            {
+              type : t2.type.toUpperCase(),
+              id : String(t2.num),
+              value : (t2.type === "date") ? value.year + "-" + value.month + "-" + value.day : value
+            }
+          );
+        }
       }
       localStorage.setItem('protocol', JSON.stringify(this.final));
     }
@@ -89,7 +104,6 @@ export class CreateEventComponent{
           alert('Your protocol has been successfully saved.');
         }
       );
-  ;
     } else {
       alert('Problem with saving protocol');
     }

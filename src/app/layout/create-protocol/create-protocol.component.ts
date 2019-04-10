@@ -31,7 +31,7 @@ export class CreateProtocolComponent implements OnInit {
     });
     this.route.queryParams.subscribe((params)=> {
       if(params['dates']){
-        console.log(params['dates']);
+        this.filterSendOutlookDates(params['dates']);
       } else {
         this.openModal.nativeElement.click();
       }
@@ -40,6 +40,14 @@ export class CreateProtocolComponent implements OnInit {
 
   saveForm() {
     this.createEvent.saveForm();
+  }
+
+  filterSendOutlookDates(rawOutlookDates) {
+    let outlookDates = rawOutlookDates.split(',');
+    outlookDates = outlookDates.map(s => s.trim());
+    outlookDates = outlookDates.filter(function(item, pos) { return outlookDates.indexOf(item) == pos; });
+    localStorage.setItem('occupiedDates', JSON.stringify(outlookDates));
+    // Put modal here
   }
 
 }
