@@ -29,6 +29,7 @@ export class CreateEventComponent{
   occupiedDates: any = [];
 
   onChange(t2, value){
+    // The localStorage is set in the CreateProtocolComponent 
     if (localStorage.getItem('occupiedDates') !== null) {
       this.occupiedDates = localStorage.getItem('occupiedDates');
       localStorage.removeItem('occupiedDates');

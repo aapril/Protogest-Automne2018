@@ -46,12 +46,14 @@ export class CreateProtocolComponent implements OnInit {
   }
 
   filterSendOutlookDates(rawOutlookDates) {
+    // This function seperate the values coming back from outlook, remove the unnecessary spaces
+    // and filter the duplicates. We had issues with calling a setter in CreateEvent so we use the
+    // localStorage as temporary space to keep them.
     let outlookDates = rawOutlookDates.split(',');
     outlookDates = outlookDates.map(s => s.trim());
     outlookDates = outlookDates.filter(function(item, pos) { return outlookDates.indexOf(item) == pos; });
     this.occupiedDates = outlookDates;
     localStorage.setItem('occupiedDates', JSON.stringify(outlookDates));
-    // Put modal here
     this.openOccupiedDatesModal.nativeElement.click();
   }
 
