@@ -22,6 +22,7 @@ export class CreateProtocolComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private createEvent: CreateEventComponent, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    localStorage.removeItem('occupiedDates');
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });

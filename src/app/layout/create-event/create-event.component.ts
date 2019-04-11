@@ -4,8 +4,9 @@ import { ProtocolService } from '../../shared/services/protocol.service';
 import { FormGroup, FormControl, FormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import {Router} from '@angular/router';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DOCUMENT } from '@angular/common';
 
 
 
@@ -18,7 +19,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class CreateEventComponent{
   
-  constructor(private protocolService: ProtocolService, protected http: HttpClient) {}
+  constructor(private protocolService: ProtocolService, protected http: HttpClient, @Inject(DOCUMENT) document) {}
 
 
   data = require('../../../jsonDir/protocole-schema-quebec.json');
@@ -43,7 +44,9 @@ export class CreateEventComponent{
             if (this.occupiedDates.indexOf(value.year + "-" + ((value.month < 10) ? "0"+value.month : value.month) + "-" + ((value.day < 10) ? "0"+value.day : value.day)) > -1) {
               this.final[i].value = value.year + "-" + value.month + "-" + value.day;
             }else{
+              console.log(t2);
               alert("This date is already occupied in your calendar.");
+              document.getElementById(t2.type.concat(t2.num)).value = '';
             }
           }else{
             this.final[i].value = value;
@@ -57,6 +60,7 @@ export class CreateEventComponent{
         if (t2.type === "date" && this.occupiedDates.indexOf(value.year + "-" + ((value.month < 10) ? "0"+value.month : value.month) + "-" + ((value.day < 10) ? "0"+value.day : value.day)) > -1) {
           doIt = false;
           alert("This date is already occupied in your calendar.");
+          document.getElementById(t2.type.concat(t2.num)).value = '';
         }
         if (doIt) {
           this.final.push(
