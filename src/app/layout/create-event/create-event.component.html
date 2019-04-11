@@ -51,7 +51,7 @@
                         <div *ngIf="dateFields.type=='string'" class="col-md-4 float-left">
                             <div class="form-group">
                                 <div class="input-group" *ngIf="temp[dateFields.num]" >
-                                    <input  name="temp[dateFields.num]" type="text" [value]="temp[dateFields.num]" (ngModelChange)="onChange(dateFields,temp[dateFields.num],$event)">
+                                    <input  name="temp[dateFields.num]" type="text" [value]="temp[dateFields.num]" (change)="onChange(dateFields,temp[dateFields.num],$event)">
                                 </div>
                                  <div class="input-group" *ngIf="temp[dateFields.num] == undefined" >
                                     <input  name="temp[dateFields.num]" type="text" (change)="onChange(dateFields,temp[dateFields.num],$event)">

@@ -61,13 +61,13 @@ export class CreateEventComponent{
   }
 
   onChange(t2, value,event){
-    value = event.target.value;
-    if (t2.type.toUpperCase() !== "BOOL") {
+    if(event){
+     value = event.target.value;
+    }
       var update = false;
       for(var i = 0; i < this.final.length; i++) {
         var obj = this.final[i];
-
-        if(obj.num == t2.num){
+        if(obj.id == t2.num){
           update = true;
           if(this.final[i].type == "date"){
             if (typeof value === "string"){
@@ -94,7 +94,7 @@ export class CreateEventComponent{
       }
       console.log(this.final);
       localStorage.setItem('protocol', JSON.stringify(this.final));
-    }
+    
   }
   
 
