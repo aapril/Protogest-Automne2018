@@ -46,7 +46,7 @@ export class CreateEventComponent{
             }else{
               console.log(t2);
               alert("This date is already occupied in your calendar.");
-              document.getElementById(t2.type.concat(t2.num)).value = '';
+              (<HTMLInputElement>document.getElementById(t2.type.concat(t2.num))).value = '';
             }
           }else{
             this.final[i].value = value;
@@ -60,7 +60,7 @@ export class CreateEventComponent{
         if (t2.type === "date" && this.occupiedDates.indexOf(value.year + "-" + ((value.month < 10) ? "0"+value.month : value.month) + "-" + ((value.day < 10) ? "0"+value.day : value.day)) > -1) {
           doIt = false;
           alert("This date is already occupied in your calendar.");
-          document.getElementById(t2.type.concat(t2.num)).value = '';
+          (<HTMLInputElement>document.getElementById(t2.type.concat(t2.num))).value = '';
         }
         if (doIt) {
           this.final.push(
