@@ -12,6 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreateProtocolComponent implements OnInit {
   @ViewChild('openModal') openModal:ElementRef;
+  @ViewChild('openOccupiedDatesModal') openOccupiedDatesModal:ElementRef;
+  occupiedDates: any = [];
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -46,8 +48,10 @@ export class CreateProtocolComponent implements OnInit {
     let outlookDates = rawOutlookDates.split(',');
     outlookDates = outlookDates.map(s => s.trim());
     outlookDates = outlookDates.filter(function(item, pos) { return outlookDates.indexOf(item) == pos; });
+    this.occupiedDates = outlookDates;
     localStorage.setItem('occupiedDates', JSON.stringify(outlookDates));
     // Put modal here
+    this.openOccupiedDatesModal.nativeElement.click();
   }
 
 }

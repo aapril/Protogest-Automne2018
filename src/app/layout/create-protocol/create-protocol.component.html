@@ -53,6 +53,8 @@
 
 <button id="openModal" #openModal [hidden]="true" 
  data-toggle="modal" data-target="#exampleModal"></button>
+<button id="openOccupiedDatesModal" #openOccupiedDatesModal [hidden]="true" 
+ data-toggle="modal" data-target="#occupiedDatesModal"></button>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -69,6 +71,28 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <a class="btn btn-purple" href="{{ backendUrlForOutlook }}">Yes, use Outlook</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="occupiedDatesModal" tabindex="-1" role="dialog" aria-labelledby="occupiedDatesModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Here is the dates we've imported.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-2 offset-md-1 col-md-10 col-sm-12" *ngFor="let occupiedDate of occupiedDates">
+          <div class="row">
+            <div class="card-body">
+              <h6 class="card-subtitle text-center">{{ occupiedDate }}</h6>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
