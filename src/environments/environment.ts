@@ -5,13 +5,13 @@
 
 export const environment = {
     production: false,
-    backendUrl: "https://protogest-api-dev.us-east-1.elasticbeanstalk.com",
+    backendUrl: "http://localhost:5000",
     eventApiUrl: "http://localhost:8080",
-    taskApiUrl: "http://proto-task-service.us-east-1.elasticbeanstalk.com",
-    userApiUrl: "http://proto-auth-service.us-east-1.elasticbeanstalk.com",
-    memberApiUrl: "http://proto-member-service.us-east-1.elasticbeanstalk.com",
+    taskApiUrl: "http://localhost:5000",
+    userApiUrl: "http://localhost:5000",
+    memberApiUrl: "http://localhost:5000",
     poolData: {
-        UserPoolId: "us-east-1_IsQyexbVB",
-        ClientId: "6h161vd2hc1g37n6k68e2nljh8"
+        UserPoolId: "ca-central-1_ZBpO9AVc6",
+        ClientId: "3ee8od3smf4ghostv4jdvafjrv"
     }
 };

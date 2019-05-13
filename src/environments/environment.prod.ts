@@ -1,12 +1,12 @@
 export const environment = {
   production: true,
-  backendUrl: "https://protogest-api-dev.us-east-1.elasticbeanstalk.com",
-  eventApiUrl: "http://localhost:8080",
-  taskApiUrl: "http://proto-task-service.us-east-1.elasticbeanstalk.com",
-  userApiUrl: "http://proto-auth-service.us-east-1.elasticbeanstalk.com",
-  memberApiUrl: "http://proto-member-service.us-east-1.elasticbeanstalk.com",
+  backendUrl: "https://devapi.protogest.net",
+  eventApiUrl: "https://devapi.protogest.net",
+  taskApiUrl: "https://devapi.protogest.net",
+  userApiUrl: "https://devapi.protogest.net",
+  memberApiUrl: "https://devapi.protogest.net",
   poolData: {
-      UserPoolId: "us-east-1_IsQyexbVB",
-      ClientId: "6h161vd2hc1g37n6k68e2nljh8"
+    UserPoolId: "ca-central-1_ZBpO9AVc6",
+    ClientId: "3ee8od3smf4ghostv4jdvafjrv"
   }
 };
