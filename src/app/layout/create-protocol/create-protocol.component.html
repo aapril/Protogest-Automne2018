@@ -20,7 +20,7 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Invite</ng-template>
         <mat-form-field>
-          <input matInput placeholder="Email" formControlName="secondCtrl">
+          <input [value]="inviteEmail" (input)="inviteEmail = $event.target.value" matInput placeholder="Email" formControlName="secondCtrl">
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>

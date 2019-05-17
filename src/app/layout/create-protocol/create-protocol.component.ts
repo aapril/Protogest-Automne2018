@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreateEventComponent } from '../create-event/create-event.component';
 import { environment } from '../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
@@ -14,6 +14,7 @@ export class CreateProtocolComponent implements OnInit {
   @ViewChild('openModal') openModal:ElementRef;
   @ViewChild('openOccupiedDatesModal') openOccupiedDatesModal:ElementRef;
   occupiedDates: any = [];
+  inviteEmail: string = "";
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -42,7 +43,7 @@ export class CreateProtocolComponent implements OnInit {
   }
 
   saveForm() {
-    this.createEvent.saveForm();
+    this.createEvent.saveForm(this.inviteEmail);
   }
 
   filterSendOutlookDates(rawOutlookDates) {

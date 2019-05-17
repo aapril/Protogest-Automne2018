@@ -18,9 +18,7 @@ import { DOCUMENT } from '@angular/common';
 
 
 export class CreateEventComponent{
-  
   constructor(private protocolService: ProtocolService, protected http: HttpClient, @Inject(DOCUMENT) document) {}
-
 
   data = require('../../../jsonDir/protocole-schema-quebec.json');
 
@@ -78,18 +76,15 @@ export class CreateEventComponent{
   }
   
   setData(fields){
-
     fields.forEach(element => {
       if(element.type == "DATE" || element.type == "STRING"){
          this.temp[8] = {year : 2019,month: 5, day : 5};
       }
       
     });
-
-    console.log(this.temp);
   }
 
-  saveForm() {
+  saveForm(email) {
     var localProtocol = localStorage.getItem('protocol');
 
     if (localProtocol !== null && localProtocol !== undefined) {
@@ -99,7 +94,7 @@ export class CreateEventComponent{
             "userID" : "test@test.ca",
             "formUUID": "6a01cac1-f55e-4933-b889-ae00d14c9d17"
         },
-        "relatedUserId": "bob@bob.ca"
+        "relatedUserId": email
       } 
       console.log(protocole);
       console.log(this.temp);
