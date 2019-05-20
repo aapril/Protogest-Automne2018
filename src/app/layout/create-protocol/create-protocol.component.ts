@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreateEventComponent } from '../create-event/create-event.component';
 import { ActivatedRoute } from '@angular/router';
 import { generateOutlookAuthUrl } from '../../utils/outlookHelper.js';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-protocol',
@@ -11,16 +12,16 @@ import { generateOutlookAuthUrl } from '../../utils/outlookHelper.js';
   providers: [CreateEventComponent]
 })
 export class CreateProtocolComponent implements OnInit {
-  @ViewChild('openModal') openModal:ElementRef;
-  @ViewChild('openOccupiedDatesModal') openOccupiedDatesModal:ElementRef;
+  @ViewChild('openModal') openModal: ElementRef;
+  @ViewChild('openOccupiedDatesModal') openOccupiedDatesModal: ElementRef;
   occupiedDates: any = [];
-  inviteEmail: string = "";
+  inviteEmail = '';
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  backendUrlForOutlook: String = generateOutlookAuthUrl()
+  backendUrlForOutlook: String = generateOutlookAuthUrl();
 
-  constructor(private _formBuilder: FormBuilder, private createEvent: CreateEventComponent, private route: ActivatedRoute) {}
+  constructor(private _formBuilder: FormBuilder, private createEvent: CreateEventComponent, private route: ActivatedRoute, private translate: TranslateService) {}
 
   ngOnInit() {
     localStorage.removeItem('occupiedDates');
@@ -33,8 +34,8 @@ export class CreateProtocolComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
-    this.route.queryParams.subscribe((params)=> {
-      if(params['dates']){
+    this.route.queryParams.subscribe((params) => {
+      if (params['dates']) {
         this.filterSendOutlookDates(params['dates']);
       } else {
         this.openModal.nativeElement.click();
@@ -58,4 +59,7 @@ export class CreateProtocolComponent implements OnInit {
     this.openOccupiedDatesModal.nativeElement.click();
   }
 
+    changeLang(language: string) {
+        this.translate.use(language);
+    }
 }

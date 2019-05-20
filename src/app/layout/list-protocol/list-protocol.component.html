@@ -1,5 +1,5 @@
 <div class="col-md-12">
-	<h1>Liste des protocoles crées par l'utilisateur</h1> 
+	<h1>{{ 'Creer Protocol' | translate }}</h1>
 	<hr>
 	<div class="row" *ngFor="let x of userProtocol">
 		<div class="col-md-6 offset-md-1 mt-5" >
@@ -12,9 +12,9 @@
 		<button mat-button (click)="updateProtocol(x)">Modifier le protocole</button>
 		</div>
 	</div>
-	
+
 	<div class="mt-5">
-		<h1>Liste des protocoles reliées à l'utilisateur</h1>
+		<h1>{{ 'Relier Protocol' | translate }}</h1>
 		<hr>
 		<div class="row" *ngFor="let z of userRelatedProtocol">
 			<div class="col-md-6 offset-md-1 mt-5" >

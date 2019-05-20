@@ -7,6 +7,7 @@ import { CreateProtocolRoutingModule } from './create-protocol-routing.module';
 import { CreateProtocolComponent } from './create-protocol.component';
 import { MatStepperModule, MatInputModule, MatButtonModule, MatAutocompleteModule } from '@angular/material';
 import { CreateEventModule } from '../create-event/create-event.module';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CreateEventModule } from '../create-event/create-event.module';
     MatButtonModule,
     MatAutocompleteModule,
     MatRadioModule,
-    CreateEventModule
+    CreateEventModule,
+    TranslateModule
   ],
   declarations: [CreateProtocolComponent],
 })

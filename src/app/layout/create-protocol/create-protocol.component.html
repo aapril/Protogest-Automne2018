@@ -1,49 +1,49 @@
 <div class="col-md-10 offset-md-1 mt-5">
-  <h3>Create a Protocol</h3>
+  <h3>{{ 'Protocol' | translate }}</h3>
   <hr>
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Please select a type</ng-template>
+        <ng-template matStepLabel>{{ 'Type' | translate }}</ng-template>
         <mat-radio-group formControlName="firstCtrl" required>
-          <mat-radio-button value="quebec">Quebec protocol (Only protocol available right now)</mat-radio-button>
+          <mat-radio-button value="quebec">{{ 'Quebec Protocol' | translate }}</mat-radio-button>
           <br>
-          <mat-radio-button value="canada">Canadian protocol</mat-radio-button>
+          <mat-radio-button value="canada">{{ 'Canadian Protocol' | translate }}</mat-radio-button>
         </mat-radio-group>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
+          <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
         </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Invite</ng-template>
+        <ng-template matStepLabel>{{ 'Invite' | translate }}</ng-template>
         <mat-form-field>
           <input [value]="inviteEmail" (input)="inviteEmail = $event.target.value" matInput placeholder="Email" formControlName="secondCtrl">
         </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
+          <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
         </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup">
       <form [formGroup]="thirdFormGroup">
-        <ng-template matStepLabel>Fill in the details</ng-template>
+        <ng-template matStepLabel>{{ 'Fill' | translate }}</ng-template>
         <app-create-event></app-create-event>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
+          <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
         </div>
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      You are now done.
+      <ng-template matStepLabel>{{ 'Done' | translate }}</ng-template>
+        {{ 'Now Done' | translate }}
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)='saveForm()'>Save the protocol!</button>
+        <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
+        <button mat-button (click)='saveForm()'>{{ 'Save' | translate }}</button>
         <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
       </div>
     </mat-step>
@@ -60,17 +60,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Import your calendar</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{ 'Import' | translate }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Would you like to import your calendar to better estimate available dates?
+          {{ 'Estimate' | translate }}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <a class="btn btn-purple" href="{{ backendUrlForOutlook }}">Yes, use Outlook</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'Close' | translate }}</button>
+        <a class="btn btn-purple" href="{{ backendUrlForOutlook }}">{{ 'Yes' | translate }}</a>
       </div>
     </div>
   </div>
@@ -80,7 +80,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Here is the dates we've imported.</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{ 'Here' | translate }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

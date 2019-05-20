@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule }    from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -12,7 +12,7 @@ import { AuthGuard } from './shared';
 import { EventService } from './shared/services/event.service';
 import { LoginService } from './login/login.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {AuthorizationService} from "./shared/authorization.service";
+import {AuthorizationService} from './shared/authorization.service';
 
 
 
