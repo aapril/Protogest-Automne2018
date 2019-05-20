@@ -18,7 +18,7 @@ const RESPONSE_TYPE = [
     'id_token'
 ]
 
-generateOutlookAuthUrl = () => {
+export const generateOutlookAuthUrl = () => {
     let state = uuidv1();
     let nonce = uuidv1();
     let params = [
@@ -33,7 +33,3 @@ generateOutlookAuthUrl = () => {
 
     return `${OUTLOOK_API_BASE_URL}/${OUTLOOK_AUTH_PATH}?${params.join('&')}`
 };
-
-module.exports = {
-    generateOutlookAuthUrl
-}
