@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class CreateProtocolComponent implements OnInit {
   @ViewChild('openModal') openModal: ElementRef;
   @ViewChild('openOccupiedDatesModal') openOccupiedDatesModal: ElementRef;
+  Protocol: string;
   occupiedDates: any = [];
   inviteEmail = '';
   firstFormGroup: FormGroup;
@@ -61,5 +62,9 @@ export class CreateProtocolComponent implements OnInit {
 
     changeLang(language: string) {
         this.translate.use(language);
+    }
+
+    newProtocol(Protocol: string) {
+        this.Protocol = Protocol;
     }
 }
