@@ -39,7 +39,7 @@
         "daypilot-pro-angular": "https://npm.daypilot.org/daypilot-pro-angular/trial/2018.2.3297.tar.gz",
         "dhtmlx-scheduler": "^5.1.0",
         "font-awesome": "^4.7.0",
-        "fullcalendar": "^3.6.1",
+        "fullcalendar": "3.7.0",
         "fullcalendar-scheduler": "^1.9.4",
         "jquery": "^3.4.0",
         "material-design-icons": "^3.0.1",
