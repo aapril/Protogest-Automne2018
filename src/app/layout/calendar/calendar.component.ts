@@ -1,7 +1,9 @@
 import {Component, ViewChild, OnInit, AfterViewInit} from '@angular/core';
-import {DayPilot, DayPilotCalendarComponent, DayPilotNavigatorComponent} from "daypilot-pro-angular";
+import {DayPilot, DayPilotCalendarComponent, DayPilotNavigatorComponent} from 'daypilot-pro-angular';
 import { routerTransition } from '../../router.animations';
-import { EventService, Event } from '../../shared/services/event.service'
+import { EventService, Event } from '../../shared/services/event.service';
+import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-calendar',
@@ -10,69 +12,77 @@ import { EventService, Event } from '../../shared/services/event.service'
   animations: [routerTransition()]
 })
 export class CalendarComponent implements OnInit {
-  @ViewChild("calendar") calendar : DayPilotCalendarComponent;
-  events: Event[]
+  @ViewChild('calendar') calendar: DayPilotCalendarComponent;
+  events: Event[];
   calendarConfig = {
-    locale: "en-ca",
+    locale: 'en-ca',
     timeHeaders: [
       {
-        "groupBy": "Day"
+        'groupBy': 'Day'
       },
       {
-        "groupBy": "Hour"
+        'groupBy': 'Hour'
       }
     ],
-    scale: "Hour",
+    scale: 'Hour',
     days: DayPilot.Date.today().daysInMonth(),
     startDate: DayPilot.Date.today().firstDayOfMonth(),
     businessWeekends: true,
     eventHeight: 30,
-    timeRangeSelectedHandling: "Disabled",
-    eventMoveHandling: "Disabled",
-    eventResizeHandling: "Disabled",
-    eventDeleteHandling: "Disabled",
-    eventClickHandling: "Select",
+    timeRangeSelectedHandling: 'Disabled',
+    eventMoveHandling: 'Disabled',
+    eventResizeHandling: 'Disabled',
+    eventDeleteHandling: 'Disabled',
+    eventClickHandling: 'Select',
     onEventEdited: function (args) {
-      this.message("Event selected: " + args.e.text());
+      this.message('Event selected: ' + args.e.text());
     },
-    eventHoverHandling: "Bubble",
+    eventHoverHandling: 'Bubble',
     bubble: new DayPilot.Bubble({
       onLoad: function(args) {
-        // if event object doesn't specify "bubbleHtml" property 
+        // if event object doesn't specify "bubbleHtml" property
         // this onLoad handler will be called to provide the bubble HTML
-        args.html = "Event details";
+        args.html = 'Event details';
       }
     }),
     resources: [
       {
-        "name": "Event",
-        "id": "R1"
+        'name': 'Event',
+        'id': 'R1'
       }
     ]
   };
 
-  calendarEvents: any[] = []
+  calendarEvents: any[] = [];
 
 
-  constructor(private es: EventService) {  }
+  constructor(private es: EventService, private translate: TranslateService) {
+      this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
+      this.translate.setDefaultLang('en');
+      const browserLang = this.translate.getBrowserLang();
+      this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de/) ? browserLang : 'en');
+  }
 
   ngOnInit(): void {
-    this.getUserEvents()
+    this.getUserEvents();
   }
 
   getUserEvents() {
-    this.es.getUserEvents().subscribe(events => { 
-      this.events = events
+    this.es.getUserEvents().subscribe(events => {
+      this.events = events;
       this.events.forEach(e => {
         this.calendarEvents.push({
           id: e.id,
           start: new Date(e.eventDate),
           end: new Date(e.eventDate),
-          resource: "R1",
+          resource: 'R1',
           text: e.name
-        })
-      })
-    })
+        });
+      });
+    });
   }
 
+    changeLang(language: string) {
+        this.translate.use(language);
+    }
 }

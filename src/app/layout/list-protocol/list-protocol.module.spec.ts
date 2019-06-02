@@ -1,4 +1,4 @@
-import { CreateProtocolModule } from './create-protocol.module';
+import { CreateProtocolModule } from '../create-protocol/create-protocol.module';
 
 describe('CreateProtocolModule', () => {
   let createProtocolModule: CreateProtocolModule;

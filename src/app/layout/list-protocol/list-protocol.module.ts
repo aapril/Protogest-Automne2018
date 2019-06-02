@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material';
+import {TranslateModule} from '@ngx-translate/core';
 
 import { ListProtocolRoutingModule } from './list-protocol-routing.module';
 import { ListProtocolComponent } from './list-protocol.component';
@@ -24,7 +25,8 @@ import { ScheduleModule } from '../schedule/schedule.module';
     MatRadioModule,
     ScheduleModule,
     CreateEventModule,
-    ScheduleModule
+    ScheduleModule,
+    TranslateModule
   ],
   declarations: [ListProtocolComponent],
 })

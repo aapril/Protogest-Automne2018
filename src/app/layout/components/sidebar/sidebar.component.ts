@@ -8,13 +8,13 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-    isActive: boolean = false;
-    collapsed: boolean = false;
-    showMenu: string = '';
-    pushRightClass: string = 'push-right';
+    isActive = false;
+    collapsed = false;
+    showMenu = '';
+    pushRightClass = 'push-right';
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
-    
+
     constructor(private translate: TranslateService, public router: Router) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
         this.translate.setDefaultLang('en');
