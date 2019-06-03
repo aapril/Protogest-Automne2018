@@ -42,7 +42,10 @@ export class TaskService {
   }
 
   getTaskGroup(taskGroupId: number): Observable<TaskGroup> {
-    return this.http.get<TaskGroup>(environment.taskApiUrl + `/taskGroup/${taskGroupId}`, httpOptions).pipe(catchError((error:any) => {
+    return this.http.get<TaskGroup>(
+        environment.taskApiUrl + `/taskGroup/${taskGroupId}`,
+        httpOptions)
+     .pipe(catchError((error:any) => {
       return throwError(error.statusText)
     }))
   }
