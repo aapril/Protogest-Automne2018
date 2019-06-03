@@ -69,7 +69,7 @@ export class ScheduleComponent implements OnInit {
             } 
             this.events.push({
                 protocol_event_id: event.id,
-                title: '',
+                title: event.desc,
                 start: year + "-" + month + "-" + day,
                 allDay: true,
                 color: '#6E7BC4'
