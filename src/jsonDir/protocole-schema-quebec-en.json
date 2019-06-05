@@ -1,7 +1,7 @@
 {
     "protocole" : [
      {
-       "description" : "Protocole d'instance du Canada",
+       "description" : "Protocole d'instance du Quebec",
        "protocol_fields" : [
        	{
        		"sectionID" : "1",

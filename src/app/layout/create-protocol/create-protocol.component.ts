@@ -15,6 +15,7 @@ export class CreateProtocolComponent implements OnInit {
   @ViewChild('openModal') openModal: ElementRef;
   @ViewChild('openOccupiedDatesModal') openOccupiedDatesModal: ElementRef;
   Protocol: string;
+  langueProtocol: string = this.translate.currentLang;
   occupiedDates: any = [];
   inviteEmail = '';
   firstFormGroup: FormGroup;
@@ -62,6 +63,7 @@ export class CreateProtocolComponent implements OnInit {
 
     changeLang(language: string) {
         this.translate.use(language);
+        this.langueProtocol = this.translate.currentLang;
     }
 
     newProtocol(Protocol: string) {

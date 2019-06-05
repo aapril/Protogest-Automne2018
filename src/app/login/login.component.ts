@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
        
         this.auth.signIn(this.f.username.value, this.f.password.value).subscribe((data) => {
             localStorage.setItem('currentUser', this.f.username.value);
-            this.router.navigate(['/schedule']);
+            this.router.navigate(['/list-protocol']);
         }, (err)=> {
             if (err.code === "UserNotConfirmedException") {
                 this.confirmCode = true;

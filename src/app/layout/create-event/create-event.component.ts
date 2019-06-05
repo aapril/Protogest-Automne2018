@@ -1,12 +1,16 @@
+
+
 declare var require: any;
-import {Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges} from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { ProtocolService } from '../../shared/services/protocol.service';
 import { FormGroup, FormControl, FormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
+import {NgbCalendar, NgbDatepickerConfig, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -19,27 +23,61 @@ import { DOCUMENT } from '@angular/common';
 
 export class CreateEventComponent implements OnChanges {
   @Input() Protocol: string;
+  @Input() langueProtocol: string;
 
-  constructor(private protocolService: ProtocolService, protected http: HttpClient, @Inject(DOCUMENT) document) {}
+  constructor(private protocolService: ProtocolService, protected http: HttpClient, @Inject(DOCUMENT) document, config: NgbDatepickerConfig, calendar: NgbCalendar) {
+      // customize default values of datepickers used by this component tree
+      config.minDate = {year: 1900, month: 1, day: 1};
+      config.maxDate = {year: 2099, month: 12, day: 31};
+      // days that don't belong to current month are not visible
+      config.outsideDays = 'hidden';
 
-  data = require('../../../jsonDir/protocole-schema-quebec.json');
+      // The localStorage is set in the CreateProtocolComponent
+      if (localStorage.getItem('occupiedDates') !== null) {
+          this.occupiedDates = localStorage.getItem('occupiedDates');
+      }
+      // weekends are disabled
+      config.markDisabled = (date: NgbDate) => (this.occupiedDates.indexOf(date.year + '-' + ((date.month < 10) ? '0' + date.month : date.month) + '-' + ((date.day < 10) ? '0' + date.day : date.day)) !== -1);
+
+
+  }
+
+  data = require('../../../jsonDir/protocole-schema-quebec-fr.json');
+  occupiedDates: any = [];
+  test: any;
 
   temp = {};
   final: any = [];
-  occupiedDates: any = [];
+
+    isDisabled(date: NgbDateStruct) {
+        // The localStorage is set in the CreateProtocolComponent
+        if (localStorage.getItem('occupiedDates') !== null) {
+            const testoccupiedDates = localStorage.getItem('occupiedDates');
+            return testoccupiedDates.indexOf(date.year + '-' + ((date.month < 10) ? '0' + date.month : date.month) + '-' + ((date.day < 10) ? '0' + date.day : date.day)) > -1;
+        } else {
+            return false;
+        }
+    }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.Protocol == 'canada') {
-        this.data = require('../../../jsonDir/protocole-schema-canada.json');
-    } else {
-        this.data = require('../../../jsonDir/protocole-schema-quebec.json');
-    }
+      if (this.langueProtocol == 'fr') {
+          if (this.Protocol == 'canada') {
+              this.data = require('../../../jsonDir/protocole-schema-canada-fr.json');
+          } else {
+              this.data = require('../../../jsonDir/protocole-schema-quebec-fr.json');
+          }
+      } else {
+          if (this.Protocol == 'canada') {
+              this.data = require('../../../jsonDir/protocole-schema-canada-en.json');
+          } else {
+              this.data = require('../../../jsonDir/protocole-schema-quebec-en.json');
+          }
+      }
   }
   onChange(t2, value) {
     // The localStorage is set in the CreateProtocolComponent
     if (localStorage.getItem('occupiedDates') !== null) {
       this.occupiedDates = localStorage.getItem('occupiedDates');
-      localStorage.removeItem('occupiedDates');
     }
     if (t2.type.toUpperCase() !== 'BOOL') {
       let update = false;
