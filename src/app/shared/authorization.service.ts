@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
 import {AuthenticationDetails, CognitoUser, CognitoUserPool, CognitoUserAttribute} from 'amazon-cognito-identity-js';
 import {environment} from '../../environments/environment';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {HttpErrorResponse} from '@angular/common/http';
+import {SignupResponse} from '../signup/SignupResponse';
 
 
 const userPool = new CognitoUserPool(environment.poolData);
@@ -19,27 +22,36 @@ export class AuthorizationService {
 
     register(email, password) {
 
-        const dataEmail = {
+        const signupDataInfos = {
             'email': email,
             'password': password
+            //TODO : TODOX: Ajouter informations du form ici
         };
 
-        return this.http.post(environment.userApiUrl + '/register', dataEmail).pipe();
+        const signupResponse = this.http.post<SignupResponse>(environment.userApiUrl + '/register', signupDataInfos).pipe(
+            catchError(this.handleSignupError)
+        );
 
-        // return Observable.create(observer => {
-        //   userPool.signUp(email, password, attributeList, null, (err, result) => {
-        //     if (err) {
-        //       console.log("signUp error", err);
-        //       observer.error(err);
-        //     }
-        //
-        //     this.cognitoUser = result.user;
-        //     console.log("signUp success", result);
-        //     observer.next(result);
-        //     observer.complete();
-        //   });
-        // });
 
+
+        return signupResponse;
+
+    }
+
+    private handleSignupError(error: HttpErrorResponse) {
+        if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+        } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+                `Backend returned code ${error.status}, ` +
+                `body was: ${error.error}`);
+        }
+        // return an observable with a user-facing error message
+        return throwError(
+            'Something bad happened; please try again later.');
     }
 
     confirmAuthCode(code) {
@@ -47,6 +59,12 @@ export class AuthorizationService {
             Username: this.cognitoUser.username,
             Pool: userPool
         };
+
+        //TODO : TODOX : confirm on backend instead!
+        const signupResponse = this.http.post<SignupResponse>(environment.userApiUrl + '/register', signupDataInfos).pipe(
+            catchError(this.handleSignupError)
+        );
+
         return Observable.create(observer => {
             const cognitoUser = new CognitoUser(user);
             cognitoUser.confirmRegistration(code, true, function (err, result) {
