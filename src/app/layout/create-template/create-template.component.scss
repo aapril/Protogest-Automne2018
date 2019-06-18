@@ -1,0 +1,26 @@
+.create-template {
+    height: 100%;
+
+    > .sections {
+        position: relative;
+        float: left;
+
+        &.mat-drawer-side{
+            border: 0px;
+        }
+        
+        .mat-drawer-inner-container{
+            float: left;
+        }
+
+        .section{
+            list-style: none;
+            padding: 12px 20px;
+            margin-bottom: 0px;
+        }
+    }
+
+    > .sub-sections{
+        margin-left: 40px;
+    }
+}

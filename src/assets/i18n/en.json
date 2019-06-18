@@ -33,6 +33,7 @@
     "Schedule" : "Schedule",
     "Events" : "Events",
     "Create Protocol" : "Create Protocol",
+    "Create Template" : "Create template",
     "List Protocol" : "List Protocol",
     "Relier Protocol" : "List of protocols related to the user",
     "Creer Protocol" : "List of protocols created to the user",
