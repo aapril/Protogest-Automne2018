@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { generateOutlookAuthUrl } from '../../utils/outlookHelper.js';
@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class CreateTemplateComponent implements OnInit {
   protocolType: String;
-  templateName: String;
+  templateName = "";
   data = require('../../../jsonDir/protocole-schema-quebec.json');
 
   constructor() {}

@@ -1,19 +1,25 @@
 <div class="col-md-10 offset-md-1 mt-5">
   <h3>{{ 'Create Template' | translate }}</h3>
   <hr>
-  <mat-radio-group>
-    <mat-radio-button value="quebec" (click)="setProtocol('quebec')">{{ 'Quebec Protocol' | translate }}</mat-radio-button>
+  <form>
+    <mat-form-field>
+      <input [value]="templateName" (input)="templateName = $event.target.value" matInput placeholder="Template Name">
+    </mat-form-field>
     <br>
-    <mat-radio-button value="canada" (click)="setProtocol('canada')">{{ 'Canadian Protocol' | translate }}</mat-radio-button>
-  </mat-radio-group>
-  <mat-sidenav-container class="create-template">
-    <mat-sidenav opened mode="side" class="sections">
-      <ul class="section" *ngFor="let section of data.protocole[0].protocol_fields">
-        <li>{{section.sectionName}}</li>
-      </ul>
-    </mat-sidenav>
-    <mat-sidenav-content class="sub-sections">
-      Pog
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    <mat-radio-group>
+      <mat-radio-button value="quebec" (click)="setProtocol('quebec')">{{ 'Quebec Protocol' | translate }}</mat-radio-button>
+      <br>
+      <mat-radio-button value="canada" (click)="setProtocol('canada')">{{ 'Canadian Protocol' | translate }}</mat-radio-button>
+    </mat-radio-group>
+    <mat-sidenav-container class="create-template">
+      <mat-sidenav opened mode="side" class="sections">
+        <ul class="section" *ngFor="let section of data.protocole[0].protocol_fields">
+          <li>{{section.sectionName}}</li>
+        </ul>
+      </mat-sidenav>
+      <mat-sidenav-content class="sub-sections">
+        Pog
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </form>
 </div>

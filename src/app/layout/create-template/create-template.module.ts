@@ -5,7 +5,7 @@ import { MatRadioModule } from '@angular/material';
 
 import { CreateTemplateRoutingModule } from './create-template-routing.module';
 import { CreateTemplateComponent } from './create-template.component';
-import { MatSidenavModule } from '@angular/material';
+import { MatSidenavModule, MatInputModule } from '@angular/material';
 import { CreateEventModule } from '../create-event/create-event.module';
 import {TranslateModule} from '@ngx-translate/core';
 
@@ -18,6 +18,7 @@ import {TranslateModule} from '@ngx-translate/core';
     CreateTemplateRoutingModule,
     MatRadioModule,
     MatSidenavModule,
+    MatInputModule,
     MatRadioModule,
     CreateEventModule,
     TranslateModule
