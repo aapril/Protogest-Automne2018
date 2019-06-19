@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class CreateTemplateComponent implements OnInit {
   templateType = "quebec";
   templateName = "";
-  data = require('../../../jsonDir/protocole-schema-quebec.json');
+  data = {
+    quebec: require('../../../jsonDir/protocole-schema-quebec.json'),
+    canada: require('../../../jsonDir/protocole-schema-canada.json')
+  };
   currentSection: {}
   currentTemplate = {}
 
@@ -19,11 +22,12 @@ export class CreateTemplateComponent implements OnInit {
   }
 
   changeCurrentSection(sectionID) {
-    this.currentSection = this.data.protocole[0].protocol_fields.find(section => section.sectionID === sectionID)
+    this.currentSection = this.data[this.templateType].protocole[0].protocol_fields.find(section => section.sectionID === sectionID)
     console.log(this.currentSection);
   }
 
-  setTemplate(type){
+  setTemplateType(type){
+    console.log(type);
     this.templateType = type;
   }
 }

@@ -6,14 +6,14 @@
       <input type="text" name="templateName" [(ngModel)]="templateName" matInput placeholder="Template Name">
     </mat-form-field>
     <br>
-    <mat-radio-group name="templateType" [(ngModel)]="templateType">
+    <mat-radio-group name="templateType" [(ngModel)]="templateType" (ngModelChange)="setTemplateType($event)">
       <mat-radio-button color="primary" class="customRadio" value="quebec">{{ 'Quebec Protocol' | translate }}</mat-radio-button>
       <br>
       <mat-radio-button color="primary" value="canada">{{ 'Canadian Protocol' | translate }}</mat-radio-button>
     </mat-radio-group>
     <mat-sidenav-container class="create-template">
       <mat-sidenav opened mode="side" class="sections">
-        <ul class="section" *ngFor="let section of data.protocole[0].protocol_fields">
+        <ul class="section" *ngFor="let section of data[templateType].protocole[0].protocol_fields">
           <li (click)="changeCurrentSection(section.sectionID)">{{section.sectionName}}</li>
         </ul>
       </mat-sidenav>
