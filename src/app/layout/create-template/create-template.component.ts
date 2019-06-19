@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-template.component.scss']
 })
 export class CreateTemplateComponent implements OnInit {
-  protocolType: String;
+  templateType = "quebec";
   templateName = "";
   data = require('../../../jsonDir/protocole-schema-quebec.json');
 
@@ -20,11 +20,7 @@ export class CreateTemplateComponent implements OnInit {
     console.log(this.templateName)
   }
 
-  setTemplateName(name) {
-    this.templateName = name;
-  }
-
-  setProtocol(type){
-    this.protocolType = type;
+  setTemplate(type){
+    this.templateType = type;
   }
 }

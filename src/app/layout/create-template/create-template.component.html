@@ -5,12 +5,11 @@
     <mat-form-field>
       <input type="text" name="templateName" [(ngModel)]="templateName" matInput placeholder="Template Name">
     </mat-form-field>
-    <p>{{templateName}}</p>
     <br>
-    <mat-radio-group>
-      <mat-radio-button value="quebec" (click)="setProtocol('quebec')">{{ 'Quebec Protocol' | translate }}</mat-radio-button>
+    <mat-radio-group name="templateName" [(ngModel)]="templateType">
+      <mat-radio-button value="quebec">{{ 'Quebec Protocol' | translate }}</mat-radio-button>
       <br>
-      <mat-radio-button value="canada" (click)="setProtocol('canada')">{{ 'Canadian Protocol' | translate }}</mat-radio-button>
+      <mat-radio-button value="canada">{{ 'Canadian Protocol' | translate }}</mat-radio-button>
     </mat-radio-group>
     <mat-sidenav-container class="create-template">
       <mat-sidenav opened mode="side" class="sections">
