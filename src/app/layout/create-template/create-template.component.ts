@@ -9,6 +9,8 @@ export class CreateTemplateComponent implements OnInit {
   templateType = "quebec";
   templateName = "";
   data = require('../../../jsonDir/protocole-schema-quebec.json');
+  currentSection: {}
+  currentTemplate = {}
 
   constructor() {}
 
@@ -17,7 +19,8 @@ export class CreateTemplateComponent implements OnInit {
   }
 
   changeCurrentSection(sectionID) {
-    console.log(this.templateName)
+    this.currentSection = this.data.protocole[0].protocol_fields.find(section => section.sectionID === sectionID)
+    console.log(this.currentSection);
   }
 
   setTemplate(type){
