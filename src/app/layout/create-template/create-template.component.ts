@@ -1,14 +1,9 @@
-import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { generateOutlookAuthUrl } from '../../utils/outlookHelper.js';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-create-template',
   templateUrl: './create-template.component.html',
-  styleUrls: ['./create-template.component.scss'],
-  providers: []
+  styleUrls: ['./create-template.component.scss']
 })
 export class CreateTemplateComponent implements OnInit {
   protocolType: String;
@@ -19,6 +14,10 @@ export class CreateTemplateComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  changeCurrentSection(sectionID) {
+    console.log(this.templateName)
   }
 
   setTemplateName(name) {

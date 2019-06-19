@@ -3,8 +3,9 @@
   <hr>
   <form>
     <mat-form-field>
-      <input [value]="templateName" (input)="templateName = $event.target.value" matInput placeholder="Template Name">
+      <input type="text" name="templateName" [(ngModel)]="templateName" matInput placeholder="Template Name">
     </mat-form-field>
+    <p>{{templateName}}</p>
     <br>
     <mat-radio-group>
       <mat-radio-button value="quebec" (click)="setProtocol('quebec')">{{ 'Quebec Protocol' | translate }}</mat-radio-button>
@@ -14,7 +15,7 @@
     <mat-sidenav-container class="create-template">
       <mat-sidenav opened mode="side" class="sections">
         <ul class="section" *ngFor="let section of data.protocole[0].protocol_fields">
-          <li>{{section.sectionName}}</li>
+          <li (click)="changeCurrentSection(section.sectionID)">{{section.sectionName}}</li>
         </ul>
       </mat-sidenav>
       <mat-sidenav-content class="sub-sections">
