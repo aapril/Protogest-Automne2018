@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
+declare var require: any;
+
 @Component({
   selector: 'app-create-template',
   templateUrl: './create-template.component.html',
