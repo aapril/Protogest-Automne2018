@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-create-template',
   templateUrl: './create-template.component.html',
-  styleUrls: ['./create-template.component.scss']
+  styleUrls: ['./create-template.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CreateTemplateComponent implements OnInit {
   templateType = "quebec";
@@ -12,7 +13,7 @@ export class CreateTemplateComponent implements OnInit {
     quebec: require('../../../jsonDir/protocole-schema-quebec.json'),
     canada: require('../../../jsonDir/protocole-schema-canada.json')
   };
-  currentSection: {}
+  currentSection = {}
   currentTemplate = {}
 
   constructor() {}
@@ -23,11 +24,9 @@ export class CreateTemplateComponent implements OnInit {
 
   changeCurrentSection(sectionID) {
     this.currentSection = this.data[this.templateType].protocole[0].protocol_fields.find(section => section.sectionID === sectionID)
-    console.log(this.currentSection);
   }
 
   setTemplateType(type){
-    console.log(type);
     this.templateType = type;
   }
 }

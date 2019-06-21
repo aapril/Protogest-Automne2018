@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { CreateTemplateRoutingModule } from './create-template-routing.module';
 import { CreateTemplateComponent } from './create-template.component';
-import { MatSidenavModule, MatInputModule, MatRadioModule } from '@angular/material';
+import { MatSidenavModule, MatInputModule, MatRadioModule, MatCheckboxModule, MatButtonModule } from '@angular/material';
 import { CreateEventModule } from '../create-event/create-event.module';
 import {TranslateModule} from '@ngx-translate/core';
 
@@ -17,6 +17,8 @@ import {TranslateModule} from '@ngx-translate/core';
     MatSidenavModule,
     MatInputModule,
     MatRadioModule,
+    MatCheckboxModule,
+    MatButtonModule,
     CreateEventModule,
     TranslateModule
   ],

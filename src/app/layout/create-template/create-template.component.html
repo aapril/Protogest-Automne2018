@@ -13,13 +13,27 @@
     </mat-radio-group>
     <mat-sidenav-container class="create-template">
       <mat-sidenav opened mode="side" class="sections">
-        <ul class="section" *ngFor="let section of data[templateType].protocole[0].protocol_fields">
-          <li (click)="changeCurrentSection(section.sectionID)">{{section.sectionName}}</li>
+        <ul class="sidenav">
+          <li 
+            [ngClass]="{'active': section.sectionID===currentSection.sectionID}" 
+            (click)="changeCurrentSection(section.sectionID)"
+            class="section" 
+            *ngFor="let section of data[templateType].protocole[0].protocol_fields"
+          >{{section.sectionName}}</li>
         </ul>
       </mat-sidenav>
       <mat-sidenav-content class="sub-sections">
-        Pog
+        <ul>
+          <li class="sub-section select-all">
+            <mat-checkbox [disableRipple]="true" color="primary">Select All</mat-checkbox>
+          </li>
+          <hr>
+          <li class="sub-section" *ngFor="let subSection of currentSection.subSection">
+            <mat-checkbox [disableRipple]="true" color="primary">{{subSection.desc}}</mat-checkbox>
+          </li>
+        </ul>
       </mat-sidenav-content>
     </mat-sidenav-container>
+    <button color="primary" mat-raised-button>Save</button>
   </form>
 </div>

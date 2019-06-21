@@ -1,6 +1,14 @@
 .create-template {
     height: 100%;
 
+    .sidenav {
+        padding: 0px;
+    }
+
+    &.mat-drawer-container {
+        background-color: transparent;
+    }
+
     > .sections {
         position: relative;
         float: left;
@@ -8,7 +16,7 @@
         &.mat-drawer-side{
             border: 0px;
         }
-        
+
         .mat-drawer-inner-container{
             float: left;
         }
@@ -17,10 +25,37 @@
             list-style: none;
             padding: 12px 20px;
             margin-bottom: 0px;
+
+            &.active {
+                background-color: #673ab7;
+                color: white;
+            }
         }
     }
 
-    > .sub-sections{
+    > mat-sidenav-content.sub-sections{
         margin-left: 40px;
+        overflow-wrap: break-word;
+    }
+
+    .sub-section{
+        list-style: none;
+
+        &.select-all{
+            font-weight: bold;
+
+            & + hr{
+                margin: 0.25rem 0;
+            }
+
+            .mat-checkbox-layout{
+                margin-bottom: 0;
+            }
+        }
+
+        .mat-checkbox-layout{
+            white-space: normal;
+        }
+
     }
 }
