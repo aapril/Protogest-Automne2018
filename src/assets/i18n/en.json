@@ -52,6 +52,12 @@
     "Yes" : "Yes, use Outlook",
     "Here" : "Here is the dates we've imported.",
     "Fill" : "Fill in the details",
-    "Moyens" : "Preliminary exceptions"
+    "Moyens" : "Preliminary exceptions",
+    "Info Perso" : "Personal Information",
+    "First Name" : "First name",
+    "Last Name" : "Last name",
+    "Reset Password" : "Reset Password",
+    "Old Password" : "Old Password",
+    "New Password" : "New Password"
 
 }

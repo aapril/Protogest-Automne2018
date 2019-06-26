@@ -8,6 +8,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '../../../environments/environment';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -19,8 +20,8 @@ import { environment } from '../../../environments/environment';
 
 
 export class CreateEventComponent implements OnChanges {
-	public readonly QUEBEC_BUTTON_VALUE: string = "quebec";
-	public readonly CANADA_BUTTON_VALUE: string = "canada";
+	public readonly QUEBEC_BUTTON_VALUE: string = 'quebec';
+	public readonly CANADA_BUTTON_VALUE: string = 'canada';
 
 	@Input() Protocol: string;
 
@@ -35,20 +36,31 @@ export class CreateEventComponent implements OnChanges {
 	final: any = [];
 	occupiedDates: any = [];
 
+
+    isDisabled(date: NgbDateStruct) {
+        // The localStorage is set in the CreateProtocolComponent
+        if (localStorage.getItem('occupiedDates') !== null) {
+            const testoccupiedDates = localStorage.getItem('occupiedDates');
+            return testoccupiedDates.indexOf(date.year + '-' + ((date.month < 10) ? '0' + date.month : date.month) + '-' + ((date.day < 10) ? '0' + date.day : date.day)) > -1;
+        } else {
+            return false;
+        }
+    }
+
 	ngOnInit() {
 		this.http.get(environment.backendUrl + '/protocol-schemas').subscribe(response => {
 			if (!response) {
-				throw new Error("Failed to communicate with server");
+				throw new Error('Failed to communicate with server');
 			}
 			this.protocolSchemas = response;
-			console.log()
-			this.data = { protocole: [this.protocolSchemas.filter(p => { return p.name.toLowerCase().includes('quebec') })[0]] };
+			console.log();
+			this.data = { protocole: [this.protocolSchemas.filter(p => p.name.toLowerCase().includes('quebec'))[0]] };
 		});
 
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		this.data = { protocole: [this.protocolSchemas.filter(p => { return p.name.toLowerCase().includes(this.Protocol) })[0]] };
+		this.data = { protocole: [this.protocolSchemas.filter(p => p.name.toLowerCase().includes(this.Protocol))[0]] };
 	}
 	onChange(t2, value) {
 		// The localStorage is set in the CreateProtocolComponent
@@ -90,7 +102,7 @@ export class CreateEventComponent implements OnChanges {
 						{
 							type: t2.type.toUpperCase(),
 							id: String(t2.num),
-							value: (t2.type === "date") ? value.year + "-" + value.month + "-" + value.day : value,
+							value: (t2.type === 'date') ? value.year + '-' + value.month + '-' + value.day : value,
 							desc: t2.desc
 						}
 					);

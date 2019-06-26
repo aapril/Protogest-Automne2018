@@ -52,5 +52,11 @@
     "Yes" : "Oui, utilisez Outlook",
     "Here" : "Voici les dates que nous avons importées.",
     "Fill" : "Remplissez les détails",
-    "Moyens" : "Moyens Preliminaires"
+    "Moyens" : "Moyens Preliminaires",
+    "Info Perso" : "Information Personelle",
+    "First Name" : "Prénom",
+    "Last Name" : "Nom de Famille",
+    "Reset Password" : "Changer le Mot de passe",
+    "Old Password" : "Vieux Mot de passe",
+    "New Password" : "Nouveau Mot de passe"
 }
