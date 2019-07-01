@@ -1,5 +1,6 @@
+<h4 *ngIf="getSectionsToDisplay().length === 0">No sections selected.</h4>
 <mat-horizontal-stepper id="sectionStepper" #stepper>
-    <mat-step *ngFor="let section of data.protocole[0].protocol_fields" [stepControl]="firstFormGroup">
+    <mat-step *ngFor="let section of getSectionsToDisplay()" [stepControl]="firstFormGroup">
         <ng-template matStepLabel>{{ section.sectionName }}</ng-template>
         <div *ngFor="let subsection of getSubSectionsToDisplay(section)" class="subsection-border">
             <div class='row mt-3'>

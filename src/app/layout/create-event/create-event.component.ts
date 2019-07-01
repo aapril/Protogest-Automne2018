@@ -121,7 +121,16 @@ export class CreateEventComponent implements OnChanges {
   }
 
   getSectionsToDisplay(){
-    
+    let toDisplay = []
+
+    this.data.protocole[0].protocol_fields.forEach(section => {
+      // If selectedSubsections contains a subSection listed in this section
+      if(section.subSection.map(subSection => subSection.num).some(number => this.selectedSections.includes(number))) {
+        toDisplay.push(section);
+      }
+    })
+
+    return toDisplay;
   }
 
   getSubSectionsToDisplay(currentSection) {
