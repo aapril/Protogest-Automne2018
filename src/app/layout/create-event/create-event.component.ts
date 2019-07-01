@@ -4,7 +4,7 @@ import { ProtocolService } from '../../shared/services/protocol.service';
 import { FormGroup, FormControl, FormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '../../../environments/environment';
@@ -24,17 +24,16 @@ export class CreateEventComponent implements OnChanges {
 	public readonly CANADA_BUTTON_VALUE: string = 'canada';
 
 	@Input() Protocol: string;
+	@Output() public data: any | undefined = null;
 
 	constructor(private protocolService: ProtocolService, protected http: HttpClient, @Inject(DOCUMENT) document) { }
-
-
-	data: any | undefined = null;
 
 	private protocolSchemas: any | undefined = null;
 
 	temp = {};
 	final: any = [];
 	occupiedDates: any = [];
+	protocolUuid;
 
 
     isDisabled(date: NgbDateStruct) {
@@ -53,7 +52,6 @@ export class CreateEventComponent implements OnChanges {
 				throw new Error('Failed to communicate with server');
 			}
 			this.protocolSchemas = response;
-			console.log();
 			this.data = { protocole: [this.protocolSchemas.filter(p => p.name.toLowerCase().includes('quebec'))[0]] };
 		});
 
@@ -121,28 +119,42 @@ export class CreateEventComponent implements OnChanges {
 		});
 	}
 
-	saveForm(email) {
-		const localProtocol = localStorage.getItem('protocol');
+	 saveForm(email, protocol) {
+        this.http.get(environment.backendUrl + '/protocol-schemas').subscribe(response => {
+            if (!response) {
+                throw new Error('Failed to communicate with server');
+            }
+            this.protocolSchemas = response;
+            var uuid = (this.protocolSchemas.filter(p => p.name.toLowerCase().includes(protocol))[0]['uuid']);
 
-		if (localProtocol !== null && localProtocol !== undefined) {
-			const protocole = {
-				'protocol': {
-					'fields': JSON.parse(localProtocol),
-					'userID': 'test@test.ca',
-					'formUUID': '6a01cac1-f55e-4933-b889-ae00d14c9d17'
-				},
-				'relatedUserId': email
-			};
-			console.log(protocole);
-			console.log(this.temp);
 
-			this.protocolService.createProtocol(protocole).subscribe(
-				data => {
-					alert('Your protocol has been successfully saved.');
-				}
-			);
-		} else {
-			alert('Problem with saving protocol');
-		}
+            const localProtocol = localStorage.getItem('protocol');
+            let today = new Date();
+            const dd = String(today.getDate()).padStart(2, '0');
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const yyyy = today.getFullYear();
+            today = new Date(mm + '/' + dd + '/' + yyyy);
+
+            if (localProtocol !== null && localProtocol !== undefined) {
+                const protocole = {
+                    'protocol': {
+                        'fields': JSON.parse(localProtocol),
+                        'userID': 'test@test.ca',
+                        'formUUID': '6a01cac1-f55e-4933-b889-ae00d14c9d17',
+                        'creationDate': today,
+                        'protocolUuid': uuid
+                    },
+                    'relatedUserId': email
+                };
+
+                this.protocolService.createProtocol(protocole).subscribe(
+                    data => {
+                        alert('Your protocol has been successfully saved.');
+                    }
+                );
+            } else {
+                alert('Problem with saving protocol');
+            }
+        });
 	}
 }

@@ -45,7 +45,7 @@ export class CreateProtocolComponent implements OnInit {
   }
 
   saveForm() {
-    this.createEvent.saveForm(this.inviteEmail);
+    this.createEvent.saveForm(this.inviteEmail, this.Protocol);
   }
 
   filterSendOutlookDates(rawOutlookDates) {

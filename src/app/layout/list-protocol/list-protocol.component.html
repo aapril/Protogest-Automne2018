@@ -3,7 +3,7 @@
 	<hr>
 	<div class="row" *ngFor="let x of userProtocol">
 		<div class="col-md-6 offset-md-1 mt-5" >
-			{{x.formUUID}}
+			{{x.protocolName}}
 		</div>
 		<div class="col-md-2 mt-5">
 		<button mat-button (click)="showProtocolCalendar(x)">Voir le protocole</button>
@@ -18,7 +18,7 @@
 		<hr>
 		<div class="row" *ngFor="let z of userRelatedProtocol">
 			<div class="col-md-6 offset-md-1 mt-5" >
-				{{z.formUUID}}
+				{{z.protocolUuid}}
 			</div>
 			<div class="col-md-2 mt-5">
 			<button mat-button (click)="showProtocolCalendar(z)">Voir le protocole</button>
