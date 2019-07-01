@@ -40,7 +40,11 @@
     <mat-step [stepControl]="thirdFormGroup">
       <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>{{ 'Fill' | translate }}</ng-template>
-        <app-create-event [Protocol]="Protocol" [selectedSections]="selectedSections"></app-create-event>
+        <app-create-event 
+          [Protocol]="Protocol"
+          [selectedSections]="selectedSections"
+          [parentStepper]="stepper"
+        ></app-create-event>
       </form>
     </mat-step>
     <mat-step>

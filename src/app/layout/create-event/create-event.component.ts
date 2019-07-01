@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
+import { MatStepper } from '@angular/material';
 
 
 
@@ -20,6 +21,7 @@ import { DOCUMENT } from '@angular/common';
 export class CreateEventComponent implements OnChanges {
   @Input() Protocol: string;
   @Input() selectedSections: any = []
+  @Input() parentStepper: MatStepper
 
   constructor(private protocolService: ProtocolService, protected http: HttpClient, @Inject(DOCUMENT) document) {}
 
@@ -136,5 +138,13 @@ export class CreateEventComponent implements OnChanges {
   getSubSectionsToDisplay(currentSection) {
     let that = this;
     return currentSection.subSection.filter(subSection => that.selectedSections.find(selected => selected === subSection.num))
+  }
+
+  nextStep(stepper: MatStepper) {
+    if(stepper.selectedIndex === stepper.steps.length - 1) {
+      this.parentStepper.next();
+    } else {
+      stepper.next();
+    }
   }
 }
