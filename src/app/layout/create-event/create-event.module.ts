@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-    imports: [CommonModule, CreateEventRootingModule, PageHeaderModule, NgbModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, CreateEventRootingModule, PageHeaderModule, NgbModule, ReactiveFormsModule, FormsModule],
   declarations: [CreateEventComponent],
   exports: [CreateEventComponent]
 })

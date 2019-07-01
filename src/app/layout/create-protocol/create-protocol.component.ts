@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreateEventComponent } from '../create-event/create-event.component';
+import { CreateTemplateComponent } from '../create-template/create-template.component';
 import { ActivatedRoute } from '@angular/router';
 import { generateOutlookAuthUrl } from '../../utils/outlookHelper.js';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,12 +10,12 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-create-protocol',
   templateUrl: './create-protocol.component.html',
   styleUrls: ['./create-protocol.component.scss'],
-  providers: [CreateEventComponent]
+  providers: [CreateEventComponent, CreateTemplateComponent]
 })
 export class CreateProtocolComponent implements OnInit {
   @ViewChild('openModal') openModal: ElementRef;
   @ViewChild('openOccupiedDatesModal') openOccupiedDatesModal: ElementRef;
-  Protocol: string;
+  Protocol: string = "quebec";
   occupiedDates: any = [];
   inviteEmail = '';
   firstFormGroup: FormGroup;
@@ -22,7 +23,7 @@ export class CreateProtocolComponent implements OnInit {
   thirdFormGroup: FormGroup;
   backendUrlForOutlook: String = generateOutlookAuthUrl();
 
-  constructor(private _formBuilder: FormBuilder, private createEvent: CreateEventComponent, private route: ActivatedRoute, private translate: TranslateService) {}
+  constructor(private _formBuilder: FormBuilder, private createEvent: CreateEventComponent, private createTemplate: CreateTemplateComponent, private route: ActivatedRoute, private translate: TranslateService) {}
 
   ngOnInit() {
     localStorage.removeItem('occupiedDates');

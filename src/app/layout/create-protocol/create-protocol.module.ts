@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material';
 
+import { CreateTemplateModule } from '../create-template/create-template.module'
 import { CreateProtocolRoutingModule } from './create-protocol-routing.module';
 import { CreateProtocolComponent } from './create-protocol.component';
 import { MatStepperModule, MatInputModule, MatButtonModule, MatAutocompleteModule } from '@angular/material';
@@ -22,6 +23,7 @@ import {TranslateModule} from '@ngx-translate/core';
     MatAutocompleteModule,
     MatRadioModule,
     CreateEventModule,
+    CreateTemplateModule,
     TranslateModule
   ],
   declarations: [CreateProtocolComponent],

@@ -23,5 +23,6 @@ import {TranslateModule} from '@ngx-translate/core';
     TranslateModule
   ],
   declarations: [CreateTemplateComponent],
+  exports: [CreateTemplateComponent]
 })
 export class CreateTemplateModule { }

@@ -1,16 +1,5 @@
-<div class="col-md-10 offset-md-1 mt-5">
-  <h3>{{ 'Create Template' | translate }}</h3>
-  <hr>
+<div>
   <form>
-    <mat-form-field>
-      <input type="text" name="templateName" [(ngModel)]="templateName" matInput placeholder="Template Name">
-    </mat-form-field>
-    <br>
-    <mat-radio-group name="templateType" [(ngModel)]="templateType" (ngModelChange)="setTemplateType($event)">
-      <mat-radio-button color="primary" class="customRadio" value="quebec">{{ 'Quebec Protocol' | translate }}</mat-radio-button>
-      <br>
-      <mat-radio-button color="primary" value="canada">{{ 'Canadian Protocol' | translate }}</mat-radio-button>
-    </mat-radio-group>
     <mat-sidenav-container class="create-template">
       <mat-sidenav opened mode="side" class="sections">
         <ul class="sidenav">
@@ -25,15 +14,14 @@
       <mat-sidenav-content class="sub-sections">
         <ul>
           <li class="sub-section select-all">
-            <mat-checkbox [disableRipple]="true" color="primary">Select All</mat-checkbox>
+            <mat-checkbox [checked]="areAllSelected()" (change)="selectAll()" [disableRipple]="true" color="primary">Select All</mat-checkbox>
           </li>
           <hr>
           <li class="sub-section" *ngFor="let subSection of currentSection.subSection">
-            <mat-checkbox [disableRipple]="true" color="primary">{{subSection.desc}}</mat-checkbox>
+            <mat-checkbox [checked]="isSectionSelected(subSection.num)" [disableRipple]="true" (change)="toggleSection(subSection.num)" color="primary">{{subSection.desc}}</mat-checkbox>
           </li>
         </ul>
       </mat-sidenav-content>
     </mat-sidenav-container>
-    <button color="primary" mat-raised-button>Save</button>
   </form>
 </div>
