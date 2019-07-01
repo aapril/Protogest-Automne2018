@@ -19,6 +19,7 @@ import { DOCUMENT } from '@angular/common';
 
 export class CreateEventComponent implements OnChanges {
   @Input() Protocol: string;
+  @Input() selectedSections: any = []
 
   constructor(private protocolService: ProtocolService, protected http: HttpClient, @Inject(DOCUMENT) document) {}
 
@@ -117,5 +118,14 @@ export class CreateEventComponent implements OnChanges {
     } else {
       alert('Problem with saving protocol');
     }
+  }
+
+  getSectionsToDisplay(){
+    
+  }
+
+  getSubSectionsToDisplay(currentSection) {
+    let that = this;
+    return currentSection.subSection.filter(subSection => that.selectedSections.find(selected => selected === subSection.num))
   }
 }

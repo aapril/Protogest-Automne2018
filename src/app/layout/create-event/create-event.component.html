@@ -1,10 +1,7 @@
-<ngb-accordion [closeOthers]="true" activeIds="static-1" >
-  <ngb-panel *ngFor="let section of data.protocole[0].protocol_fields" id="static-{{section.sectionID}}">
-    <ng-template ngbPanelTitle>
-        <span>{{section.sectionName}}</span>
-    </ng-template>
-    <ng-template ngbPanelContent>
-        <div *ngFor="let subsection of section.subSection" class="subsection-border">
+<mat-horizontal-stepper id="sectionStepper" #stepper>
+    <mat-step *ngFor="let section of data.protocole[0].protocol_fields" [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>{{ section.sectionName }}</ng-template>
+        <div *ngFor="let subsection of getSubSectionsToDisplay(section)" class="subsection-border">
             <div class='row mt-3'>
                 <div class="col-md-10">
                     <label>{{subsection.desc}}</label>
@@ -53,6 +50,9 @@
                 </div>
             </div>
         </div>
-    </ng-template>
-  </ngb-panel>
-</ngb-accordion>
+        <div>
+            <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
+            <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

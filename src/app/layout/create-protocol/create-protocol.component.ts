@@ -16,6 +16,7 @@ export class CreateProtocolComponent implements OnInit {
   @ViewChild('openModal') openModal: ElementRef;
   @ViewChild('openOccupiedDatesModal') openOccupiedDatesModal: ElementRef;
   Protocol: string = "quebec";
+  selectedSections: any = [];
   occupiedDates: any = [];
   inviteEmail = '';
   firstFormGroup: FormGroup;

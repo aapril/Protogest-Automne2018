@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 
 declare var require: any;
 
@@ -18,7 +18,8 @@ export class CreateTemplateComponent implements OnInit {
   currentSection = {
     subSection: []
   }
-  selectedSections = []
+  @Input() selectedSections: any = []
+  @Output() selectedSectionsChange = new EventEmitter(this.selectedSections);
 
   constructor() {}
 

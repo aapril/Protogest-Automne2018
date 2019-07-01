@@ -18,7 +18,7 @@
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>{{ 'Sections' | translate }}</ng-template>
-        <app-create-template [templateType]="Protocol"></app-create-template>
+        <app-create-template [templateType]="Protocol" [(selectedSections)]="selectedSections"></app-create-template>
         <div>
           <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
           <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
@@ -40,11 +40,7 @@
     <mat-step [stepControl]="thirdFormGroup">
       <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>{{ 'Fill' | translate }}</ng-template>
-        <app-create-event [Protocol]="Protocol"></app-create-event>
-        <div>
-          <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
-          <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
-        </div>
+        <app-create-event [Protocol]="Protocol" [selectedSections]="selectedSections"></app-create-event>
       </form>
     </mat-step>
     <mat-step>
@@ -53,7 +49,6 @@
       <div>
         <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
         <button mat-button (click)='saveForm()'>{{ 'Save' | translate }}</button>
-        <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
       </div>
     </mat-step>
   </mat-horizontal-stepper>

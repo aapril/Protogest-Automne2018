@@ -13,3 +13,17 @@ button.calendar{
   padding-bottom: 5px;
   border-bottom: 1px solid black;
 }
+
+#sectionStepper{
+  /deep/ .mat-step-header .mat-step-icon-selected {
+    background-color: #00c756;
+  }
+
+  /deep/ .mat-step-header .mat-step-icon-state-done {
+    background-color: #00c756;
+  }
+
+  /deep/ .mat-step-header .mat-step-icon-state-edit {
+    background-color: #00c756;
+  }
+}
