@@ -4,6 +4,8 @@ import { routerTransition } from '../router.animations';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { LoginService } from './login.service';
 import {AuthorizationService} from "../shared/authorization.service";
+import { HttpClient } from '@angular/common/http';
+import {environment} from '../../environments/environment'
 
 @Component({
     selector: 'app-login',
@@ -27,7 +29,8 @@ export class LoginComponent implements OnInit {
     });
 
     constructor(
-        private auth: AuthorizationService,
+		private auth: AuthorizationService,
+		private http: HttpClient
         private formBuilder: FormBuilder,
         private loginService: LoginService,
         private route: ActivatedRoute,
@@ -56,27 +59,20 @@ export class LoginComponent implements OnInit {
 
 
     onLoggedin() {
-        this.submitted = true;
-
-       // stop here if form is invalid
-        if (this.loginform.invalid) {
-            this.cognitoError = false;
-            this.emailVerificationMessage = true;
-            return;
-        }         
-       
-        this.auth.signIn(this.f.username.value, this.f.password.value).subscribe((data) => {
-            localStorage.setItem('currentUser', this.f.username.value);
-            this.router.navigate(['/schedule']);
-        }, (err)=> {
-            if (err.code === "UserNotConfirmedException") {
-                this.confirmCode = true;
-            }
-            this.cognitoErrorMsg = err.message;
-            this.emailVerificationMessage = false;
-            this.cognitoError = true;
-        });   
-
+		this.submitted = true;
+		this.loginService.login(this.f.username.value, this.f.password.value).subscribe(response => {
+			if(!response.success || response === null || response.payload === null || !response.payload["ACCESS_TOKEN"]){
+				if(response.message === 'NeedToResetPassword'){
+                	this.confirmCode = true;
+				}
+				this.cognitoErrorMsg = response.message;
+				this.emailVerificationMessage = false;
+				this.cognitoError = true;
+			}else{
+				localStorage.setItem("currentUser", JSON.stringify(response.payload));
+				this.router.navigate(['/schedule']);
+			}
+		})
     }
 
     printEvents() {
