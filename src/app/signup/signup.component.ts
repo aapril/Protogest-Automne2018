@@ -43,11 +43,7 @@ export class SignupComponent implements OnInit {
     confirmCode: boolean = false;
     codeWasConfirmed: boolean = false;
 
-    constructor(
-        private auth: AuthorizationService,
-        private router: Router,
-        private http: HttpClient
-    ) {}
+    constructor(private router: Router, private http: HttpClient) {}
 
     ngOnInit() {}
 
@@ -96,15 +92,16 @@ export class SignupComponent implements OnInit {
                         "password",
                         this.signupForm.get("password").value
                     );
-                    console.log(this.signupForm.get("password"));
                     this.http
-                        .post<any>("http://localhost:5000/users/signup", data)
+                        .post<any>(
+                            environment.backendUrl + "/users/signup",
+                            data
+                        )
                         .subscribe(response => {
-                            console.log(response);
                             if (!response || !response.success) {
                                 alert(response.message);
                             } else {
-                                this.confirmCode = true;
+                                this.router.navigate(["/login"]);
                             }
                         });
                 } else {
@@ -117,23 +114,6 @@ export class SignupComponent implements OnInit {
                     "Password does not match with the password confirmation."
                 );
             }
-        }
-    }
-
-    validateAuthCode() {
-        if (!this.codeVerifForm.get("code").invalid) {
-            this.auth
-                .confirmAuthCode(this.codeVerifForm.get("code").value)
-                .subscribe(
-                    data => {
-                        //this._router.navigateByUrl('/');
-                        this.codeWasConfirmed = true;
-                        this.confirmCode = false;
-                    },
-                    err => {
-                        alert("Confirm Authorization Error has occurred");
-                    }
-                );
         }
     }
 }

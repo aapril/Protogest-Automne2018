@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { catchError, map } from "rxjs/operators";
-import { throwError } from "rxjs/index";
+import { throwError, Observable } from "rxjs/index";
 import { Task, TaskGroup } from "../shared/services/task.service";
 
 const httpOptions = {
@@ -19,7 +19,10 @@ export class LoginService {
         const data = new FormData();
         data.append("email", email);
         data.append("password", password);
-        return this.http.post<any>("http://localhost:5000/users/login", data);
+        return this.http.post<any>(
+            environment.backendUrl + "/users/login",
+            data
+        );
     }
     printEvents() {
         console.log(environment.eventApiUrl + "/events/list");
@@ -34,6 +37,16 @@ export class LoginService {
                 })
             )
             .subscribe();
+    }
+
+    public confirmRegistration(email: string, code: string): Observable<any> {
+        const data = new FormData();
+        data.append("email", email);
+        data.append("code", code);
+        return this.http.post<any>(
+            environment.backendUrl + "/users/confirm_signup",
+            data
+        );
     }
 
     logout() {

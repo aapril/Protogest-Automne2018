@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
     });
 
     constructor(
-        private auth: AuthorizationService,
         private formBuilder: FormBuilder,
         private loginService: LoginService,
         private route: ActivatedRoute,
@@ -75,7 +74,6 @@ export class LoginComponent implements OnInit {
                     response.payload === null ||
                     !response.payload["ACCESS_TOKEN"]
                 ) {
-                    console.log(response);
                     if (response.code === "UserNotConfirmedException") {
                         this.confirmCode = true;
                     }
@@ -98,22 +96,20 @@ export class LoginComponent implements OnInit {
 
     validateAuthCode() {
         if (!this.codeVerifForm.get("code").invalid) {
-            this.auth
-                .confirmAuthCodeWithUsername(
-                    this.codeVerifForm.get("code").value,
-                    this.f.username.value
+            this.loginService
+                .confirmRegistration(
+                    this.f.username.value,
+                    this.codeVerifForm.get("code").value
                 )
-                .subscribe(
-                    data => {
-                        //this._router.navigateByUrl('/');
-                        this.codeWasConfirmed = true;
-                        this.confirmCode = false;
+                .subscribe(response => {
+                    if (!response || !response.success) {
+                        this.cognitoErrorMsg = response.message;
+                        this.emailVerificationMessage = false;
+                        this.cognitoError = true;
+                    } else {
                         this.onLoggedin();
-                    },
-                    err => {
-                        alert("Confirm Authorization Error has occurred");
                     }
-                );
+                });
         }
     }
 }
