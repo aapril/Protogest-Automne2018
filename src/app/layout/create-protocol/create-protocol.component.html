@@ -25,18 +25,6 @@
         </div>
       </form>
     </mat-step>
-    <!-- <mat-step [stepControl]="thirdFormGroup">
-      <form [formGroup]="thirdFormGroup">
-        <ng-template matStepLabel>{{ 'Invite' | translate }}</ng-template>
-        <mat-form-field>
-          <input [value]="inviteEmail" (input)="inviteEmail = $event.target.value" matInput placeholder="Email" formControlName="secondCtrl">
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
-          <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
-        </div>
-      </form>
-    </mat-step> -->
     <mat-step [stepControl]="thirdFormGroup">
       <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>{{ 'Fill' | translate }}</ng-template>
@@ -45,6 +33,18 @@
           [selectedSections]="selectedSections"
           [parentStepper]="stepper"
         ></app-create-event>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="fourthFormGroup">
+      <form [formGroup]="fourthFormGroup">
+        <ng-template matStepLabel>{{ 'Invite' | translate }}</ng-template>
+        <mat-form-field>
+          <input [value]="inviteEmail" (input)="inviteEmail = $event.target.value" matInput placeholder="Email" formControlName="fourthCtrl">
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
+          <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
+        </div>
       </form>
     </mat-step>
     <mat-step>

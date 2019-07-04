@@ -22,6 +22,7 @@ export class CreateProtocolComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
   backendUrlForOutlook: String = generateOutlookAuthUrl();
 
   constructor(private _formBuilder: FormBuilder, private createEvent: CreateEventComponent, private createTemplate: CreateTemplateComponent, private route: ActivatedRoute, private translate: TranslateService) {}
@@ -31,11 +32,11 @@ export class CreateProtocolComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      fourthCtrl: ['', Validators.required]
     });
     this.route.queryParams.subscribe((params) => {
       if (params['dates']) {
