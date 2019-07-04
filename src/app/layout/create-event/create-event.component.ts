@@ -147,4 +147,12 @@ export class CreateEventComponent implements OnChanges {
       stepper.next();
     }
   }
+
+  previousStep(stepper: MatStepper) {
+    if(stepper.selectedIndex === 0) {
+      this.parentStepper.previous();
+    } else {
+      stepper.previous();
+    }
+  }
 }

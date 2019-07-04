@@ -288,31 +288,31 @@
        		"sectionName" : "Pieces",
        		"subSection" : [
        		{
-       			"num" : "",
+       			"num" : 59,
        			"desc" : "Pieces et autres elements de preuve",
-       			"type": "none",
+       			"type": "bool",
        			"dateSection" :[
        			{
-       				"num" : 59,
+       				"num" : 60,
        				"desc" : "Depot des pieces en demande",
        				"type": "date"
        			},
        			{
-       				"num" : 60,
+       				"num" : 61,
        				"desc" : "Depot des pieces en defense",
        				"type": "date"
        			},
        			{
-       				"num" : 61,
+       				"num" : 62,
        				"desc" : "Depot des pieces par le tiers,le mis en cause ou l'intervenant.",
        				"type": "date"
        			}
        			]
        		},
        		{
-       			"num" : "",
+       			"num" : 63,
        			"desc" : "Depot des declarations ecrites pour valoir temoignage",
-       			"type": "none",
+       			"type": "bool",
        			"dateSection" :[
        			{
        				"num" : 64,

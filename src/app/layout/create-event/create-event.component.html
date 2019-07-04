@@ -52,7 +52,7 @@
             </div>
         </div>
         <div>
-            <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
+            <button mat-button (click)="previousStep(stepper)">{{ 'Back' | translate }}</button>
             <button mat-button (click)="nextStep(stepper)">{{ 'Next' | translate }}</button>
         </div>
     </mat-step>
