@@ -28,12 +28,14 @@ export class LoginComponent implements OnInit {
     cognitoError = false;
     confirmCode: boolean = false;
     codeWasConfirmed: boolean = false;
+    sessionReturn = [];
 
     codeVerifForm = new FormGroup({
         code: new FormControl("", Validators.required)
     });
 
     constructor(
+        private auth: AuthorizationService,
         private formBuilder: FormBuilder,
         private loginService: LoginService,
         private route: ActivatedRoute,
@@ -85,6 +87,13 @@ export class LoginComponent implements OnInit {
                         "currentUser",
                         JSON.stringify(response.payload)
                     );
+
+					this.auth.setSessionDatabase(response.payload["ACCESS_TOKEN"],localStorage.getItem("currentUser")).subscribe(
+						data => {
+							this.sessionReturn = data;
+						}
+					);
+					
                     this.router.navigate(["/schedule"]);
                 }
             });
