@@ -56,7 +56,7 @@ export class ProtocolService {
   }
 
   getUserAttribute(): Observable<Event[]> {
-        var localSecretKey = this.getSecretKey();
+        var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
 
         let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 

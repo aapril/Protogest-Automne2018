@@ -113,13 +113,7 @@ export class AuthorizationService {
     });
   }
 
-    getSecretKey(): String {
-        var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
-        return localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken');
-    }
-
-    setSessionDatabase(key, email): Observable<Event[]> {
-        var localSecretKey = this.getSecretKey();
+    setSessionDatabase(key): Observable<Event[]> {
 
         let allHeaders = Object.assign({}, headersDict, {'Authentification': key});
 

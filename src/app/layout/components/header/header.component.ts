@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import {ProtocolService} from '../../../shared/services/protocol.service';
 
 @Component({
     selector: 'app-header',
@@ -9,8 +10,10 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
     pushRightClass = 'push-right';
+    userName: String;
+    profilData;
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private protocolService: ProtocolService, private translate: TranslateService, public router: Router) {
 
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
         this.translate.setDefaultLang('en');
@@ -26,6 +29,17 @@ export class HeaderComponent implements OnInit {
                 this.toggleSidebar();
             }
         });
+        console.log(localStorage.getItem("currentUser"));
+
+
+        this.protocolService.getUserAttribute().subscribe(
+            data => {
+                this.profilData = data[0];
+                this.userName = this.profilData.name +" "+this.profilData.familyName;
+            }
+        );
+
+
     }
 
     ngOnInit() {}

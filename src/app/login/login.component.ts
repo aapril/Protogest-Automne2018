@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
                         JSON.stringify(response.payload)
                     );
 
-					this.auth.setSessionDatabase(response.payload["ACCESS_TOKEN"],localStorage.getItem("currentUser")).subscribe(
+					this.auth.setSessionDatabase(response.payload["ACCESS_TOKEN"]).subscribe(
 						data => {
 							this.sessionReturn = data;
 						}
