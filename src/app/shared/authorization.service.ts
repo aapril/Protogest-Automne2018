@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 import {AuthenticationDetails, CognitoUser, CognitoUserPool, CognitoUserAttribute} from 'amazon-cognito-identity-js';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {catchError} from 'rxjs/operators';
+
+const headersDict = {
+    'Content-Type':  'application/json',
+    'Access-Control-Allow-Origin': '*'
+};
 
 const userPool = new CognitoUserPool(environment.poolData);
 
@@ -9,7 +16,7 @@ const userPool = new CognitoUserPool(environment.poolData);
 export class AuthorizationService {
   cognitoUser: any;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   register(email, password) {
 
@@ -105,6 +112,22 @@ export class AuthorizationService {
       });
     });
   }
+
+    setSessionDatabase(key): Observable<Event[]> {
+
+        let allHeaders = Object.assign({}, headersDict, {'Authentification': key});
+
+        const httpOptions = {
+            headers: new HttpHeaders(allHeaders)
+        };
+
+        const protocole = {
+            'session': {
+            }};
+        return this.httpClient.post<Event[]>(environment.backendUrl + '/store/session',protocole ,httpOptions).pipe(catchError((error:any) => {
+            return throwError(error.statusText);
+        }));
+    }
 
   isLoggedIn() {    
     return userPool.getCurrentUser() != null;

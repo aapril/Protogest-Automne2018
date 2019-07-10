@@ -1,0 +1,70 @@
+<div class="col-md-12">
+
+    <h1>{{ 'Info Perso' | translate }}</h1>
+    <hr>
+    <form class="form-inline" [formGroup]="profilForm">
+    <div class="col-md-11 offset-md-1">
+        <div class='row mb-2'>
+            <div class="col-md-7">
+                <label>{{ 'First Name' | translate }}</label>
+            </div>
+            <div class="col-md-4 float-left">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input #firstNameFromTemplate formControlName="firstName" type="text" class="form-control input-underline input-lg" id="firstName" placeholder="First name" value="{{profilData.name}}">
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-11 offset-md-1">
+        <div class='row mb-2'>
+            <div class="col-md-7">
+                <label>{{ 'Last Name' | translate }}</label>
+            </div>
+            <div class="col-md-4 float-left">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input #lastNameFromTemplate  formControlName="lastName" type="text" class="form-control input-underline input-lg" id="lastName" placeholder="Last name" value="{{profilData.familyName}}">
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+        <button mat-button (click)="updateProfil()">Modifier le protocole</button>
+    </form>
+    <h1>{{ 'Reset Password' | translate }}</h1>
+    <hr>
+    <form class="form-inline" [formGroup]="passwordForm">
+        <div class="col-md-11 offset-md-1">
+            <div class='row mb-2'>
+                <div class="col-md-7">
+                    <label>{{ 'Old Password' | translate }}</label>
+                </div>
+                <div class="col-md-4 float-left">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input #oldPasswordFromTemplate formControlName="oldPassword" type="password" class="form-control input-underline input-lg" id="oldPassword" placeholder="Old Password">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-11 offset-md-1">
+            <div class='row mb-2'>
+                <div class="col-md-7">
+                    <label>{{ 'New Password' | translate }}</label>
+                </div>
+                <div class="col-md-4 float-left">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input #NewPasswordFromTemplate  formControlName="newPassword" type="password" class="form-control input-underline input-lg" id="newPassword" placeholder="New Password">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button mat-button [routerLink]="['/login']" (click)="changePassword()">Change Password</button>
+    </form>
+
+</div>

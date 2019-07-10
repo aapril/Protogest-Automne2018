@@ -1,30 +1,30 @@
 {
     "protocole" : [
      {
-       "description" : "Protocole d'instance du Canada",
+       "description" : "Protocole d'instance du Quebec",
        "protocol_fields" : [
        	{
        		"sectionID" : "1",
-       		"sectionName" : "Preliminary exceptions",
+       		"sectionName" : "Moyens Preliminaires",
        		"subSection" : [
        		{
        			"num" : 7,
-       			"desc" : "Declinary exceptions",
+       			"desc" : "Moyens declinatoires",
        			"type": "bool",
        			"dateSection" :[
        			{
        				"num" : 8,
-       				"desc" : "Referral to competent court or dismissal (C.C.P., a. 167)",
+       				"desc" : "Renvoi au tribunal competent ou rejet (art. 177 C.p.c.)",
        				"type": "date"
        			},
        			{
        				"num" : 9,
-       				"desc" : "Other exception (with a reference to the C.C.P. article)",
+       				"desc" : "Autre (avec reference a l'article C.p.c)",
        				"type": "date"
        			},
        			{
        				"num" : 10,
-       				"desc" : "Submitted by (enter the name of the party)",
+       				"desc" : "Soumis par ( inscrire le nom de la partie ) ",
        				"type": "string"
        			}
        			]
@@ -32,17 +32,17 @@
        		},
        		{
        			"num" : 11,
-       			"desc" : "Exceptions to dismiss",
+       			"desc" : "Moyens d'irrecevabilite",
        			"type": "bool",
        			"dateSection" :[
        			{
        				"num" : 12,
-       				"desc" : "Dismissal (C.C.P., a. 168)",
+       				"desc" : "En rejet (art. 168 C.p.c.)",
        				"type": "date"
        			},
        			{
        				"num" : 13,
-       				"desc" : "Submitted by (enter the name of the party)",
+       				"desc" : "Soumis par ( inscrire le nom de la partie ) ",
        				"type": "string"
        			}
        			]
@@ -50,54 +50,54 @@
        		},
        		{
        			"num" : 14,
-       			"desc" : "Other preliminary exceptions",
+       			"desc" : "Autres Moyens preliminaires",
        			"type": "bool",
        			"dateSection" :[
        			{
        				"num" : 15,
-       				"desc" : "Clarifications regarding (C.C.P., a. 169)",
+       				"desc" : "Precision sur  (art. 1779 C.p.c.)",
        				"type": "date"
        			},
        			{
        				"num" : 16,
-       				"desc" : "Disclosure of documents (C.C.P., a. 169))",
+       				"desc" : "Communication de documents (art. 169 C.p.c)",
        				"type": "date"
        			},
        			{
        				"num" : 17,
-       				"desc" : "Striking of immaterial allegations (C.C.P., a. 169)",
+       				"desc" : "Radiation d'allegations non pertinentes (art. 169 C.p.c)",
        				"type": "date"
        			},
        			{
        				"num" : 18,
-       				"desc" : "Requirement to provide suretyship (C.C.P., a. 492)",
+       				"desc" : "Requete pour cautionnement (art. 492 C.p.c)",
        				"type": "date"
        			},
        			{
        				"num" : 19,
-       				"desc" : "Other exception (indicate its nature)",
+       				"desc" : "Autre (indiquer la nature)",
        				"type": "string"
        			},
        			{
        				"num" : 20,
-       				"desc" : "Submitted by (enter the name of the party)",
+       				"desc" : "Soumis par ( inscrire le nom de la partie ) ",
        				"type": "string"
        			}
        			]
        		},
        		{
        			"num" : 21,
-       			"desc" : "Application under article 51 C.C.P.",
+       			"desc" : "Demande en vertu de l'article 51 C.p.c.",
        			"type": "bool",
        			"dateSection" :[
        			{
        				"num" : 22,
-       				"desc" : "Application under article 51 C.C.P.",
+       				"desc" : "Demande en vertu de l'article 51 C.p.c.",
        				"type": "date"
        			},
        			{
        				"num" : 23,
-       				"desc" : "Submitted by (enter the name of the party)",
+       				"desc" : "Soumis par ( inscrire le nom de la partie ) ",
        				"type": "string"
        			}
        			]
@@ -106,53 +106,53 @@
        	},
        	{
        		"sectionID" : "2",
-       		"sectionName" : "Other proceedings",
+       		"sectionName" : "Autres Procedures",
        		"subSection" : [
        		{
        			"num" : 24,
-       			"desc" : "Safeguard measures (C.C.P., a. 169 1st para.)",
+       			"desc" : "Mesures de sauvegarde ( art. 169 al. 1 C.p.c. )",
        			"type": "bool",
        			"dateSection" :[
        			{
        				"num" : 25,
-       				"desc" : "Application for safeguard measures",
+       				"desc" : "Demande pour mesure de sauvegarde",
        				"type": "date"
        			},
        			{
        				"num" : 26,
-       				"desc" : "Submitted by (enter the name of the party)",
+       				"desc" : "Soumis par ( inscrire le nom de la partie ) ",
        				"type": "string"
        			}
        			]
        		},
        		{
        			"num" : 27,
-       			"desc" : "Other incidental procedures",
+       			"desc" : "Autres incidents proceduraux",
        			"type": "bool",
        			"dateSection" :[
        			{
        				"num" : 28,
-       				"desc" : "Amendment of a pleading",
+       				"desc" : "Modification d'un acte de procedure",
        				"type": "date"
        			},
        			{
        				"num" : 29,
-       				"desc" : "Determination of an issue of law",
+       				"desc" : "Decision sur un point de droit",
        				"type": "date"
        			},
        			{
        				"num" : 30,
-       				"desc" : "Declaration of disqualification",
+       				"desc" : "Declaratio d'inhabilite",
        				"type": "date"
        			},
        			{
        				"num" : 31,
-       				"desc" : "Other (indicate its nature)",
+       				"desc" : "Autre ( indiquer la nature )",
        				"type": "date"
        			},
        			{
        				"num" : 32,
-       				"desc" : "Submitted by (enter the name of the party)",
+       				"desc" : "Soumis par ( inscrire le nom de la partie ) ",
        				"type": "string"
        			}
        			]
@@ -161,38 +161,38 @@
        	},
        	{
        		"sectionID" : "3",
-       		"sectionName" : "Defence",
+       		"sectionName" : "Defense",
        		"subSection" : [
        		{
        			"num" : 33,
-       			"desc" : "Under article 171 C.C.P., the case is subject to the rules of oral defence. Despite this, all parties are applying for authorization from the court for the case to the subject to the rules of written defence, on the following ground",
+       			"desc" : ".........",
        			"type": "bool"
        		},
        		{
        			"num" : 34,
-       			"desc" : "The defendant intends to file a cross-application",
+       			"desc" : "Le defendeur entend produire une demande reconventionnelle",
        			"type": "bool",
        			"dateSection" :[
        			{
        				"num" : 35,
-       				"desc" : "Deadline for filling the cross-application",
+       				"desc" : "Date limite pour le depot de la demande reconventionnelle",
        				"type": "date"
        			},
        			{
        				"num" : 36,
-       				"desc" : "Deadline for filling the defence to the cross-application",
+       				"desc" : "Date limite pour le depot de la defense reconventionnelle",
        				"type": "date"
        			}
        			]
        		},
        		{
        			"num" : 38,
-       			"desc" : "Third person intervention or impleading (C.C.P, aa. 151 and 158(4))",
+       			"desc" : "Intervention ou mise en cause d'un tiers ( art.151 et 158 al. 4 C.p.c. )",
        			"type": "bool",
        			"dateSection" :[
        			{
        				"num" : 39,
-       				"desc" : "Deadline for the intervention or impleading of a third person",
+       				"desc" : "Date limite pour l'intervention ou la mise en cause d'un tiers",
        				"type": "date"
        			}
        			]
@@ -201,111 +201,82 @@
        	},
        	{
        		"sectionID" : "4",
-       		"sectionName" : "Expert opinions",
+       		"sectionName" : "Expertises",
        		"subSection" : [
        		{
-       			"num" : "40a",
-       			"desc" : "Joint expert opinion(C.C.P. a. 232)",
-       			"type": "bool",
-                            "dateSection" :[
-                            {
-                                   "num" : "40b",
-                                   "desc" : "Deadline for filling joint expert opinion",
-                                   "type": "date"
-                            }
-                            ]
+       			"num" : 40,
+       			"desc" : "Expertise(s) commune(s)",
+       			"type": "bool"
        		},
-                     {
-                            "num" : "41a",
-                            "desc" : "Expert opinion for the plaintiff (not more than one per area or matter of expertise) (C.C.P. a. 232)",
-                            "type": "bool",
-                            "dateSection" :[
-                            {
-                                   "num" : "41b",
-                                   "desc" : "Deadline for filling an expert opinion for paintliff",
-                                   "type": "date"
-                            }
-                            ]
-                     },
-                     {
-                            "num" : "42a",
-                            "desc" : "Expert opinion for the defendant (not more than one per area or matter of expertise) (C.C.P. a. 232)",
-                            "type": "bool",
-                            "dateSection" :[
-                            {
-                                   "num" : "42b",
-                                   "desc" : "Deadline for filling an expert opinion for defendant",
-                                   "type": "date"
-                            }
-                            ]
-                     },
-                     {
-                            "num" : "43a",
-                            "desc" : "Expert opinion for third person or impleaded person (not more than one per area or matter of expertise) (C.C.P. a. 232)",
-                            "type": "bool",
-                            "dateSection" :[
-                            {
-                                   "num" : "43b",
-                                   "desc" : "Deadline for filling an expert opinion for third person or impleaded person",
-                                   "type": "date"
-                            }
-                            ]
-                     }
-       		
+       		{
+       			"num" : 41,
+       			"desc" : "Expertise(s) en demande",
+       			"type": "bool"
+       		},
+       		{
+       			"num" : 42,
+       			"desc" : "Expertise(s) en defense",
+       			"type": "bool"
+       		},
+       		{
+       			"num" : 43,
+       			"desc" : "Expertise(s) du tiers ou mis en cause",
+       			"type": "bool"
+       		}
        		]
        	},
        	{
        		"sectionID" : "5",
-       		"sectionName" : "Examinations",
+       		"sectionName" : "Interrogatoires",
        		"subSection" : [
        		{
        			"num" : 4,
-       			"desc" : "Pre-trial examination(s) by either party (C.C.P.,aa. 148(3), 158(3) and 221)",
+       			"desc" : "Interrogatoire(s) prealable(s) a l'instruction par l'une ou l'autre des parties ( art. 148 al.3, 158 al.3 et 221 C.p.c.)",
        			"type": "bool"
        		},
        		{
        			"num" : 45,
-       			"desc" : "Value of the subject matter of the dispute is less than $100 000(C.C.P., a.229)",
+       			"desc" : "Valeur de l'objet du litige inferieure a 100 000 $ ( art. 229 C.p.c.)",
        			"type": "bool"
        		},
        		{
        			"num" : 46,
-       			"desc" : "The parties intend to submit their anticipated objections before pre-trial examination(C.C.P., a.228)",
+       			"desc" : "Les parties entendent soumettre avant l'interrogatoire les objections qu'elles anticipent ( art. 228 C.p.c.) ",
        			"type": "bool",
        			"dateSection" :[
        			{
        				"num" : 52,
-       				"desc" : "Deadline for filling transcripts for the paintliff (C.C.P,a. 227)",
+       				"desc" : "Date limite pour le depot des transcription en demande (art 227 C.p.c.)",
        				"type": "date"
        			},
        			{
        				"num" : 53,
-       				"desc" : "Deadline for filling transcripts for the defendant (C.C.P,a. 227)",
+       				"desc" : "Date limite pour le depot des transcriptions en defense ( art. 227 C.p.c.)",
        				"type": "date"
        			},
        			{
        				"num" : 54,
-       				"desc" : "Deadline for filling transcripts for the impleaded person (C.C.P,a. 227)",
+       				"desc" : "Date limite pour le depot des transcriptions par le mis en cause ( art. 227 C.p.c.)",
        				"type": "date"
        			},
        			{
        				"num" : 55,
-       				"desc" : "Deadline for presenting the objections set forth in the second paragraph of article 228 C.C.P., which were raised during the pre-trial examination for the paintliff",
+       				"desc" : "Date limite pour soumettre les objections enoncees a l'article 228 al. 2 C.p.c. soulevees lors des interrogatoires prealables en demande",
        				"type": "date"
        			},
        			{
        				"num" : 56,
-       				"desc" : "Deadline for presenting the objections set forth in the second paragraph of article 228 C.C.P., which were raised during the pre-trial examination for the defendant",
+       				"desc" : "Date limite pour soumettre les objections enoncees a l'article 228 al. 2 C.p.c. soulevees lors des interrogatoires prealables en defense",
        				"type": "date"
        			},
        			{
        				"num" : 57,
-       				"desc" : "Deadline for disclosure of all the undertakings made during the pre-trial examinations for the paintliff",
+       				"desc" : "Date limite pour la communication de tous les engagements souscrits lors des interrogatoires prealables en demande.",
        				"type": "date"
        			},
        			{
        				"num" : 58,
-       				"desc" : "Deadline for disclosure of all the undertakings made during the pre-trial examinations for the defendant",
+       				"desc" : "Date limite pour la communication de tous les engagements souscrits lors des interrogatoires prealables en defense.",
        				"type": "date"
        			}
        			]
@@ -314,43 +285,43 @@
        	},
        	{
        		"sectionID" : "6",
-       		"sectionName" : "Exhibits",
+       		"sectionName" : "Pieces",
        		"subSection" : [
        		{
-       			"num" : "",
-       			"desc" : "Exhibits and other evidence (C.C.P., aa. 145 and 158)",
-       			"type": "none",
+       			"num" : 59,
+       			"desc" : "Pieces et autres elements de preuve",
+       			"type": "bool",
        			"dateSection" :[
        			{
-       				"num" : 59,
-       				"desc" : "Filling of exhibits for the paintliff",
-       				"type": "date"
-       			},
-       			{
        				"num" : 60,
-       				"desc" : "Filling of exhibits for the defendant",
+       				"desc" : "Depot des pieces en demande",
        				"type": "date"
        			},
        			{
        				"num" : 61,
-       				"desc" : "Filling of exhibits for the third person, impleaded person or intervening person",
+       				"desc" : "Depot des pieces en defense",
+       				"type": "date"
+       			},
+       			{
+       				"num" : 62,
+       				"desc" : "Depot des pieces par le tiers,le mis en cause ou l'intervenant.",
        				"type": "date"
        			}
        			]
        		},
        		{
-       			"num" : "",
-       			"desc" : "Filling of affidavits in lieu of testimony",
-       			"type": "none",
+       			"num" : 63,
+       			"desc" : "Depot des declarations ecrites pour valoir temoignage",
+       			"type": "bool",
        			"dateSection" :[
        			{
        				"num" : 64,
-       				"desc" : "Filling of affidavits for paintliff",
+       				"desc" : "Depot des declarations ecrites en demande",
        				"type": "date"
        			},
        			{
        				"num" : 65,
-       				"desc" : "Filling of affidavits for defendant",
+       				"desc" : "Depot des declarations ecrites pour en defense",
        				"type": "date"
        			}
        			]

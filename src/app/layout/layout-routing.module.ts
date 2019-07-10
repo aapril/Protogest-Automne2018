@@ -16,7 +16,8 @@ const routes: Routes = [
             { path: 'event/:id/tasks', loadChildren: './tasks/tasks.module#TasksModule' },
             { path: 'create-event', loadChildren: './create-event/create-event.module#CreateEventModule'},
             { path: 'create-protocol', loadChildren: './create-protocol/create-protocol.module#CreateProtocolModule'},
-            { path: 'list-protocol', loadChildren: './list-protocol/list-protocol.module#ListProtocolModule'}
+            { path: 'list-protocol', loadChildren: './list-protocol/list-protocol.module#ListProtocolModule'},
+            { path: 'profil', loadChildren: './profil/profil.module#ProfilModule'}
 
         ]
     }

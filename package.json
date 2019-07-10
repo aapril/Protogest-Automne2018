@@ -31,7 +31,7 @@
         "@types/dhtmlxscheduler": "^4.3.36",
         "amazon-cognito-identity-js": "^3.0.7",
         "angular-bootstrap-md": "^7.4.2",
-        "angular-calendar": "^0.26.4",
+        "angular-calendar": "^0.27.11",
         "angular-calendar-scheduler": "^1.0.6",
         "chart.js": "^2.7.2",
         "core-js": "^2.5.5",

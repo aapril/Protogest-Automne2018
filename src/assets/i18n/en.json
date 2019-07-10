@@ -54,5 +54,12 @@
     "Here" : "Here is the dates we've imported.",
     "Fill" : "Fill in the details",
     "Moyens" : "Preliminary exceptions",
-    "Sections" : "Sections"
+    "Sections" : "Sections",
+    "Info Perso" : "Personal Information",
+    "First Name" : "First name",
+    "Last Name" : "Last name",
+    "Reset Password" : "Reset Password",
+    "Old Password" : "Old Password",
+    "New Password" : "New Password"
+
 }
