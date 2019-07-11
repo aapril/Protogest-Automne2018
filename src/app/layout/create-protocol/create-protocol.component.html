@@ -2,7 +2,7 @@
   <h3>{{ 'Protocol' | translate }}</h3>
   <hr>
   <mat-horizontal-stepper #stepper>
-    <mat-step [stepControl]="firstFormGroup">
+    <mat-step [stepControl]="firstFormGroup" [completed]="false">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>{{ 'Type' | translate }}</ng-template>
         <mat-radio-group [(ngModel)]="Protocol" formControlName="firstCtrl" required>
@@ -18,7 +18,10 @@
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>{{ 'Sections' | translate }}</ng-template>
-        <app-create-template [templateType]="Protocol" [(selectedSections)]="selectedSections"></app-create-template>
+        <app-create-template
+          [selectedSchema]="selectedSchema"
+          [(selectedSections)]="selectedSections"
+        ></app-create-template>
         <div>
           <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
           <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
@@ -45,18 +48,10 @@
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
-          <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
+          <button mat-button (click)='saveForm()'>{{ 'Done' | translate }}</button>
         </div>
       </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>{{ 'Done' | translate }}</ng-template>
-        {{ 'Now Done' | translate }}
-      <div>
-        <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
-        <button mat-button (click)='saveForm()'>{{ 'Save' | translate }}</button>
-      </div>
-    </mat-step>
+    </mat-step>>
   </mat-horizontal-stepper>
     
 </div>

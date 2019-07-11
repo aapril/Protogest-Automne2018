@@ -28,8 +28,10 @@ export class CreateProtocolComponent implements OnInit {
   backendUrlForOutlook: String = generateOutlookAuthUrl();
 
   // HTTP aware stuff
-  protocolSchemas: any
-  selectedSchema: any
+  protocolSchemas: any = []
+  selectedSchema: any = {
+    protocolFields: []
+  }
 
   constructor(private _formBuilder: FormBuilder, private http: HttpClient, private createEvent: CreateEventComponent, private createTemplate: CreateTemplateComponent, private route: ActivatedRoute, private translate: TranslateService) {}
 
@@ -88,5 +90,7 @@ export class CreateProtocolComponent implements OnInit {
       this.selectedSchema = this.protocolSchemas.filter(p =>
           p.name.toLowerCase().includes(this.Protocol)
       )[0]
+
+      this.selectedSections = [];
   }
 }

@@ -16,15 +16,13 @@ import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
     templateUrl: "./create-event.component.html",
     styleUrls: ["./create-event.component.scss"]
 })
-export class CreateEventComponent implements OnChanges {
+export class CreateEventComponent {
     @Input() Protocol: string;
     @Input() selectedSections: any = []
     @Input() parentStepper: MatStepper
 
     public readonly QUEBEC_BUTTON_VALUE: string = "quebec";
     public readonly CANADA_BUTTON_VALUE: string = "canada";
-
-    data = require('../../../jsonDir/protocole-schema-quebec.json');
 
     @Input() protocolSchemas: any
     @Input() selectedSchema: any
@@ -194,7 +192,7 @@ export class CreateEventComponent implements OnChanges {
     getSectionsToDisplay(){
         let toDisplay = []
 
-        this.data.protocole[0].protocol_fields.forEach(section => {
+        this.selectedSchema.protocolFields.forEach(section => {
         // If selectedSubsections contains a subSection listed in this section
         if(section.subSection.map(subSection => subSection.num).some(number => this.selectedSections.includes(number))) {
             toDisplay.push(section);
@@ -210,10 +208,10 @@ export class CreateEventComponent implements OnChanges {
     }
 
     nextStep(stepper: MatStepper) {
-        if(stepper.selectedIndex === stepper.steps.length - 1) {
-        this.parentStepper.next();
+        if(stepper.steps.length === 0 || stepper.selectedIndex === stepper.steps.length - 1) {
+            this.parentStepper.next();
         } else {
-        stepper.next();
+            stepper.next();
         }
     }
 

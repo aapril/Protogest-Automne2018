@@ -4,10 +4,10 @@
       <mat-sidenav opened mode="side" class="sections">
         <ul class="sidenav">
           <li 
-            [ngClass]="{'active': section.sectionID===currentSection.sectionID}" 
+            [ngClass]="{'active': section.sectionID===currentSection?.sectionID}" 
             (click)="changeCurrentSection(section.sectionID)"
             class="section" 
-            *ngFor="let section of data[templateType].protocole[0].protocol_fields"
+            *ngFor="let section of selectedSchema?.protocolFields"
           >{{section.sectionName}}</li>
         </ul>
       </mat-sidenav>
@@ -17,7 +17,7 @@
             <mat-checkbox [checked]="areAllSelected()" (change)="selectAll()" [disableRipple]="true" color="primary">Select All</mat-checkbox>
           </li>
           <hr>
-          <li class="sub-section" *ngFor="let subSection of currentSection.subSection">
+          <li class="sub-section" *ngFor="let subSection of currentSection?.subSection">
             <mat-checkbox [checked]="isSectionSelected(subSection.num)" [disableRipple]="true" (change)="toggleSection(subSection.num)" color="primary">{{subSection.desc}}</mat-checkbox>
           </li>
         </ul>

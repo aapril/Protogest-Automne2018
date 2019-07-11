@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 declare var require: any;
 
@@ -8,27 +8,27 @@ declare var require: any;
   styleUrls: ['./create-template.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CreateTemplateComponent implements OnInit {
-  @Input() templateType;
-  templateName = "";
-  data = {
-    quebec: require('../../../jsonDir/protocole-schema-quebec.json'),
-    canada: require('../../../jsonDir/protocole-schema-canada.json')
-  };
+export class CreateTemplateComponent implements OnInit, OnChanges {
   currentSection = {
     subSection: []
   }
   @Input() selectedSections: any = []
   @Output() selectedSectionsChange = new EventEmitter(this.selectedSections);
 
+  @Input() selectedSchema: any
+
   constructor() {}
 
   ngOnInit() {
-    this.currentSection = this.data[this.templateType].protocole[0].protocol_fields[0]
+    this.currentSection = this.selectedSchema ? this.selectedSchema.protocolFields[0] : undefined;
+  }
+
+  ngOnChanges(){
+    this.currentSection = this.selectedSchema ? this.selectedSchema.protocolFields[0] : undefined;
   }
 
   changeCurrentSection(sectionID) {
-    this.currentSection = this.data[this.templateType].protocole[0].protocol_fields.find(section => section.sectionID === sectionID)
+    this.currentSection = this.selectedSchema.protocolFields.find(section => section.sectionID === sectionID)
   }
 
   toggleSection(sectionNumber) {
@@ -41,7 +41,7 @@ export class CreateTemplateComponent implements OnInit {
   }
 
   areAllSelected(){
-    return this.currentSection.subSection.every(subSection => {
+    return this.currentSection && this.currentSection.subSection.every(subSection => {
       if(this.selectedSections.find(selected => selected === subSection.num)) {
         return true;
       }
@@ -66,9 +66,5 @@ export class CreateTemplateComponent implements OnInit {
 
   isSectionSelected(sectionNumber) {
     return (this.selectedSections.indexOf(sectionNumber) >= 0)
-  }
-
-  setTemplateType(type){
-    this.templateType = type;
   }
 }

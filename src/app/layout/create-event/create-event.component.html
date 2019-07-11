@@ -1,6 +1,6 @@
 <h4 *ngIf="getSectionsToDisplay().length === 0">No sections selected.</h4>
 <mat-horizontal-stepper id="sectionStepper" #stepper>
-    <mat-step *ngFor="let section of getSectionsToDisplay()" [stepControl]="firstFormGroup">
+    <mat-step *ngFor="let section of getSectionsToDisplay()" [stepControl]="firstFormGroup" [completed]="false">
         <ng-template matStepLabel>{{ section.sectionName }}</ng-template>
         <div *ngFor="let subsection of getSubSectionsToDisplay(section)" class="subsection-border">
             <div class='row mt-3'>
@@ -79,9 +79,9 @@
                 </div>
             </div>
         </div>
-        <div>
-            <button mat-button (click)="previousStep(stepper)">{{ 'Back' | translate }}</button>
-            <button mat-button (click)="nextStep(stepper)">{{ 'Next' | translate }}</button>
-        </div>
     </mat-step>
 </mat-horizontal-stepper>
+<div>
+    <button mat-button (click)="previousStep(stepper)">{{ 'Back' | translate }}</button>
+    <button mat-button (click)="nextStep(stepper)">{{ 'Next' | translate }}</button>
+</div>
