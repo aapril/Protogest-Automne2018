@@ -5,6 +5,8 @@ import { CreateTemplateComponent } from '../create-template/create-template.comp
 import { ActivatedRoute } from '@angular/router';
 import { generateOutlookAuthUrl } from '../../utils/outlookHelper.js';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from "../../../environments/environment";
 
 @Component({
   selector: 'app-create-protocol',
@@ -25,9 +27,19 @@ export class CreateProtocolComponent implements OnInit {
   fourthFormGroup: FormGroup;
   backendUrlForOutlook: String = generateOutlookAuthUrl();
 
-  constructor(private _formBuilder: FormBuilder, private createEvent: CreateEventComponent, private createTemplate: CreateTemplateComponent, private route: ActivatedRoute, private translate: TranslateService) {}
+  // HTTP aware stuff
+  protocolSchemas: any
+  selectedSchema: any
+
+  constructor(private _formBuilder: FormBuilder, private http: HttpClient, private createEvent: CreateEventComponent, private createTemplate: CreateTemplateComponent, private route: ActivatedRoute, private translate: TranslateService) {}
 
   ngOnInit() {
+    this.http.get(environment.backendUrl + "/protocol-schemas")
+      .subscribe(data => {
+        this.protocolSchemas = data
+        this.selectedSchema = data[0]
+      })
+
     localStorage.removeItem('occupiedDates');
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
@@ -66,11 +78,15 @@ export class CreateProtocolComponent implements OnInit {
     this.openOccupiedDatesModal.nativeElement.click();
   }
 
-    changeLang(language: string) {
-        this.translate.use(language);
-    }
+  changeLang(language: string) {
+      this.translate.use(language);
+  }
 
-    newProtocol(Protocol: string) {
-        this.Protocol = Protocol;
-    }
+  newProtocol(Protocol: string) {
+      this.Protocol = Protocol;
+
+      this.selectedSchema = this.protocolSchemas.filter(p =>
+          p.name.toLowerCase().includes(this.Protocol)
+      )[0]
+  }
 }

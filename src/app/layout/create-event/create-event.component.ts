@@ -17,77 +17,41 @@ import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
     styleUrls: ["./create-event.component.scss"]
 })
 export class CreateEventComponent implements OnChanges {
-  @Input() Protocol: string;
-  @Input() selectedSections: any = []
-  @Input() parentStepper: MatStepper
+    @Input() Protocol: string;
+    @Input() selectedSections: any = []
+    @Input() parentStepper: MatStepper
 
-  public readonly QUEBEC_BUTTON_VALUE: string = "quebec";
-  public readonly CANADA_BUTTON_VALUE: string = "canada";
+    public readonly QUEBEC_BUTTON_VALUE: string = "quebec";
+    public readonly CANADA_BUTTON_VALUE: string = "canada";
 
-  data = require('../../../jsonDir/protocole-schema-quebec.json');
+    data = require('../../../jsonDir/protocole-schema-quebec.json');
 
-  protocolSchemas: any
+    @Input() protocolSchemas: any
+    @Input() selectedSchema: any
 
-  temp = {};
-  final: any = [];
-  occupiedDates: any = [];
+    temp = {};
+    final: any = [];
+    occupiedDates: any = [];
 
-  constructor(private protocolService: ProtocolService, protected http: HttpClient, @Inject(DOCUMENT) document) {}
+    constructor(private protocolService: ProtocolService, protected http: HttpClient, @Inject(DOCUMENT) document) {}
 
-
-  isDisabled(date: NgbDateStruct) {
-    // The localStorage is set in the CreateProtocolComponent
-    if (localStorage.getItem("occupiedDates") !== null) {
-        const testoccupiedDates = localStorage.getItem("occupiedDates");
-        return (
-            testoccupiedDates.indexOf(
-                date.year +
-                    "-" +
-                    (date.month < 10 ? "0" + date.month : date.month) +
-                    "-" +
-                    (date.day < 10 ? "0" + date.day : date.day)
-            ) > -1
-        );
-    } else {
-        return false;
-    }
-  }
-
-  ngOnInit() {
-    this.http
-        .get(environment.backendUrl + "/protocol-schemas")
-        .subscribe(response => {
-            if (!response) {
-                throw new Error("Failed to communicate with server");
-            }
-            this.protocolSchemas = response;
-            this.data = {
-                protocole: [
-                    this.protocolSchemas.filter(p => {
-                        return p.name.toLowerCase().includes("quebec");
-                    })[0]
-                ]
-            };
-        });
-  }
-
-    ngOnChanges(changes: SimpleChanges) {
-        if (this.Protocol == 'canada') {
-            this.data = require('../../../jsonDir/protocole-schema-canada.json');
+    isDisabled(date: NgbDateStruct) {
+        // The localStorage is set in the CreateProtocolComponent
+        if (localStorage.getItem("occupiedDates") !== null) {
+            const testoccupiedDates = localStorage.getItem("occupiedDates");
+            return (
+                testoccupiedDates.indexOf(
+                    date.year +
+                        "-" +
+                        (date.month < 10 ? "0" + date.month : date.month) +
+                        "-" +
+                        (date.day < 10 ? "0" + date.day : date.day)
+                ) > -1
+            );
         } else {
-            this.data = require('../../../jsonDir/protocole-schema-quebec.json');
+            return false;
         }
-      }
-
-    // ngOnChanges(changes: SimpleChanges) {
-    //     this.data = {
-    //         protocole: [
-    //             this.protocolSchemas.filter(p =>
-    //                 p.name.toLowerCase().includes(this.Protocol)
-    //             )[0]
-    //         ]
-    //     };
-    // }
+    }
 
     onChange(t2, value) {
         // The localStorage is set in the CreateProtocolComponent
@@ -164,10 +128,10 @@ export class CreateEventComponent implements OnChanges {
                         value:
                             t2.type === "date"
                                 ? value.year +
-                                  "-" +
-                                  value.month +
-                                  "-" +
-                                  value.day
+                                    "-" +
+                                    value.month +
+                                    "-" +
+                                    value.day
                                 : value,
                         desc: t2.desc
                     });
@@ -227,37 +191,37 @@ export class CreateEventComponent implements OnChanges {
             });
     }
 
-  getSectionsToDisplay(){
-    let toDisplay = []
+    getSectionsToDisplay(){
+        let toDisplay = []
 
-    this.data.protocole[0].protocol_fields.forEach(section => {
-      // If selectedSubsections contains a subSection listed in this section
-      if(section.subSection.map(subSection => subSection.num).some(number => this.selectedSections.includes(number))) {
-        toDisplay.push(section);
-      }
-    })
+        this.data.protocole[0].protocol_fields.forEach(section => {
+        // If selectedSubsections contains a subSection listed in this section
+        if(section.subSection.map(subSection => subSection.num).some(number => this.selectedSections.includes(number))) {
+            toDisplay.push(section);
+        }
+        })
 
-    return toDisplay;
-  }
-
-  getSubSectionsToDisplay(currentSection) {
-    let that = this;
-    return currentSection.subSection.filter(subSection => that.selectedSections.find(selected => selected === subSection.num))
-  }
-
-  nextStep(stepper: MatStepper) {
-    if(stepper.selectedIndex === stepper.steps.length - 1) {
-      this.parentStepper.next();
-    } else {
-      stepper.next();
+        return toDisplay;
     }
-  }
 
-  previousStep(stepper: MatStepper) {
-    if(stepper.selectedIndex === 0) {
-      this.parentStepper.previous();
-    } else {
-      stepper.previous();
+    getSubSectionsToDisplay(currentSection) {
+        let that = this;
+        return currentSection.subSection.filter(subSection => that.selectedSections.find(selected => selected === subSection.num))
     }
-  }
+
+    nextStep(stepper: MatStepper) {
+        if(stepper.selectedIndex === stepper.steps.length - 1) {
+        this.parentStepper.next();
+        } else {
+        stepper.next();
+        }
+    }
+
+    previousStep(stepper: MatStepper) {
+        if(stepper.selectedIndex === 0) {
+        this.parentStepper.previous();
+        } else {
+        stepper.previous();
+        }
+    }
 }

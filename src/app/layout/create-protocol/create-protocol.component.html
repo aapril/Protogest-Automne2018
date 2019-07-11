@@ -30,6 +30,8 @@
         <ng-template matStepLabel>{{ 'Fill' | translate }}</ng-template>
         <app-create-event 
           [Protocol]="Protocol"
+          [protocolSchemas]="protocolSchemas"
+          [selectedSchema]="selectedSchema"
           [selectedSections]="selectedSections"
           [parentStepper]="stepper"
         ></app-create-event>
