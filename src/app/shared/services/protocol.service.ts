@@ -7,55 +7,55 @@ import { throwError } from 'rxjs';
 
 
 const headersDict = {
-  'Content-Type':  'application/json',
-  'Access-Control-Allow-Origin': '*'
+    'Content-Type':  'application/json',
+    'Access-Control-Allow-Origin': '*'
 };
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ProtocolService {
 
-  constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) { }
 
-  getSecretKey(): String {
-    var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
-    return localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken');
-  }
+    getSecretKey(): String {
+        var localUser = localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.LastAuthUser');
+        return localStorage.getItem('CognitoIdentityServiceProvider.'+environment.poolData.ClientId+'.'+localUser+'.accessToken');
+    }
 
-  /**
-   * Gets all the events
-   * Returns: List of Event objects
-   */
-  getUserProtocols(): Observable<Event[]> {
-    var localSecretKey = this.getSecretKey();
+    /**
+     * Gets all the events
+     * Returns: List of Event objects
+     */
+    getUserProtocols(): Observable<Event[]> {
+        var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
 
-    let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
+        let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 
-    const httpOptions = {
-      headers: new HttpHeaders(allHeaders)
-    };
+        const httpOptions = {
+            headers: new HttpHeaders(allHeaders)
+        };
 
-    return this.httpClient.get<Event[]>(environment.backendUrl + '/my/protocols',httpOptions).pipe(catchError((error:any) => {
-      return throwError(error.statusText);
-    }));
-  }
+        return this.httpClient.get<Event[]>(environment.backendUrl + '/my/protocols',httpOptions).pipe(catchError((error:any) => {
+            return throwError(error.statusText);
+        }));
+    }
 
-   getUserRelatedProtocols(): Observable<Event[]> {
-    var localSecretKey = this.getSecretKey();
+    getUserRelatedProtocols(): Observable<Event[]> {
+        var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
 
-    let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
+        let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 
-    const httpOptions = {
-      headers: new HttpHeaders(allHeaders)
-    };
+        const httpOptions = {
+            headers: new HttpHeaders(allHeaders)
+        };
 
-    return this.httpClient.get<Event[]>(environment.backendUrl + '/my/related-protocols',httpOptions).pipe(catchError((error:any) => {
-      return throwError(error.statusText);
-    }));
-  }
+        return this.httpClient.get<Event[]>(environment.backendUrl + '/my/related-protocols',httpOptions).pipe(catchError((error:any) => {
+            return throwError(error.statusText);
+        }));
+    }
 
-  getUserAttribute(): Observable<Event[]> {
+    getUserAttribute(): Observable<Event[]> {
         var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
 
         let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
@@ -69,8 +69,8 @@ export class ProtocolService {
         }));
     }
 
-  setUserAttribute(firstName, lastName): Observable<Event[]> {
-        var localSecretKey = this.getSecretKey();
+    setUserAttribute(firstName, lastName): Observable<Event[]> {
+        var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
 
         let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 
@@ -83,66 +83,66 @@ export class ProtocolService {
         }));
     }
 
-  getProtocolByUUID(uuid): Observable<Event> {
-    var localSecretKey = this.getSecretKey();
+    getProtocolByUUID(uuid): Observable<Event> {
+        var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
 
-    let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
+        let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 
-    const httpOptions = {
-      headers: new HttpHeaders(allHeaders)
-    };
+        const httpOptions = {
+            headers: new HttpHeaders(allHeaders)
+        };
 
-    return this.httpClient.get<Event>(environment.backendUrl + '/my/protocols/' + uuid, httpOptions).pipe(catchError((error:any) => {
-      return throwError(error.statusText);
-    }));
-  }
+        return this.httpClient.get<Event>(environment.backendUrl + '/my/protocols/' + uuid, httpOptions).pipe(catchError((error:any) => {
+            return throwError(error.statusText);
+        }));
+    }
 
-  /** POST: add a new event to the database */
+    /** POST: add a new event to the database */
 
-  createProtocol (payload) {
-    var localSecretKey = this.getSecretKey();
+    createProtocol (payload) {
+        var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
 
-    let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
+        let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 
-    const httpOptions = {
-      headers: new HttpHeaders(allHeaders)
-    };
+        const httpOptions = {
+            headers: new HttpHeaders(allHeaders)
+        };
 
-    return this.httpClient.post(environment.backendUrl + '/my/protocols', payload, httpOptions)
-      .pipe(
-        catchError((error: any) => {
-          return throwError(error.statusText);
-        })
-    );
-  }
+        return this.httpClient.post(environment.backendUrl + '/my/protocols', payload, httpOptions)
+            .pipe(
+                catchError((error: any) => {
+                    return throwError(error.statusText);
+                })
+            );
+    }
 
-  resetPassword (): Observable<Event> {
-    var localSecretKey = this.getSecretKey();
+    resetPassword (): Observable<Event> {
+        var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
 
-    let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
+        let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 
-    const httpOptions = {
-      headers: new HttpHeaders(allHeaders)
-    };
+        const httpOptions = {
+            headers: new HttpHeaders(allHeaders)
+        };
 
-    return this.httpClient.get<Event>(environment.backendUrl + '/user/resetPass', httpOptions).pipe(catchError((error: any) => {
-        return throwError(error.statusText);
-    }));
-  }
+        return this.httpClient.get<Event>(environment.backendUrl + '/user/resetPass', httpOptions).pipe(catchError((error: any) => {
+            return throwError(error.statusText);
+        }));
+    }
 
-  changePassword (oldPassword, newPassword): Observable<Event[]> {
-      var localSecretKey = this.getSecretKey();
+    changePassword (oldPassword, newPassword): Observable<Event[]> {
+        var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
 
-      let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
+        let allHeaders = Object.assign({}, headersDict, {'Authentification': localSecretKey});
 
-      const httpOptions = {
-          headers: new HttpHeaders(allHeaders)
-      };
+        const httpOptions = {
+            headers: new HttpHeaders(allHeaders)
+        };
 
-      return this.httpClient.post<Event[]>(environment.backendUrl + '/user/changePassword/', { oldPassword : oldPassword, newPassword : newPassword} , httpOptions).pipe(catchError((error: any) => {
-          return throwError(error.statusText);
-      }));
-  }
+        return this.httpClient.post<Event[]>(environment.backendUrl + '/user/changePassword/', { oldPassword : oldPassword, newPassword : newPassword} , httpOptions).pipe(catchError((error: any) => {
+            return throwError(error.statusText);
+        }));
+    }
 
     forgotPassword (userName): Observable<Event[]> {
 
