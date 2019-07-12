@@ -72,7 +72,7 @@ export class ListProtocolComponent implements OnInit {
   }
 
   showProtocolCalendar(data) {
-    this.router.navigateByUrl('/schedule?id=' + data.formUUID);
+    this.router.navigateByUrl('/schedule?id=' + data.uuid);
   }
 
   updateProtocol(data) {

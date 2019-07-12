@@ -53,9 +53,10 @@ export class ScheduleComponent implements OnInit {
   }
 
   loadevents() {
+    // TODO: Add http call to get protocol schema associated with protocol and do mapping for descriptions
     this.protocolService.getUserProtocols().subscribe(
       data => {
-        this.protocol = data.filter(protocol => protocol['formUUID'] === this.protocoleId)[0];
+        this.protocol = data.filter(protocol => protocol['uuid'] === this.protocoleId)[0];
         this.protocol.fields.filter(event => event.type === "DATE").forEach(event => {
           var splitted = event.value.split("-");
             var year = splitted[0];

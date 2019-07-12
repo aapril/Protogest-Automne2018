@@ -21,6 +21,12 @@ export class SidebarComponent {
         const browserLang = this.translate.getBrowserLang();
         this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de/) ? browserLang : 'en');
 
+        if(!localStorage.getItem("sidebarCollapsed")){
+            localStorage.setItem("sidebarCollapsed", "false")
+        }
+
+        this.collapsed = JSON.parse(localStorage.getItem("sidebarCollapsed"))
+
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&
@@ -46,6 +52,13 @@ export class SidebarComponent {
 
     toggleCollapsed() {
         this.collapsed = !this.collapsed;
+        // This parses the local storage string to a bool, inverts the bool and stores it back as string
+        localStorage.setItem(
+            "sidebarCollapsed", 
+            JSON.stringify(
+                !JSON.parse(localStorage.getItem("sidebarCollapsed"))
+            )
+        )
         this.collapsedEvent.emit(this.collapsed);
     }
 
