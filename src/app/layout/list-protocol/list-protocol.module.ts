@@ -9,25 +9,27 @@ import { ListProtocolComponent } from './list-protocol.component';
 import { MatStepperModule, MatInputModule, MatButtonModule, MatAutocompleteModule } from '@angular/material';
 import { CreateEventModule } from '../create-event/create-event.module';
 import { ScheduleModule } from '../schedule/schedule.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ListProtocolRoutingModule,
-    MatStepperModule,
-    MatInputModule,
-    MatButtonModule,
-    MatAutocompleteModule,
-    MatRadioModule,
-    ScheduleModule,
-    CreateEventModule,
-    ScheduleModule,
-    TranslateModule
-  ],
-  declarations: [ListProtocolComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ListProtocolRoutingModule,
+        MatStepperModule,
+        MatInputModule,
+        MatButtonModule,
+        MatAutocompleteModule,
+        MatRadioModule,
+        ScheduleModule,
+        CreateEventModule,
+        ScheduleModule,
+        TranslateModule,
+        NgbModule
+    ],
+    declarations: [ListProtocolComponent],
 })
 export class ListProtocolModule { }

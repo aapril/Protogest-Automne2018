@@ -1,31 +1,161 @@
-<div class="col-md-12">
-	<h1>{{ 'Creer Protocol' | translate }}</h1>
-	<hr>
-	<div class="row" *ngFor="let x of userProtocol">
-		<div class="col-md-6 offset-md-1 mt-5" >
-			{{x.protocolName}}
-		</div>
-		<div class="col-md-2 mt-5">
-		<button mat-button (click)="showProtocolCalendar(x)">Voir le protocole</button>
-		</div>
-		<div class="col-md-2 mt-5">
-		<button mat-button (click)="updateProtocol(x)">Modifier le protocole</button>
-		</div>
-	</div>
+<ngb-tabset>
+    <ngb-tab>
+        <ng-template ngbTabTitle>{{ 'Creer Protocol' | translate }}</ng-template>
+        <ng-template ngbTabContent>
 
-	<div class="mt-5">
-		<h1>{{ 'Relier Protocol' | translate }}</h1>
-		<hr>
-		<div class="row" *ngFor="let z of userRelatedProtocol">
-			<div class="col-md-6 offset-md-1 mt-5" >
-				{{z.protocolUuid}}
-			</div>
-			<div class="col-md-2 mt-5">
-			<button mat-button (click)="showProtocolCalendar(z)">Voir le protocole</button>
-			</div>
-			<div class="col-md-2 mt-5">
-			<button mat-button (click)="updateProtocol(z)">Modifier le protocole</button>
-			</div>
-		</div>
-	</div>
-</div>
+            <div class="mt-5">
+                <h1>{{ 'Creer Protocol' | translate }}</h1>
+                <ngb-tabset>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{ 'Pending' | translate }}</ng-template>
+                        <ng-template ngbTabContent>
+                            <hr>
+                            <div class="row" *ngFor="let x of userProtocolPending">
+                                <div class="col-md-6 offset-md-1 mt-5" >
+                                    {{x.protocolName}}
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="showProtocolCalendar(x)">Voir le protocole</button>
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="updateProtocol(x)">Modifier le protocole</button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{ 'Actif' | translate }}</ng-template>
+                        <ng-template ngbTabContent>
+                            <hr>
+                            <div class="row" *ngFor="let x of userProtocolActif">
+                                <div class="col-md-6 offset-md-1 mt-5" >
+                                    {{x.protocolName}}
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="showProtocolCalendar(x)">Voir le protocole</button>
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="updateProtocol(x)">Modifier le protocole</button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{ 'Rejected' | translate }}</ng-template>
+                        <ng-template ngbTabContent>
+                            <hr>
+                            <div class="row" *ngFor="let x of userProtocolRejected">
+                                <div class="col-md-6 offset-md-1 mt-5" >
+                                    {{x.protocolName}}
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="showProtocolCalendar(x)">Voir le protocole</button>
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="updateProtocol(x)">Modifier le protocole</button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{ 'Archive' | translate }}</ng-template>
+                        <ng-template ngbTabContent>
+                            <hr>
+                            <div class="row" *ngFor="let x of userProtocolArchived">
+                                <div class="col-md-6 offset-md-1 mt-5" >
+                                    {{x.protocolName}}
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="showProtocolCalendar(x)">Voir le protocole</button>
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="updateProtocol(x)">Modifier le protocole</button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </div>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>{{ 'Relier Protocol' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+
+            <div class="mt-5">
+                <h1>{{ 'Relier Protocol' | translate }}</h1>
+                <hr>
+                <ngb-tabset>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{ 'Pending' | translate }}</ng-template>
+                        <ng-template ngbTabContent>
+                            <hr>
+                            <div class="row" *ngFor="let x of userRelatedProtocolPending">
+                                <div class="col-md-6 offset-md-1 mt-5" >
+                                    {{x.protocolName}}
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="showProtocolCalendar(x)">Voir le protocole</button>
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="updateProtocol(x)">Modifier le protocole</button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{ 'Actif' | translate }}</ng-template>
+                        <ng-template ngbTabContent>
+                            <hr>
+                            <div class="row" *ngFor="let x of userRelatedProtocolActif">
+                                <div class="col-md-6 offset-md-1 mt-5" >
+                                    {{x.protocolName}}
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="showProtocolCalendar(x)">Voir le protocole</button>
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="updateProtocol(x)">Modifier le protocole</button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{ 'Rejected' | translate }}</ng-template>
+                        <ng-template ngbTabContent>
+                            <hr>
+                            <div class="row" *ngFor="let x of userRelatedProtocolRejected">
+                                <div class="col-md-6 offset-md-1 mt-5" >
+                                    {{x.protocolName}}
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="showProtocolCalendar(x)">Voir le protocole</button>
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="updateProtocol(x)">Modifier le protocole</button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>{{ 'Archive' | translate }}</ng-template>
+                        <ng-template ngbTabContent>
+                            <hr>
+                            <div class="row" *ngFor="let x of userRelatedProtocolArchived">
+                                <div class="col-md-6 offset-md-1 mt-5" >
+                                    {{x.protocolName}}
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="showProtocolCalendar(x)">Voir le protocole</button>
+                                </div>
+                                <div class="col-md-2 mt-5">
+                                    <button mat-button (click)="updateProtocol(x)">Modifier le protocole</button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </div>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>
