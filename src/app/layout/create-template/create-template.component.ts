@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
-declare var require: any;
-
 @Component({
   selector: 'app-create-template',
   templateUrl: './create-template.component.html',

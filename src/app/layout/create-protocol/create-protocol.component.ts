@@ -87,6 +87,8 @@ export class CreateProtocolComponent implements OnInit {
   newProtocol(Protocol: string) {
       this.Protocol = Protocol;
 
+      // TODO: This is not a good idea. We should use a combobox and display a description instead. Value should be the uuid
+      // and we should use that to filter or find here 
       this.selectedSchema = this.protocolSchemas.filter(p =>
           p.name.toLowerCase().includes(this.Protocol)
       )[0]
