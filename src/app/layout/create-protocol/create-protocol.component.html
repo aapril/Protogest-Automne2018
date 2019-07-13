@@ -6,9 +6,9 @@
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>{{ 'Type' | translate }}</ng-template>
         <mat-radio-group [(ngModel)]="Protocol" formControlName="firstCtrl" required>
-          <mat-radio-button value="quebec" (click)="newProtocol('quebec')">{{ 'Quebec Protocol' | translate }}</mat-radio-button>
+          <mat-radio-button ng-value="QUEBEC_BUTTON_VALUE" (click)="newProtocol('quebec')">{{ 'Quebec Protocol' | translate }}</mat-radio-button>
           <br>
-          <mat-radio-button value="canada" (click)="newProtocol('canada')">{{ 'Canadian Protocol' | translate }}</mat-radio-button>
+          <mat-radio-button ng-value="CANADA_BUTTON_VALUE" (click)="newProtocol('canada')">{{ 'Canadian Protocol' | translate }}</mat-radio-button>
         </mat-radio-group>
         <div>
           <button mat-button matStepperNext>{{ 'Next' | translate }}</button>

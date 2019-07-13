@@ -36,6 +36,7 @@ export class CreateProtocolComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private http: HttpClient, private createEvent: CreateEventComponent, private createTemplate: CreateTemplateComponent, private route: ActivatedRoute, private translate: TranslateService) {}
 
   ngOnInit() {
+      localStorage.setItem('protocolName', this.Protocol);
     this.http.get(environment.backendUrl + "/protocol-schemas")
       .subscribe(data => {
         this.protocolSchemas = data
@@ -65,7 +66,7 @@ export class CreateProtocolComponent implements OnInit {
   }
 
   saveForm() {
-    this.createEvent.saveForm(this.inviteEmail, this.Protocol);
+    this.createEvent.saveForm(this.inviteEmail);
   }
 
   filterSendOutlookDates(rawOutlookDates) {
@@ -86,9 +87,7 @@ export class CreateProtocolComponent implements OnInit {
 
   newProtocol(Protocol: string) {
       this.Protocol = Protocol;
-
-      // TODO: This is not a good idea. We should use a combobox and display a description instead. Value should be the uuid
-      // and we should use that to filter or find here 
+      localStorage.setItem('protocolName', Protocol);
       this.selectedSchema = this.protocolSchemas.filter(p =>
           p.name.toLowerCase().includes(this.Protocol)
       )[0]

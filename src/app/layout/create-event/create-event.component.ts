@@ -147,7 +147,7 @@ export class CreateEventComponent {
         });
     }
 
-    saveForm(email, protocol) {
+    saveForm(email) {
         this.http
             .get(environment.backendUrl + "/protocol-schemas")
             .subscribe(response => {
@@ -155,8 +155,11 @@ export class CreateEventComponent {
                     throw new Error("Failed to communicate with server");
                 }
                 this.protocolSchemas = response;
+                console.log(this.protocolSchemas.filter(p =>
+                    p.name.toLowerCase().includes(localStorage.getItem("protocolName"))
+                ));
                 var uuid = this.protocolSchemas.filter(p =>
-                    p.name.toLowerCase().includes(protocol)
+                    p.name.toLowerCase().includes(localStorage.getItem("protocolName"))
                 )[0]["uuid"];
 
                 const localProtocol = localStorage.getItem("protocol");

@@ -60,6 +60,10 @@
     "Last Name" : "Last name",
     "Reset Password" : "Reset Password",
     "Old Password" : "Old Password",
-    "New Password" : "New Password"
+    "New Password" : "New Password",
+    "Pending" : "To Finish",
+    "Actif" : "Sent",
+    "Rejected" : "Rejected",
+    "Archive" : "Archived"
 
 }

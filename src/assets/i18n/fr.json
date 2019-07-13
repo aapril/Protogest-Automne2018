@@ -60,5 +60,9 @@
     "Last Name" : "Nom de Famille",
     "Reset Password" : "Changer le Mot de passe",
     "Old Password" : "Vieux Mot de passe",
-    "New Password" : "Nouveau Mot de passe"
+    "New Password" : "Nouveau Mot de passe",
+    "Pending" : "À Finir",
+    "Actif" : "Envoyer",
+    "Rejected" : "Rejecter",
+    "Archive" : "Archiver"
 }
