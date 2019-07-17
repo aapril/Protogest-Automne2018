@@ -146,7 +146,14 @@ export class ProtocolService {
 
     forgotPassword (userName): Observable<Event[]> {
 
-        return this.httpClient.post<Event[]>(environment.backendUrl + '/user/changePassword/', { userName : userName} ).pipe(catchError((error: any) => {
+        return this.httpClient.post<Event[]>(environment.backendUrl + '/user/forgotPassword/', { userName : userName} ).pipe(catchError((error: any) => {
+            return throwError(error.statusText);
+        }));
+    }
+
+    confirmPassword (userName, password, code): Observable<Event[]> {
+
+        return this.httpClient.post<Event[]>(environment.backendUrl + '/user/resetPasswordCode/', { userName : userName, password : password, code : code} ).pipe(catchError((error: any) => {
             return throwError(error.statusText);
         }));
     }

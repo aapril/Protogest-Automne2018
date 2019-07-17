@@ -56,7 +56,6 @@ export class ProfilComponent  implements OnInit {
             }
         );
         const localProtocol = localStorage.getItem('profil');
-        console.log(localProtocol);
     }
 
     changePassword() {
@@ -66,7 +65,6 @@ export class ProfilComponent  implements OnInit {
             }
         );
         const localProtocol = localStorage.getItem('profil');
-        console.log(localProtocol);
 
     }
 

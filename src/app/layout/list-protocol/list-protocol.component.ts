@@ -1,9 +1,8 @@
-import {Component, OnInit, ElementRef, ViewChild, Output} from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {Component, OnInit } from '@angular/core';
 import { CreateEventComponent } from '../create-event/create-event.component';
 import { ScheduleComponent } from '../schedule/schedule.component';
 import { ProtocolService } from '../../shared/services/protocol.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {environment} from '../../../environments/environment';
