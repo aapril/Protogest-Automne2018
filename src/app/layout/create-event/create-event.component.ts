@@ -1,9 +1,9 @@
 declare var require: any;
-import {Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges} from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { ProtocolService } from '../../shared/services/protocol.service';
 import { FormGroup, FormControl, FormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
@@ -31,7 +31,7 @@ export class CreateEventComponent {
     final: any = [];
     occupiedDates: any = [];
 
-    constructor(private protocolService: ProtocolService, protected http: HttpClient, @Inject(DOCUMENT) document) {}
+    constructor(private protocolService: ProtocolService, protected http: HttpClient, @Inject(DOCUMENT) document) { }
 
     isDisabled(date: NgbDateStruct) {
         // The localStorage is set in the CreateProtocolComponent
@@ -40,10 +40,10 @@ export class CreateEventComponent {
             return (
                 testoccupiedDates.indexOf(
                     date.year +
-                        "-" +
-                        (date.month < 10 ? "0" + date.month : date.month) +
-                        "-" +
-                        (date.day < 10 ? "0" + date.day : date.day)
+                    "-" +
+                    (date.month < 10 ? "0" + date.month : date.month) +
+                    "-" +
+                    (date.day < 10 ? "0" + date.day : date.day)
                 ) > -1
             );
         } else {
@@ -68,14 +68,14 @@ export class CreateEventComponent {
                         if (
                             this.occupiedDates.indexOf(
                                 value.year +
-                                    "-" +
-                                    (value.month < 10
-                                        ? "0" + value.month
-                                        : value.month) +
-                                    "-" +
-                                    (value.day < 10
-                                        ? "0" + value.day
-                                        : value.day)
+                                "-" +
+                                (value.month < 10
+                                    ? "0" + value.month
+                                    : value.month) +
+                                "-" +
+                                (value.day < 10
+                                    ? "0" + value.day
+                                    : value.day)
                             ) > -1
                         ) {
                             this.final[i].value =
@@ -105,12 +105,12 @@ export class CreateEventComponent {
                     t2.type === "date" &&
                     this.occupiedDates.indexOf(
                         value.year +
-                            "-" +
-                            (value.month < 10
-                                ? "0" + value.month
-                                : value.month) +
-                            "-" +
-                            (value.day < 10 ? "0" + value.day : value.day)
+                        "-" +
+                        (value.month < 10
+                            ? "0" + value.month
+                            : value.month) +
+                        "-" +
+                        (value.day < 10 ? "0" + value.day : value.day)
                     ) > -1
                 ) {
                     doIt = false;
@@ -126,10 +126,10 @@ export class CreateEventComponent {
                         value:
                             t2.type === "date"
                                 ? value.year +
-                                    "-" +
-                                    value.month +
-                                    "-" +
-                                    value.day
+                                "-" +
+                                value.month +
+                                "-" +
+                                value.day
                                 : value,
                         desc: t2.desc
                     });
@@ -148,6 +148,8 @@ export class CreateEventComponent {
     }
 
     saveForm(email) {
+        const invitedEmails: Array<string> = [];
+        email.forEach(e => invitedEmails.push(e.content));
         this.http
             .get(environment.backendUrl + "/protocol-schemas")
             .subscribe(response => {
@@ -168,21 +170,16 @@ export class CreateEventComponent {
                 const mm = String(today.getMonth() + 1).padStart(2, "0");
                 const yyyy = today.getFullYear();
                 today = new Date(mm + "/" + dd + "/" + yyyy);
-
                 if (localProtocol !== null && localProtocol !== undefined) {
-                    const protocole = {
-                        protocol: {
-                            fields: JSON.parse(localProtocol),
-                            userID: "test@test.ca",
-                            formUUID: "6a01cac1-f55e-4933-b889-ae00d14c9d17",
-                            creationDate: today,
-                            protocolUuid: uuid
-                        },
-                        relatedUserId: email
+                    const protocol = {
+                        fields: JSON.parse(localProtocol),
+                        creationDate: today,
+                        protocolUuid: uuid,
+                        invitedEmails: invitedEmails
                     };
 
                     this.protocolService
-                        .createProtocol(protocole)
+                        .createProtocol(protocol)
                         .subscribe(data => {
                             alert("Your protocol has been successfully saved.");
                         });
@@ -192,14 +189,14 @@ export class CreateEventComponent {
             });
     }
 
-    getSectionsToDisplay(){
+    getSectionsToDisplay() {
         let toDisplay = []
 
         this.selectedSchema.protocolFields.forEach(section => {
-        // If selectedSubsections contains a subSection listed in this section
-        if(section.subSection.map(subSection => subSection.num).some(number => this.selectedSections.includes(number))) {
-            toDisplay.push(section);
-        }
+            // If selectedSubsections contains a subSection listed in this section
+            if (section.subSection.map(subSection => subSection.num).some(number => this.selectedSections.includes(number))) {
+                toDisplay.push(section);
+            }
         })
 
         return toDisplay;
@@ -211,7 +208,7 @@ export class CreateEventComponent {
     }
 
     nextStep(stepper: MatStepper) {
-        if(stepper.steps.length === 0 || stepper.selectedIndex === stepper.steps.length - 1) {
+        if (stepper.steps.length === 0 || stepper.selectedIndex === stepper.steps.length - 1) {
             this.parentStepper.next();
         } else {
             stepper.next();
@@ -219,10 +216,10 @@ export class CreateEventComponent {
     }
 
     previousStep(stepper: MatStepper) {
-        if(stepper.selectedIndex === 0) {
-        this.parentStepper.previous();
+        if (stepper.selectedIndex === 0) {
+            this.parentStepper.previous();
         } else {
-        stepper.previous();
+            stepper.previous();
         }
     }
 }
