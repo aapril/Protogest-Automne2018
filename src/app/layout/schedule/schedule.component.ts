@@ -4,7 +4,9 @@ import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { EventService } from './event.service';
 import { ProtocolService } from '../../shared/services/protocol.service';
+import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from "../../../environments/environment";
 
 @Component({
   selector: 'app-schedule',
@@ -16,9 +18,10 @@ export class ScheduleComponent implements OnInit {
   calendarOptions: Options;
   displayEvent: any;
   protocol: any = {};
+  schema: any = [];
   events: any = [];
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-  constructor(private protocolService: ProtocolService, protected eventService: EventService, private route: ActivatedRoute) { }
+  constructor(private protocolService: ProtocolService, private http: HttpClient, protected eventService: EventService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe((params)=> {
@@ -52,31 +55,52 @@ export class ScheduleComponent implements OnInit {
     };
   }
 
+  getEventDescriptionFromSchema(id) {
+    for (let section of this.schema.protocolFields) {
+      for(let subSection of section.subSection) {
+        if(subSection.num === id) {
+          return subSection.desc;
+        } else {
+          for(let dateSection of subSection.dateSection){
+            if(dateSection.num === id){
+              return dateSection.desc;
+            }
+          }
+        }
+      }
+    }
+  }
+
   loadevents() {
     // TODO: Add http call to get protocol schema associated with protocol and do mapping for descriptions
     this.protocolService.getUserProtocols().subscribe(
       data => {
-        this.protocol = data.filter(protocol => protocol['uuid'] === this.protocoleId)[0];
-        this.protocol.fields.filter(event => event.type === "DATE").forEach(event => {
-          var splitted = event.value.split("-");
-            var year = splitted[0];
-            var month = splitted[1];
-            var day = splitted[2];
-            if(month.length == 1){
-             month = "0" + month;
-            } 
-            if(day.length == 1){
-             day = "0" + day;
-            } 
-            this.events.push({
-                protocol_event_id: event.id,
-                title: event.desc,
-                start: year + "-" + month + "-" + day,
-                allDay: true,
-                color: '#6E7BC4'
-            }) 
-        });
-        this.loadCalendar();
+        this.http.get(environment.backendUrl + "/protocol-schemas")
+          .subscribe(schemas => {
+            this.protocol = data.filter(protocol => protocol['uuid'] === this.protocoleId)[0];
+            // Get schema associated with protocol
+            this.schema = schemas.find(schema => schema['uuid'] === this.protocol.protocolUuid);
+            this.protocol.fields.filter(event => event.type === "DATE").forEach(event => {
+              var splitted = event.value.split("-");
+              var year = splitted[0];
+              var month = splitted[1];
+              var day = splitted[2];
+              if(month.length == 1){
+              month = "0" + month;
+              } 
+              if(day.length == 1){
+              day = "0" + day;
+              } 
+              this.events.push({
+                  protocol_event_id: event.id,
+                  title: this.getEventDescriptionFromSchema(event.id),
+                  start: year + "-" + month + "-" + day,
+                  allDay: true,
+                  color: '#6E7BC4'
+              }) 
+            });
+            this.loadCalendar();
+          })
       }
     );
   }
