@@ -43,9 +43,19 @@
     <mat-step [stepControl]="fourthFormGroup">
       <form [formGroup]="fourthFormGroup">
         <ng-template matStepLabel>{{ 'Invite' | translate }}</ng-template>
-        <mat-form-field>
-          <input [value]="inviteEmail" (input)="inviteEmail = $event.target.value" matInput placeholder="Email" formControlName="fourthCtrl">
-        </mat-form-field>
+        <div *ngFor="let invited of invitedEmails; let last = last; let first = first">
+            <div class="row">
+              <div class="col-xs-4">
+                  <mat-form-field>
+                    <input  [value]="invited.content" (input)="invited.content = $event.target.value" matInput placeholder="Email" formControlName="fourthCtrl">
+                  </mat-form-field>
+              </div>
+              <div class="col-xs-3" style="margin-top:10px;">
+                  <button *ngIf="!first" mat-button (click)='removeInvitedEmail(invited)'>Remove</button>
+                  <button mat-button (click)='addInvitedEmail()'>Add</button>
+              </div>
+            </div>
+        </div>
         <div>
           <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
           <button mat-button (click)='saveForm()'>{{ 'Done' | translate }}</button>
