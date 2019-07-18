@@ -21,6 +21,11 @@ export class CreateProtocolComponent implements OnInit {
   selectedSections: any = [];
   occupiedDates: any = [];
   inviteEmail = '';
+  invitedEmails = [
+    {
+      content: ''
+    }
+  ]
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -66,7 +71,7 @@ export class CreateProtocolComponent implements OnInit {
   }
 
   saveForm() {
-    this.createEvent.saveForm(this.inviteEmail);
+    this.createEvent.saveForm(this.invitedEmails);
   }
 
   filterSendOutlookDates(rawOutlookDates) {
@@ -93,5 +98,16 @@ export class CreateProtocolComponent implements OnInit {
       )[0]
 
       this.selectedSections = [];
+  }
+
+  removeInvitedEmail(email){
+    const index = this.invitedEmails.indexOf(email);
+    if(email !== -1){
+      this.invitedEmails.splice(index, 1);
+    }
+  }
+
+  addInvitedEmail(){
+    this.invitedEmails.push({content:''});
   }
 }
