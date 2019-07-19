@@ -7,6 +7,7 @@ import { generateOutlookAuthUrl } from '../../utils/outlookHelper.js';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "../../../environments/environment";
+import { ProtocolService } from '../../shared/services/protocol.service';
 
 @Component({
   selector: 'app-create-protocol',
@@ -38,18 +39,27 @@ export class CreateProtocolComponent implements OnInit {
     protocolFields: []
   }
 
-  constructor(private _formBuilder: FormBuilder, private http: HttpClient, private createEvent: CreateEventComponent, private createTemplate: CreateTemplateComponent, private route: ActivatedRoute, private translate: TranslateService) {}
+  constructor(private protocolService: ProtocolService, private _formBuilder: FormBuilder, private http: HttpClient, private createEvent: CreateEventComponent, private createTemplate: CreateTemplateComponent, private route: ActivatedRoute, private translate: TranslateService) {}
 
   ngOnInit() {
-    // TODO: Autosave
-    // - Empty localStorage for currentProtocolUuid and fields
-    // - Call create on backend with empty protocol fields
-    // - Insert newly created protocol uuid in currentUuid
+    localStorage.removeItem('currentProtocolUuid')
     localStorage.setItem('protocolName', this.Protocol);
     this.http.get(environment.backendUrl + "/protocol-schemas")
       .subscribe(data => {
         this.protocolSchemas = data
         this.selectedSchema = data[0]
+
+        this.protocolService
+          .createProtocol({
+            fields: [],
+            creationDate: new Date(),
+            protocolUuid: this.selectedSchema.uuid,
+            invitedEmails: []
+          })
+          .subscribe(createdProtocol => {
+              localStorage.setItem('currentProtocolUuid', createdProtocol['uuid']);
+          });
+
       })
 
     localStorage.removeItem('occupiedDates');
