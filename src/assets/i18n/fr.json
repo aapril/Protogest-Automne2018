@@ -65,5 +65,14 @@
     "Pending": "À Finir",
     "Actif": "Envoyer",
     "Rejected": "Rejecter",
-    "Archive": "Archiver"
+    "Archive": "Archiver",
+    "Repeat New Password": "Répéter le nouveau mot de passe",
+    "errorEmptyFirstName": "Entrer un prénom",
+    "errorEmptyLastName": "Entrer un nom de famille",
+    "errorEmptyPassword": "Entrer un mot de passe",
+    "errorEmptyNewPassword": "Entrer un nouveau mot de passe",
+    "errorEmptyRepeatNewPassword": "Entrer un nouveau mot de passe à nouveau",
+    "errorPasswordSame": "Le mot de passe doit être le même",
+    "modifProtocol": "Modifier le protocole",
+    "modifPassword": "Changer le mot de passe"
 }

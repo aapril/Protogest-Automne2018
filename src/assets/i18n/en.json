@@ -65,6 +65,15 @@
     "Pending": "To Finish",
     "Actif": "Sent",
     "Rejected": "Rejected",
-    "Archive": "Archived"
+    "Archive": "Archived",
+    "Repeat New Password": "Repeat New Password",
+    "errorEmptyFirstName": "Enter a First name",
+    "errorEmptyLastName": "Entrer a Last name",
+    "errorEmptyPassword": "Enter a Password",
+    "errorEmptyNewPassword": "Enter a new Password",
+    "errorEmptyRepeatNewPassword": "Enter a new Password again",
+    "errorPasswordSame": "Password need to be the same",
+    "modifProtocol": "Modify protocol",
+    "modifPassword": "Change Password"
 
 }

@@ -28,6 +28,7 @@ export class ProfilComponent  implements OnInit {
     });
     errorMessageEmpty = false;
     errorMessageSame = false;
+    errorProfilEmpty = false;
     passwordForm = new FormGroup({
         oldPassword: new FormControl('', Validators.required),
         newPassword: new FormControl('', Validators.required),
@@ -65,11 +66,18 @@ export class ProfilComponent  implements OnInit {
     }
 
     updateProfil() {
-        this.protocolService.setUserAttribute(this.profilForm.get('firstName').value, this.profilForm.get('lastName').value).subscribe(
-            data => {
-                this.userRelatedProtocol = data;
-            }
-        );
+        if (
+            this.profilForm.get("firstName").value === '' ||
+            this.profilForm.get("lastName").value === ''
+        ) {
+            this.errorProfilEmpty = true;
+        } else {
+            this.protocolService.setUserAttribute(this.profilForm.get('firstName').value, this.profilForm.get('lastName').value).subscribe(
+                data => {
+                    this.userRelatedProtocol = data;
+                }
+            );
+        }
         const localProtocol = localStorage.getItem('profil');
     }
 
