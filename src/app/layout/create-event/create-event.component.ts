@@ -52,6 +52,9 @@ export class CreateEventComponent {
     }
 
     onChange(t2, value) {
+        // TODO: Autosave
+        // Call update method on the backend
+
         // The localStorage is set in the CreateProtocolComponent
         if (localStorage.getItem("occupiedDates") !== null) {
             this.occupiedDates = localStorage.getItem("occupiedDates");
@@ -148,6 +151,9 @@ export class CreateEventComponent {
     }
 
     saveForm(email) {
+        // TODO: Autosave
+        // Disable that
+
         const invitedEmails: Array<string> = [];
         email.forEach(e => invitedEmails.push(e.content));
         this.http

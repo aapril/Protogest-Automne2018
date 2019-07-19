@@ -117,6 +117,18 @@ export class ProtocolService {
         return this.httpClient.post(environment.backendUrl + '/my/protocols', payload, httpOptions).pipe(catchError(this.handleError));
     }
 
+    updateProtocol(payload) {
+        var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
+
+        let allHeaders = Object.assign({}, headersDict, { 'Authentification': localSecretKey });
+
+        const httpOptions = {
+            headers: new HttpHeaders(allHeaders)
+        };
+
+        return this.httpClient.post(environment.backendUrl + '/my/protocols/edit', payload, httpOptions).pipe(catchError(this.handleError));
+    }
+
     resetPassword(): Observable<Event> {
         var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
 

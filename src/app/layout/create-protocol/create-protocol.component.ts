@@ -41,7 +41,11 @@ export class CreateProtocolComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private http: HttpClient, private createEvent: CreateEventComponent, private createTemplate: CreateTemplateComponent, private route: ActivatedRoute, private translate: TranslateService) {}
 
   ngOnInit() {
-      localStorage.setItem('protocolName', this.Protocol);
+    // TODO: Autosave
+    // - Empty localStorage for currentProtocolUuid and fields
+    // - Call create on backend with empty protocol fields
+    // - Insert newly created protocol uuid in currentUuid
+    localStorage.setItem('protocolName', this.Protocol);
     this.http.get(environment.backendUrl + "/protocol-schemas")
       .subscribe(data => {
         this.protocolSchemas = data
