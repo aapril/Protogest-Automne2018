@@ -72,11 +72,10 @@ export class ScheduleComponent implements OnInit {
   }
 
   loadevents() {
-    // TODO: Add http call to get protocol schema associated with protocol and do mapping for descriptions
     this.protocolService.getUserProtocols().subscribe(
       data => {
         this.http.get(environment.backendUrl + "/protocol-schemas")
-          .subscribe(schemas => {
+          .subscribe((schemas: Object[]) => {
             this.protocol = data.filter(protocol => protocol['uuid'] === this.protocoleId)[0];
             // Get schema associated with protocol
             this.schema = schemas.find(schema => schema['uuid'] === this.protocol.protocolUuid);
