@@ -11,7 +11,7 @@
             <div class="col-md-4 float-left">
                     <div class="form-group">
                         <div class="input-group">
-                            <input #firstNameFromTemplate formControlName="firstName" type="text" class="form-control input-underline input-lg" id="firstName" placeholder="First name" value="{{profilData.name}}">
+                            <input #firstNameFromTemplate formControlName="firstName" type="text" class="form-control input-underline input-lg" id="firstName" placeholder="{{ 'First Name' | translate }}" value="{{profilData.name}}">
                         </div>
                     </div>
             </div>
@@ -25,13 +25,20 @@
             <div class="col-md-4 float-left">
                     <div class="form-group">
                         <div class="input-group">
-                            <input #lastNameFromTemplate  formControlName="lastName" type="text" class="form-control input-underline input-lg" id="lastName" placeholder="Last name" value="{{profilData.familyName}}">
+                            <input #lastNameFromTemplate  formControlName="lastName" type="text" class="form-control input-underline input-lg" id="lastName" placeholder="{{ 'Last Name' | translate }}" value="{{profilData.familyName}}">
                         </div>
                     </div>
             </div>
         </div>
     </div>
-        <button mat-button (click)="updateProfil()">Modifier le protocole</button>
+        <div class="col-md-12">
+            <hr>
+        </div>
+        <div class="col-md-11 offset-md-1">
+            <div class="col-md-4 float-right">
+                <button mat-button  class="btn-purple"  (click)="updateProfil()">Modifier le protocole</button>
+            </div>
+        </div>
     </form>
     <h1>{{ 'Reset Password' | translate }}</h1>
     <hr>
@@ -44,7 +51,8 @@
                 <div class="col-md-4 float-left">
                     <div class="form-group">
                         <div class="input-group">
-                            <input #oldPasswordFromTemplate formControlName="oldPassword" type="password" class="form-control input-underline input-lg" id="oldPassword" placeholder="Old Password">
+                            <input #oldPasswordFromTemplate formControlName="oldPassword" type="password" class="form-control input-underline input-lg" id="oldPassword" placeholder="{{ 'Old Password' | translate }}">
+                            <span class="text-error" *ngIf="oldPassword.invalid && errorMessageEmpty">Enter a Password</span>
                         </div>
                     </div>
                 </div>
@@ -58,13 +66,39 @@
                 <div class="col-md-4 float-left">
                     <div class="form-group">
                         <div class="input-group">
-                            <input #NewPasswordFromTemplate  formControlName="newPassword" type="password" class="form-control input-underline input-lg" id="newPassword" placeholder="New Password">
+                            <input #NewPasswordFromTemplate  formControlName="newPassword" type="password" class="form-control input-underline input-lg" id="newPassword" placeholder="{{ 'New Password' | translate }}">
+                            <span class="text-error" *ngIf="newPassword.invalid && errorMessageEmpty">Enter a new Password</span>
+                            <span class="text-error" *ngIf="errorMessageSame">Password need to be the same</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <button mat-button [routerLink]="['/login']" (click)="changePassword()">Change Password</button>
+        <div class="col-md-11 offset-md-1">
+            <div class='row mb-2'>
+                <div class="col-md-7">
+                    <label>{{ 'Repeat New Password' | translate }}</label>
+                </div>
+                <div class="col-md-4 float-left">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input #NewPasswordFromTemplate  formControlName="repeatNewPassword" type="password" class="form-control input-underline input-lg" id="repeatNewPassword" placeholder="{{ 'Repeat New Password' | translate }}">
+                            <span class="text-error" *ngIf="repeatNewPassword.invalid && errorMessageEmpty">Enter the Repeated new password</span>
+                            <span class="text-error" *ngIf="errorMessageSame">Password need to be the same</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <hr>
+        </div>
+        <div class="col-md-11 offset-md-1">
+            <div class="col-md-4 float-right">
+                <button mat-button  class="btn-purple" (click)="changePassword()">Change Password</button>
+            </div>
+        </div>
+
     </form>
 
 </div>

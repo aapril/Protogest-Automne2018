@@ -13,7 +13,7 @@
                         {{ 'Canadian Protocol' | translate }}</mat-radio-button>
                 </mat-radio-group>
                 <div>
-                    <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
+                    <button class="btn-purple" mat-button matStepperNext>{{ 'Next' | translate }}</button>
                 </div>
             </form>
         </mat-step>
@@ -23,8 +23,8 @@
                 <app-create-template [selectedSchema]="selectedSchema" [(selectedSections)]="selectedSections">
                 </app-create-template>
                 <div>
-                    <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
-                    <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
+                    <button class="btn-secondary" mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
+                    <button class="btn-purple" mat-button matStepperNext>{{ 'Next' | translate }}</button>
                 </div>
             </form>
         </mat-step>
@@ -49,13 +49,13 @@
                         </div>
                         <div class="col-xs-3" style="margin-top:10px;">
                             <button *ngIf="!first" mat-button (click)='removeInvitedEmail(invited)'>Remove</button>
-                            <button mat-button (click)='addInvitedEmail()'>Add</button>
+                            <button class="btn-purple"  mat-button (click)='addInvitedEmail()'>Add</button>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
-                    <button mat-button (click)='saveForm()'>{{ 'Done' | translate }}</button>
+                    <button class="btn-secondary" mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
+                    <button class="btn-purple" mat-button (click)='saveForm()'>{{ 'Done' | translate }}</button>
                 </div>
             </form>
         </mat-step>>

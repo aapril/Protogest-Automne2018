@@ -26,9 +26,12 @@ export class ProfilComponent  implements OnInit {
         firstName: new FormControl('', Validators.required),
         lastName: new FormControl('', Validators.required),
     });
+    errorMessageEmpty = false;
+    errorMessageSame = false;
     passwordForm = new FormGroup({
         oldPassword: new FormControl('', Validators.required),
         newPassword: new FormControl('', Validators.required),
+        repeatNewPassword: new FormControl('', Validators.required),
     });
 
    constructor(private protocolService: ProtocolService, protected http: HttpClient, private createEvent: CreateEventComponent, private router: Router, private translate: TranslateService) {}
@@ -49,6 +52,18 @@ export class ProfilComponent  implements OnInit {
         return this.profilForm.get('lastName');
     }
 
+    get oldPassword() {
+        return this.passwordForm.get("oldPassword");
+    }
+
+    get newPassword() {
+        return this.passwordForm.get("newPassword");
+    }
+
+    get repeatNewPassword() {
+        return this.passwordForm.get("repeatNewPassword");
+    }
+
     updateProfil() {
         this.protocolService.setUserAttribute(this.profilForm.get('firstName').value, this.profilForm.get('lastName').value).subscribe(
             data => {
@@ -59,12 +74,29 @@ export class ProfilComponent  implements OnInit {
     }
 
     changePassword() {
-        this.protocolService.changePassword(this.passwordForm.get('oldPassword').value, this.passwordForm.get('newPassword').value).subscribe(
-            data => {
-                this.userRelatedProtocol = data;
+        if (
+            this.passwordForm.get("oldPassword").value === '' ||
+            this.passwordForm.get("newPassword").value === '' ||
+            this.passwordForm.get("repeatNewPassword").value === ''
+        ) {
+            this.errorMessageEmpty = true;
+        } else {
+            if (
+                this.passwordForm.get("newPassword").value ===
+                this.passwordForm.get("repeatNewPassword").value
+            ) {
+                this.protocolService.changePassword(this.passwordForm.get('oldPassword').value, this.passwordForm.get('newPassword').value).subscribe(
+                    data => {
+                        this.userRelatedProtocol = data;
+                        this.router.navigate(["/login"]);
+
+                    }
+                );
+                const localProtocol = localStorage.getItem('profil');
+            } else {
+                this.errorMessageSame = true;
             }
-        );
-        const localProtocol = localStorage.getItem('profil');
+        }
 
     }
 

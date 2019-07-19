@@ -56,6 +56,6 @@
     </mat-step>
 </mat-horizontal-stepper>
 <div>
-    <button mat-button (click)="previousStep(stepper)">{{ 'Back' | translate }}</button>
-    <button mat-button (click)="nextStep(stepper)">{{ 'Next' | translate }}</button>
+    <button class="btn-secondary" mat-button (click)="previousStep(stepper)">{{ 'Back' | translate }}</button>
+    <button mat-button class="btn-purple" (click)="nextStep(stepper)">{{ 'Next' | translate }}</button>
 </div>

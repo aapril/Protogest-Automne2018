@@ -184,6 +184,9 @@ export class ListProtocolComponent implements OnInit {
     this.router.navigateByUrl('/schedule?id=' + data.uuid);
   }
 
+    approve(data) {
+    }
+
     updateProtocol(data) {
         this.afficherList = false;
         this.afficherProtocol = true;
