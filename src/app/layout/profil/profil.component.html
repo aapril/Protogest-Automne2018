@@ -11,7 +11,7 @@
             <div class="col-md-4 float-left">
                 <div class="form-group">
                     <div class="input-group">
-                        <input #firstNameFromTemplate formControlName="firstName" type="text" class="form-control input-underline input-lg" id="firstName" placeholder="{{ 'First Name' | translate }}" value="{{profilData.name}}">
+                        <input #firstNameFromTemplate formControlName="firstName" type="text" class="form-control input-underline input-lg" id="firstName" placeholder="{{ 'First Name' | translate }}" value="{{firstName.value}}">
                     </div>
                 </div>
                 <div class="error-field">
@@ -30,7 +30,7 @@
             <div class="col-md-4 float-left">
                 <div class="form-group">
                     <div class="input-group">
-                        <input #lastNameFromTemplate  formControlName="lastName" type="text" class="form-control input-underline input-lg" id="lastName" placeholder="{{ 'Last Name' | translate }}" value="{{profilData.familyName}}">
+                        <input #lastNameFromTemplate  formControlName="lastName" type="text" class="form-control input-underline input-lg" id="lastName" placeholder="{{ 'Last Name' | translate }}" value="{{lastName.value}}">
                     </div>
                 </div>
                 <div class="error-field">

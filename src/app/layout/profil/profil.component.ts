@@ -21,7 +21,6 @@ export class ProfilComponent  implements OnInit {
     userProtocol = [];
     userRelatedProtocol = [];
     langueProtocol: string = this.translate.currentLang;
-    profilData;
     profilForm = new FormGroup({
         firstName: new FormControl('', Validators.required),
         lastName: new FormControl('', Validators.required),
@@ -41,7 +40,7 @@ export class ProfilComponent  implements OnInit {
         this.protocolService.getUserAttribute().subscribe(
             data => {
                 this.userRelatedProtocol = data;
-                this.profilData = data[0];
+                this.profilForm.setValue({firstName: this.userRelatedProtocol[0].name, lastName: this.userRelatedProtocol[0].familyName});
             }
         );
     }
@@ -75,6 +74,7 @@ export class ProfilComponent  implements OnInit {
             this.protocolService.setUserAttribute(this.profilForm.get('firstName').value, this.profilForm.get('lastName').value).subscribe(
                 data => {
                     this.userRelatedProtocol = data;
+                    window.location.reload();
                 }
             );
         }

@@ -187,6 +187,12 @@ export class ListProtocolComponent implements OnInit {
     approve(data) {
     }
 
+    deleteProtocol(data) {
+    }
+
+    downloadPdf(data) {
+    }
+
     updateProtocol(data) {
         this.afficherList = false;
         this.afficherProtocol = true;

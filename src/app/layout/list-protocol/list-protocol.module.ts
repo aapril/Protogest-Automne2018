@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatRadioModule } from '@angular/material';
+import {MatIconModule, MatRadioModule} from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 
 import { ListProtocolRoutingModule } from './list-protocol-routing.module';
@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         MatStepperModule,
         MatInputModule,
         MatButtonModule,
+        MatIconModule,
         MatAutocompleteModule,
         MatRadioModule,
         ScheduleModule,

@@ -1,9 +1,5 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
     <div class="list-group">
-        <a [routerLink]="['/profil']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-user"></i>&nbsp;
-            <span>{{ 'Profil' | translate }}</span>
-        </a>
         <a [routerLink]="['/create-protocol']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-hourglass-start"></i>&nbsp;
             <span>{{ 'Create Protocol' | translate }}</span>
@@ -48,7 +44,7 @@
                 <li class="nested" [class.expand]="showMenu === 'profile'">
                     <ul class="submenu">
                         <li>
-                            <a href="javascript:void(0)">
+                            <a [routerLink]="['/profil']" [routerLinkActive]="['router-link-active']">
                                 <span><i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}</span>
                             </a>
                         </li>
