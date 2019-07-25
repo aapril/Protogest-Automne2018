@@ -38,7 +38,7 @@
     "Relier Protocol": "List of protocols related to the user",
     "Creer Protocol": "List of protocols created to the user",
     "Protocol": "Create a Protocol",
-    "Type": "Please select a type",
+    "Name Type": "Protocol name & type",
     "Quebec Protocol": "Quebec protocol (Only protocol available right now)",
     "Canadian Protocol": "Canadian protocol",
     "Back": "Back",

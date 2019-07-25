@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreateEventComponent } from '../create-event/create-event.component';
 import { CreateTemplateComponent } from '../create-template/create-template.component';
@@ -17,6 +17,7 @@ import { environment } from "../../../environments/environment";
 export class CreateProtocolComponent implements OnInit {
   @ViewChild('openModal') openModal: ElementRef;
   @ViewChild('openOccupiedDatesModal') openOccupiedDatesModal: ElementRef;
+  protocolName: string = "";
   Protocol: string = "quebec";
   selectedSections: any = [];
   occupiedDates: any = [];
@@ -41,7 +42,7 @@ export class CreateProtocolComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private http: HttpClient, private createEvent: CreateEventComponent, private createTemplate: CreateTemplateComponent, private route: ActivatedRoute, private translate: TranslateService) {}
 
   ngOnInit() {
-      localStorage.setItem('protocolName', this.Protocol);
+    localStorage.setItem('protocolName', this.Protocol);
     this.http.get(environment.backendUrl + "/protocol-schemas")
       .subscribe(data => {
         this.protocolSchemas = data
@@ -71,7 +72,7 @@ export class CreateProtocolComponent implements OnInit {
   }
 
   saveForm() {
-    this.createEvent.saveForm(this.invitedEmails);
+    this.createEvent.saveForm(this.protocolName, this.invitedEmails);
   }
 
   filterSendOutlookDates(rawOutlookDates) {
