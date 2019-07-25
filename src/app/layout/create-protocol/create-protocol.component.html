@@ -4,12 +4,17 @@
     <mat-horizontal-stepper #stepper>
         <mat-step [stepControl]="firstFormGroup" [completed]="false">
             <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>{{ 'Type' | translate }}</ng-template>
+                <ng-template matStepLabel>{{ 'Name Type' | translate }}</ng-template>
+                <mat-form-field>
+                    <input [value]="protocolName" (input)="protocolName = $event.target.value"
+                        matInput placeholder="Protocol Name" name="protocolName">
+                </mat-form-field>
+                <br>
                 <mat-radio-group [(ngModel)]="Protocol" formControlName="firstCtrl" required>
-                    <mat-radio-button ng-value="QUEBEC_BUTTON_VALUE" (click)="newProtocol('quebec')">
+                    <mat-radio-button value="quebec" (click)="newProtocol('quebec')">
                         {{ 'Quebec Protocol' | translate }}</mat-radio-button>
                     <br>
-                    <mat-radio-button ng-value="CANADA_BUTTON_VALUE" (click)="newProtocol('canada')">
+                    <mat-radio-button value="canada" (click)="newProtocol('canada')">
                         {{ 'Canadian Protocol' | translate }}</mat-radio-button>
                 </mat-radio-group>
                 <div>
@@ -31,8 +36,12 @@
         <mat-step [stepControl]="thirdFormGroup">
             <form [formGroup]="thirdFormGroup">
                 <ng-template matStepLabel>{{ 'Fill' | translate }}</ng-template>
-                <app-create-event [Protocol]="Protocol" [protocolSchemas]="protocolSchemas"
-                    [selectedSchema]="selectedSchema" [selectedSections]="selectedSections" [parentStepper]="stepper">
+                <app-create-event
+                    [Protocol]="Protocol"
+                    [protocolSchemas]="protocolSchemas"
+                    [selectedSchema]="selectedSchema" 
+                    [selectedSections]="selectedSections"
+                    [parentStepper]="stepper">
                 </app-create-event>
             </form>
         </mat-step>

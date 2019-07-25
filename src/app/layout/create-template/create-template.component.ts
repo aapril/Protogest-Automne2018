@@ -11,7 +11,7 @@ export class CreateTemplateComponent implements OnInit, OnChanges {
     subSection: []
   }
   @Input() selectedSections: any = []
-  @Output() selectedSectionsChange = new EventEmitter(this.selectedSections);
+  @Output() selectedSectionsChange = new EventEmitter();
 
   @Input() selectedSchema: any
 

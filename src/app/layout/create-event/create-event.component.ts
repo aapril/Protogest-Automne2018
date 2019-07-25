@@ -1,5 +1,4 @@
-declare var require: any;
-import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { ProtocolService } from '../../shared/services/protocol.service';
 import { FormGroup, FormControl, FormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
@@ -18,7 +17,7 @@ import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 })
 export class CreateEventComponent {
     @Input() Protocol: string;
-    @Input() selectedSections: any = []
+    @Input() selectedSections: any = [];
     @Input() parentStepper: MatStepper
 
     public readonly QUEBEC_BUTTON_VALUE: string = "quebec";
@@ -147,7 +146,7 @@ export class CreateEventComponent {
         });
     }
 
-    saveForm(email) {
+    saveForm(name, email) {
         const invitedEmails: Array<string> = [];
         email.forEach(e => invitedEmails.push(e.content));
         this.http
@@ -172,6 +171,7 @@ export class CreateEventComponent {
                 today = new Date(mm + "/" + dd + "/" + yyyy);
                 if (localProtocol !== null && localProtocol !== undefined) {
                     const protocol = {
+                        name: name,
                         fields: JSON.parse(localProtocol),
                         creationDate: today,
                         protocolUuid: uuid,
