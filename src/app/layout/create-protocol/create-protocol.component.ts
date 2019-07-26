@@ -75,6 +75,11 @@ export class CreateProtocolComponent implements OnInit {
     this.createEvent.saveForm(this.protocolName, this.invitedEmails);
   }
 
+  saveForLater() {
+    // TODO: Make the right API call
+    console.log("Save for later")
+  }
+
   filterSendOutlookDates(rawOutlookDates) {
     // This function seperate the values coming back from outlook, remove the unnecessary spaces
     // and filter the duplicates. We had issues with calling a setter in CreateEvent so we use the
