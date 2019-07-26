@@ -27,6 +27,7 @@ export class ListProtocolComponent implements OnInit {
     afficherProtocol = false;
     afficherCalendar = false;
     private protocolSchemas: any | undefined = null;
+    protocolSchema: any = [];
 
     constructor(private protocolService: ProtocolService, protected http: HttpClient, private createEvent: CreateEventComponent , private scheduleComponent: ScheduleComponent, private router: Router, private translate: TranslateService) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
@@ -36,6 +37,7 @@ export class ListProtocolComponent implements OnInit {
     }
 
     ngOnInit() {
+
 
         this.protocolService.getUserProtocols().subscribe(
             data => {
@@ -68,15 +70,23 @@ export class ListProtocolComponent implements OnInit {
             }
         );
 
+        const gabaritName = function(formUUID) {
+            if (formUUID.startsWith('af')) {
+                return 'protocole-schema-quebec.json';
+            } else {
+                return 'protocole-schema-canada.json';
+            }
+        };
+
         const sortByProperty = function (property) {
             return function (y, x) {
                 return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
             };
         };
 
-        const formatProtocolName = protocol => 
+        const formatProtocolName = protocol =>
             ({ ...protocol, protocolName: protocol.name ? String(protocol.creationDate).replace('T04:00:00.000Z', '') + ' - ' + protocol.name
-                : String(protocol.creationDate).replace('T04:00:00.000Z', '') + ' - Unamed protocol'});
+                : String(protocol.creationDate).replace('T04:00:00.000Z', '') + ' - Unamed protocol', gabaritName: gabaritName(protocol.protocolUuid)});
 
         this.protocolService.getUserRelatedProtocols().subscribe(
             data => {
@@ -118,10 +128,26 @@ export class ListProtocolComponent implements OnInit {
     this.router.navigateByUrl('/schedule?id=' + data.uuid);
   }
 
-    approve(data) {
+    send(data) {
+        const index = this.userProtocolActif.indexOf(data);
+        this.userProtocolActif.splice(index, 1);
+        this.userProtocolArchived.push(data);
     }
 
     deleteProtocol(data) {
+        if (status === 'pending') {
+            const index = this.userProtocolPending.indexOf(data);
+            this.userProtocolPending.splice(index, 1);
+        }
+        if (status === 'actif') {
+            const index = this.userProtocolActif.indexOf(data);
+            this.userProtocolActif.splice(index, 1);
+        }
+
+        if (status === 'rejected') {
+            const index = this.userProtocolRejected.indexOf(data);
+            this.userProtocolRejected.splice(index, 1);
+        }
     }
 
     downloadPdf(data) {

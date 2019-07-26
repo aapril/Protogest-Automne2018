@@ -35,6 +35,8 @@ export class ForgotPasswordComponent  implements OnInit {
     confirmCode = false;
     public isViewable = false;
     public errorMessage = false;
+    public successSent = false;
+    public successReset = false;
 
    constructor(private protocolService: ProtocolService, protected http: HttpClient, private router: Router, private translate: TranslateService) {}
 
@@ -65,6 +67,7 @@ export class ForgotPasswordComponent  implements OnInit {
             data => {
                 this.userRelatedProtocol = data;
                 this.isViewable = true;
+                this.successSent = true;
             },
             fail => {
                 this.errorMessage = true;
@@ -78,6 +81,7 @@ export class ForgotPasswordComponent  implements OnInit {
             data => {
                 this.userRelatedProtocol = data;
                 this.router.navigate(["/login"]);
+                this.successReset = true;
 
             },
             fail => {

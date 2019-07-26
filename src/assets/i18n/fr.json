@@ -43,6 +43,8 @@
     "Invite": "Inviter",
     "Collaborate": "Collaborer",
     "Done": "Terminé",
+    "Save and send": "Sauvegarder et envoyer",
+    "Save for later": "Sauvegarder pour plus tard"
     "Close": "Fermer",
     "Now Done": "Vous avez maintenant terminé.",
     "Save": "Sauvegarder le protocole!",
@@ -78,5 +80,15 @@
     "voir le calendrier": "voir le calendrier",
     "editer protocol": "Éditer le protocol",
     "telecharger pdf": "Télécharger le protocol en format pdf",
-    "supprimer protocol": "Supprimer le protocol"
+    "supprimer protocol": "Supprimer le protocol",
+    "gabarit": "gabarit utilisé : ",
+    "passwordReset": "Votre mot de passe a été réinitialisé avec succès",
+    "emailSent": "Un courriel avec un code a été envoyé à votre adresse email",
+    "errorEmail": "Entrer un email valide",
+    "email": "Courriel",
+    "errorPassword": "Entrez un mot de passe valide",
+    "errorCode": "Entrez un code valide",
+    "send": "Envoyer",
+    "login": "S'identifier",
+    "changePassword": "Changer le mot de passe"
 }

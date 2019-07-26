@@ -55,6 +55,22 @@ export class ProtocolService {
         return this.httpClient.get<Event[]>(environment.backendUrl + '/my/protocols', httpOptions).pipe(catchError(this.handleError));
     }
 
+    /**
+     * Gets all the protocol schema
+     * Returns: List of Event objects
+     */
+    getProtocolSchema(): Observable<Event[]> {
+        var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
+
+        let allHeaders = Object.assign({}, headersDict, { 'Authentification': localSecretKey });
+
+        const httpOptions = {
+            headers: new HttpHeaders(allHeaders)
+        };
+
+        return this.httpClient.get<Event[]>(environment.backendUrl + '/protocol-schemas', httpOptions).pipe(catchError(this.handleError));
+    }
+
     getUserRelatedProtocols(): Observable<Event[]> {
         var localSecretKey = JSON.parse(localStorage.getItem("currentUser"))["ACCESS_TOKEN"];
 

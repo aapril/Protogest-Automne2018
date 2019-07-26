@@ -64,7 +64,8 @@
                 </div>
                 <div>
                     <button class="btn-secondary" mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
-                    <button class="btn-purple" mat-button (click)='saveForm()'>{{ 'Done' | translate }}</button>
+                    <button class="btn-purple btn-margin" mat-button (click)='saveForLater()'>{{ 'Save for later' | translate }}</button>
+                    <button class="btn-purple" mat-button (click)='saveForm()'>{{ 'Save and send' | translate }}</button>
                 </div>
             </form>
         </mat-step>>

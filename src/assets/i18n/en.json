@@ -43,6 +43,8 @@
     "Invite": "Invite",
     "Collaborate": "Collaborate",
     "Done": "Done",
+    "Save and send": "Save and send",
+    "Save for later": "Save for later",
     "Close": "Close",
     "Now Done": "You are now done.",
     "Save": "Save the protocol!",
@@ -78,6 +80,16 @@
     "voir le calendrier": "See calendar",
     "editer protocol": "Edit protocol",
     "telecharger pdf": "Download protocol in pdf format",
-    "supprimer protocol": "delete protocol"
+    "supprimer protocol": "delete protocol",
+	"gabarit": "template used : ",
+    "passwordReset": "Your password has been reset with success",
+    "emailSent": "An email with a code has been sent to your email adresse",
+    "errorEmail": "Enter a valid email",
+    "email": "Email",
+    "errorPassword": "Enter a valid password",
+    "errorCode": "Enter a valid Code",
+    "send": "Send",
+    "login": "Log in",
+    "changePassword": "Change password"
 
 }

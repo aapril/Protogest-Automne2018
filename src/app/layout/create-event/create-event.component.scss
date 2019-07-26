@@ -32,6 +32,11 @@ button.calendar{
     background-color: #00c756;
   }
 }
+
+/deep/ .mat-horizontal-content-container {
+  overflow: visible;
+}
+
 .btn-secondary {
     color: #fff;
     background-color: #868e96;
