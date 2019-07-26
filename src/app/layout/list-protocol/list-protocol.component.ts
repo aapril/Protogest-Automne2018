@@ -54,52 +54,17 @@ export class ListProtocolComponent implements OnInit {
                     }
                 }
 
-                this.http.get(environment.backendUrl + '/protocol-schemas').subscribe(response => {
-                    if (!response) {
-                        throw new Error('Failed to communicate with server');
-                    }
-                    this.protocolSchemas = response;
-                    for (const z of this.userProtocolActif) {
-                        if (this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid), p => p.status.toLowerCase().includes('pending'))[0])  {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '') + ' - ' + this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid))[0].name;
-                        } else {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '');
-                        }
-                    }
-                    this.userProtocolActif.sort(sortByProperty('protocolName'));
+                this.userProtocolActif = this.userProtocolActif.map(protocol => formatProtocolName(protocol));
+                this.userProtocolActif.sort(sortByProperty('protocolName'));
 
+                this.userProtocolRejected = this.userProtocolRejected.map(protocol => formatProtocolName(protocol));
+                this.userProtocolRejected.sort(sortByProperty('protocolName'));
 
-                    for (const z of this.userProtocolRejected) {
-                        if (this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid), p => p.status.toLowerCase().includes('pending'))[0])  {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '') + ' - ' + this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid))[0].name;
-                        } else {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '');
-                        }
-                    }
-                    this.userProtocolRejected.sort(sortByProperty('protocolName'));
+                this.userProtocolPending = this.userProtocolPending.map(protocol => formatProtocolName(protocol));
+                this.userProtocolPending.sort(sortByProperty('protocolName'));
 
-
-                    for (const z of this.userProtocolPending) {
-                        if (this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid), p => p.status.toLowerCase().includes('pending'))[0])  {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '') + ' - ' + this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid))[0].name;
-                        } else {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '');
-                        }
-                    }
-                    this.userProtocolPending.sort(sortByProperty('protocolName'));
-
-
-                    for (const z of this.userProtocolArchived) {
-                        if (this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid), p => p.status.toLowerCase().includes('pending'))[0])  {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '') + ' - ' + this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid))[0].name;
-                        } else {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '');
-                        }
-                    }
-                    this.userProtocolArchived.sort(sortByProperty('protocolName'));
-                });
-
-
+                this.userProtocolArchived = this.userProtocolArchived.map(protocol => formatProtocolName(protocol));
+                this.userProtocolArchived.sort(sortByProperty('protocolName'));
             }
         );
 
@@ -109,9 +74,12 @@ export class ListProtocolComponent implements OnInit {
             };
         };
 
+        const formatProtocolName = protocol => 
+            ({ ...protocol, protocolName: protocol.name ? String(protocol.creationDate).replace('T04:00:00.000Z', '') + ' - ' + protocol.name
+                : String(protocol.creationDate).replace('T04:00:00.000Z', '') + ' - Unamed protocol'});
+
         this.protocolService.getUserRelatedProtocols().subscribe(
             data => {
-
 
                 for (const z of data) {
                     if (z['status'] === 'APPROVED')  {
@@ -128,51 +96,17 @@ export class ListProtocolComponent implements OnInit {
                     }
                 }
 
-                this.http.get(environment.backendUrl + '/protocol-schemas').subscribe(response => {
-                    if (!response) {
-                        throw new Error('Failed to communicate with server');
-                    }
-                    this.protocolSchemas = response;
-                    for (const z of this.userRelatedProtocolActif) {
-                        if (this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid), p => p.status.toLowerCase().includes('pending'))[0])  {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '') + ' - ' + this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid))[0].name;
-                        } else {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '');
-                        }
-                    }
-                    this.userRelatedProtocolActif.sort(sortByProperty('protocolName'));
+                this.userRelatedProtocolActif = this.userRelatedProtocolActif.map(protocol => formatProtocolName(protocol));
+                this.userRelatedProtocolActif.sort(sortByProperty('protocolName'));
 
+                this.userRelatedProtocolRejected = this.userRelatedProtocolRejected.map(protocol => formatProtocolName(protocol));
+                this.userRelatedProtocolRejected.sort(sortByProperty('protocolName'));
 
-                    for (const z of this.userRelatedProtocolRejected) {
-                        if (this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid), p => p.status.toLowerCase().includes('pending'))[0])  {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '') + ' - ' + this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid))[0].name;
-                        } else {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '');
-                        }
-                    }
-                    this.userRelatedProtocolRejected.sort(sortByProperty('protocolName'));
+                this.userRelatedProtocolPending = this.userRelatedProtocolPending.map(protocol => formatProtocolName(protocol));
+                this.userRelatedProtocolPending.sort(sortByProperty('protocolName'));
 
-
-                    for (const z of this.userRelatedProtocolPending) {
-                        if (this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid), p => p.status.toLowerCase().includes('pending'))[0])  {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '') + ' - ' + this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid))[0].name;
-                        } else {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '');
-                        }
-                    }
-                    this.userRelatedProtocolPending.sort(sortByProperty('protocolName'));
-
-
-                    for (const z of this.userRelatedProtocolArchived) {
-                        if (this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid), p => p.status.toLowerCase().includes('pending'))[0])  {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '') + ' - ' + this.protocolSchemas.filter(p => p.uuid.toLowerCase().includes(z.protocolUuid))[0].name;
-                        } else {
-                            z.protocolName = String(z.creationDate).replace('T04:00:00.000Z', '');
-                        }
-                    }
-                    this.userRelatedProtocolArchived.sort(sortByProperty('protocolName'));
-                });
-
+                this.userRelatedProtocolArchived = this.userRelatedProtocolArchived.map(protocol => formatProtocolName(protocol));
+                this.userRelatedProtocolArchived.sort(sortByProperty('protocolName'));
             }
         );
 
