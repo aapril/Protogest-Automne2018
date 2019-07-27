@@ -32,11 +32,11 @@
     "Create Protocol": "Create Protocol",
     "Create Template": "Create template",
     "List Protocol": "List Protocol",
-    "Relier Protocol": "To be approve",
+    "Relier Protocol": "To be approved",
     "Creer Protocol": "My protocols",
     "Protocol": "Create a Protocol",
     "Name Type": "Protocol name & type",
-    "Quebec Protocol": "Quebec protocol (Only protocol available right now)",
+    "Quebec Protocol": "Quebec protocol",
     "Canadian Protocol": "Canadian protocol",
     "Back": "Back",
     "Next": "Next",
@@ -81,7 +81,7 @@
     "editer protocol": "Edit protocol",
     "telecharger pdf": "Download protocol in pdf format",
     "supprimer protocol": "delete protocol",
-	"gabarit": "template used : ",
+	"gabarit": "template : ",
     "passwordReset": "Your password has been reset with success",
     "emailSent": "An email with a code has been sent to your email adresse",
     "errorEmail": "Enter a valid email",
@@ -90,6 +90,8 @@
     "errorCode": "Enter a valid Code",
     "send": "Send",
     "login": "Log in",
-    "changePassword": "Change password"
-
+    "changePassword": "Change password",
+    "juge": "Sent to court",
+    "approval": "Waiting for approval",
+    "approve": "Approve"
 }

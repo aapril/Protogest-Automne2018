@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import {ProtocolService} from '../../../shared/services/protocol.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -8,6 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
+    userName: String;
+    profilData;
     isActive = false;
     collapsed = false;
     showMenu = '';
@@ -15,7 +18,7 @@ export class SidebarComponent {
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private protocolService: ProtocolService,private translate: TranslateService, public router: Router) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
         this.translate.setDefaultLang('en');
         const browserLang = this.translate.getBrowserLang();
@@ -36,6 +39,14 @@ export class SidebarComponent {
                 this.toggleSidebar();
             }
         });
+
+
+        this.protocolService.getUserAttribute().subscribe(
+            data => {
+                this.profilData = data[0];
+                this.userName = this.profilData.name + " " + this.profilData.familyName;
+            }
+        );
     }
 
     eventCalled() {

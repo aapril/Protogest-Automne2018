@@ -36,7 +36,7 @@
     "Creer Protocol": "Mes Protocoles",
     "Protocol": "Créer un protocole",
     "Name Type": "Nom et type de protocole",
-    "Quebec Protocol": "Protocole Québec (Seul protocole disponible pour le moment)",
+    "Quebec Protocol": "Protocole Québec",
     "Canadian Protocol": "Protocole canadien",
     "Back": "Retour",
     "Next": "Suivant",
@@ -44,7 +44,7 @@
     "Collaborate": "Collaborer",
     "Done": "Terminé",
     "Save and send": "Sauvegarder et envoyer",
-    "Save for later": "Sauvegarder pour plus tard"
+    "Save for later": "Sauvegarder pour plus tard",
     "Close": "Fermer",
     "Now Done": "Vous avez maintenant terminé.",
     "Save": "Sauvegarder le protocole!",
@@ -81,7 +81,7 @@
     "editer protocol": "Éditer le protocol",
     "telecharger pdf": "Télécharger le protocol en format pdf",
     "supprimer protocol": "Supprimer le protocol",
-    "gabarit": "gabarit utilisé : ",
+    "gabarit": "gabarit : ",
     "passwordReset": "Votre mot de passe a été réinitialisé avec succès",
     "emailSent": "Un courriel avec un code a été envoyé à votre adresse email",
     "errorEmail": "Entrer un email valide",
@@ -89,6 +89,9 @@
     "errorPassword": "Entrez un mot de passe valide",
     "errorCode": "Entrez un code valide",
     "send": "Envoyer",
-    "login": "S'identifier",
-    "changePassword": "Changer le mot de passe"
+    "login": "Sidentifier",
+    "changePassword": "Changer le mot de passe",
+    "juge": "Envoyé au tribunal",
+    "approval": "En attente dapprobation",
+    "approve": "Approuver"
 }

@@ -26,7 +26,7 @@
                                         <button mat-icon-button class="btn-purple"  title="{{ 'supprimer protocol' | translate }}" (click)="deleteProtocol(x,'pending')"><mat-icon>delete</mat-icon></button>
                                     </div>
                                     <div class="col-md-0 mr-1 ml-1 mt-5">
-                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>save</mat-icon></button>
+                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>arrow_downward</mat-icon></button>
                                     </div>
                                 </div>
                             </ng-template>
@@ -51,14 +51,14 @@
                                         <button mat-icon-button class="btn-purple"  title="{{ 'supprimer protocol' | translate }}" (click)="deleteProtocol(x,'actif')"><mat-icon>delete</mat-icon></button>
                                     </div>
                                     <div class="col-md-0 mr-1 ml-1 mt-5">
-                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>save</mat-icon></button>
+                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>arrow_downward</mat-icon></button>
                                     </div>
                                     <div class="col-md-1 mt-5">
-                                        <span *ngIf="!x.approve">Waiting for approval</span>
-                                        <span *ngIf="x.approve">Approve</span>
+                                        <span *ngIf="!x.approve">{{ 'approval' | translate }}</span>
+                                        <span *ngIf="x.approve">{{ 'approve' | translate }}</span>
                                     </div>
                                     <div class="col-md-2 mt-5">
-                                        <button mat-button class="btn-purple" *ngIf="x.approve" (click)="send(x)"><mat-icon>email</mat-icon>Send to the Juge</button>
+                                        <button mat-button class="btn-purple" *ngIf="x.approve" (click)="send(x)"><mat-icon>email</mat-icon>{{ 'juge' | translate }}</button>
                                     </div>
                                 </div>
                             </ng-template>
@@ -83,7 +83,7 @@
                                         <button mat-icon-button class="btn-purple"  title="{{ 'supprimer protocol' | translate }}" (click)="deleteProtocol(x,'rejected')"><mat-icon>delete</mat-icon></button>
                                     </div>
                                     <div class="col-md-0 mr-1 ml-1 mt-5">
-                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>save</mat-icon></button>
+                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>arrow_downward</mat-icon></button>
                                     </div>
                                 </div>
                             </ng-template>
@@ -105,7 +105,7 @@
                                         <button mat-icon-button class="btn-purple"  title="{{ 'editer protocol' | translate }}" (click)="updateProtocol(x)"><mat-icon>edit</mat-icon></button>
                                     </div>
                                     <div class="col-md-0 mr-1 ml-1 mt-5">
-                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}télécharger un pdf du protocol" (click)="downloadPdf(x)"><mat-icon>save</mat-icon></button>
+                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}télécharger un pdf du protocol" (click)="downloadPdf(x)"><mat-icon>arrow_downward</mat-icon></button>
                                     </div>
                                 </div>
                             </ng-template>
@@ -138,7 +138,7 @@
                                         <button mat-icon-button class="btn-purple"  title="{{ 'editer protocol' | translate }}" (click)="updateProtocol(x)"><mat-icon>edit</mat-icon></button>
                                     </div>
                                     <div class="col-md-0 mr-1 ml-1 mt-5">
-                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>save</mat-icon></button>
+                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>arrow_downward</mat-icon></button>
                                     </div>
                                 </div>
                             </ng-template>
@@ -160,7 +160,7 @@
                                         <button mat-icon-button class="btn-purple"  title="{{ 'editer protocol' | translate }}" (click)="updateProtocol(x)"><mat-icon>edit</mat-icon></button>
                                     </div>
                                     <div class="col-md-0 mr-1 ml-1 mt-5">
-                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>save</mat-icon></button>
+                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>arrow_downward</mat-icon></button>
                                     </div>
                                 </div>
                             </ng-template>
@@ -182,7 +182,7 @@
                                         <button mat-icon-button class="btn-purple"  title="{{ 'editer protocol' | translate }}" (click)="updateProtocol(x)"><mat-icon>edit</mat-icon></button>
                                     </div>
                                     <div class="col-md-0 mr-1 ml-1 mt-5">
-                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>save</mat-icon></button>
+                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>arrow_downward</mat-icon></button>
                                     </div>
                                 </div>
                             </ng-template>
@@ -204,7 +204,7 @@
                                         <button mat-icon-button class="btn-purple"  title="{{ 'editer protocol' | translate }}" (click)="updateProtocol(x)"><mat-icon>edit</mat-icon></button>
                                     </div>
                                     <div class="col-md-0 mr-1 ml-1 mt-5">
-                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>save</mat-icon></button>
+                                        <button mat-icon-button class="btn-purple"  title="{{ 'telecharger pdf' | translate }}" (click)="downloadPdf(x)"><mat-icon>arrow_downward</mat-icon></button>
                                     </div>
                                 </div>
                             </ng-template>

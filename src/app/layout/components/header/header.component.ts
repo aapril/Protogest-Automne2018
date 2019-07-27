@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
         this.protocolService.getUserAttribute().subscribe(
             data => {
                 this.profilData = data[0];
-                this.userName = this.profilData.name +" "+this.profilData.familyName;
+                this.userName = this.profilData.name + " " + this.profilData.familyName;
             }
         );
 

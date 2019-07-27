@@ -72,9 +72,9 @@ export class ListProtocolComponent implements OnInit {
 
         const gabaritName = function(formUUID) {
             if (formUUID.startsWith('af')) {
-                return 'protocole-schema-quebec.json';
+                return 'Protocole d\'instance du Quebec';
             } else {
-                return 'protocole-schema-canada.json';
+                return 'Protocole d\'instance du Canada';
             }
         };
 
