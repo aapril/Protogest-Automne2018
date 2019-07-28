@@ -55,28 +55,25 @@ export class ListProtocolComponent implements OnInit {
                         this.userProtocolArchived.push(z);
                     }
                 }
+                this.protocolService.getProtocolSchema().subscribe(
+                    data2 => {
+                        this.protocolSchema = data2;
 
-                this.userProtocolActif = this.userProtocolActif.map(protocol => formatProtocolName(protocol));
-                this.userProtocolActif.sort(sortByProperty('protocolName'));
+                        this.userProtocolActif = this.userProtocolActif.map(protocol => formatProtocolName(protocol, this.protocolSchema));
+                        this.userProtocolActif.sort(sortByProperty('protocolName'));
 
-                this.userProtocolRejected = this.userProtocolRejected.map(protocol => formatProtocolName(protocol));
-                this.userProtocolRejected.sort(sortByProperty('protocolName'));
+                        this.userProtocolRejected = this.userProtocolRejected.map(protocol => formatProtocolName(protocol, this.protocolSchema));
+                        this.userProtocolRejected.sort(sortByProperty('protocolName'));
 
-                this.userProtocolPending = this.userProtocolPending.map(protocol => formatProtocolName(protocol));
-                this.userProtocolPending.sort(sortByProperty('protocolName'));
+                        this.userProtocolPending = this.userProtocolPending.map(protocol => formatProtocolName(protocol, this.protocolSchema));
+                        this.userProtocolPending.sort(sortByProperty('protocolName'));
 
-                this.userProtocolArchived = this.userProtocolArchived.map(protocol => formatProtocolName(protocol));
-                this.userProtocolArchived.sort(sortByProperty('protocolName'));
+                        this.userProtocolArchived = this.userProtocolArchived.map(protocol => formatProtocolName(protocol, this.protocolSchema));
+                        this.userProtocolArchived.sort(sortByProperty('protocolName'));
+                    }
+                );
             }
         );
-
-        const gabaritName = function(formUUID) {
-            if (formUUID.startsWith('af')) {
-                return 'Protocole d\'instance du Quebec';
-            } else {
-                return 'Protocole d\'instance du Canada';
-            }
-        };
 
         const sortByProperty = function (property) {
             return function (y, x) {
@@ -84,9 +81,14 @@ export class ListProtocolComponent implements OnInit {
             };
         };
 
-        const formatProtocolName = protocol =>
-            ({ ...protocol, protocolName: protocol.name ? String(protocol.creationDate).replace('T04:00:00.000Z', '') + ' - ' + protocol.name
-                : String(protocol.creationDate).replace('T04:00:00.000Z', '') + ' - Unamed protocol', gabaritName: gabaritName(protocol.protocolUuid)});
+        const formatProtocolName = function (protocol, protocolSchema) {
+            for (const z of protocolSchema) {
+                if (protocol.protocolUuid === z.uuid) {
+                    return ({ ...protocol, protocolName: protocol.name ? String(protocol.creationDate).replace('T04:00:00.000Z', '') + ' - ' + protocol.name
+                            : String(protocol.creationDate).replace('T04:00:00.000Z', '') + ' - Unamed protocol', gabaritName: z.description});
+                }
+            }
+        };
 
         this.protocolService.getUserRelatedProtocols().subscribe(
             data => {
@@ -106,16 +108,16 @@ export class ListProtocolComponent implements OnInit {
                     }
                 }
 
-                this.userRelatedProtocolActif = this.userRelatedProtocolActif.map(protocol => formatProtocolName(protocol));
+                this.userRelatedProtocolActif = this.userRelatedProtocolActif.map(protocol => formatProtocolName(protocol, this.protocolSchema));
                 this.userRelatedProtocolActif.sort(sortByProperty('protocolName'));
 
-                this.userRelatedProtocolRejected = this.userRelatedProtocolRejected.map(protocol => formatProtocolName(protocol));
+                this.userRelatedProtocolRejected = this.userRelatedProtocolRejected.map(protocol => formatProtocolName(protocol, this.protocolSchema));
                 this.userRelatedProtocolRejected.sort(sortByProperty('protocolName'));
 
-                this.userRelatedProtocolPending = this.userRelatedProtocolPending.map(protocol => formatProtocolName(protocol));
+                this.userRelatedProtocolPending = this.userRelatedProtocolPending.map(protocol => formatProtocolName(protocol, this.protocolSchema));
                 this.userRelatedProtocolPending.sort(sortByProperty('protocolName'));
 
-                this.userRelatedProtocolArchived = this.userRelatedProtocolArchived.map(protocol => formatProtocolName(protocol));
+                this.userRelatedProtocolArchived = this.userRelatedProtocolArchived.map(protocol => formatProtocolName(protocol, this.protocolSchema));
                 this.userRelatedProtocolArchived.sort(sortByProperty('protocolName'));
             }
         );
