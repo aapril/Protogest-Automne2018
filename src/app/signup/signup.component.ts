@@ -43,9 +43,9 @@ export class SignupComponent implements OnInit {
     confirmCode: boolean = false;
     codeWasConfirmed: boolean = false;
 
-    constructor(private router: Router, private http: HttpClient) {}
+    constructor(private router: Router, private http: HttpClient) { }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     get email() {
         return this.signupForm.get("email");
@@ -92,6 +92,8 @@ export class SignupComponent implements OnInit {
                         "password",
                         this.signupForm.get("password").value
                     );
+                    data.append("firstName", this.signupForm.get("firstName").value);
+                    data.append("lastName", this.signupForm.get("lastName").value);
                     this.http
                         .post<any>(
                             environment.backendUrl + "/users/signup",
