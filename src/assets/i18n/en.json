@@ -93,5 +93,6 @@
     "changePassword": "Change password",
     "juge": "Sent to court",
     "approval": "Waiting for approval",
-    "approve": "Approve"
+    "approve": "Approve",
+    "passwordResetRequire": "You must provide a password confirmation"
 }

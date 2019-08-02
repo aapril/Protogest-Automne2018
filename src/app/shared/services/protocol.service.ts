@@ -159,11 +159,11 @@ export class ProtocolService {
 
     forgotPassword(userName): Observable<Event[]> {
 
-        return this.httpClient.post<Event[]>(environment.backendUrl + '/user/forgotPassword/', { userName: userName }).pipe(catchError(this.handleError));
+        return this.httpClient.post<Event[]>(environment.backendUrl + '/user/forgotPassword/', { userName: userName });
     }
 
     confirmPassword(userName, password, code): Observable<Event[]> {
 
-        return this.httpClient.post<Event[]>(environment.backendUrl + '/user/resetPasswordCode/', { userName: userName, password: password, code: code }).pipe(catchError(this.handleError));
+        return this.httpClient.post<Event[]>(environment.backendUrl + '/user/resetPasswordCode/', { userName: userName, password: password, code: code });
     }
 }

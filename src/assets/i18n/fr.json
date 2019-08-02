@@ -93,5 +93,6 @@
     "changePassword": "Changer le mot de passe",
     "juge": "Envoyé au tribunal",
     "approval": "En attente dapprobation",
-    "approve": "Approuver"
+    "approve": "Approuver",
+    "passwordResetRequire": "Vous devez fournir une confirmation du mot de passe"
 }
