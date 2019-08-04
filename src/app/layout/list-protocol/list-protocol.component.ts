@@ -136,7 +136,7 @@ export class ListProtocolComponent implements OnInit {
         this.userProtocolArchived.push(data);
     }
 
-    deleteProtocol(data) {
+    deleteProtocol(data, status) {
         if (status === 'pending') {
             const index = this.userProtocolPending.indexOf(data);
             this.userProtocolPending.splice(index, 1);
